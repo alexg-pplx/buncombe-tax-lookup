@@ -18,8 +18,8 @@ module.exports = async function handler(req, res) {
       return {
         pin: r.PIN,
         owner: r.Owner || "",
-        address: [r.HouseNumber, r.StreetName, r.StreetType].filter(Boolean).join(" "),
-        cityName: loc ? loc.name : (r.CityName || "Buncombe County"),
+        address: [r.HouseNumber, r.StreetPrefix, r.StreetName, r.StreetType, r.StreetPostDirection].filter(Boolean).join(" "),
+        cityName: loc ? loc.name : "Buncombe County",
         totalMarketValue: parseValue(r.TotalMarketValue),
       };
     });

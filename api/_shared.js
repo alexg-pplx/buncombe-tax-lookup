@@ -2,7 +2,7 @@ const ARCGIS_BASE = "https://gis.buncombecounty.org/arcgis/rest/services";
 const CURRENT_LAYER = `${ARCGIS_BASE}/opendata/MapServer/1`;
 const PREVIOUS_LAYER = `${ARCGIS_BASE}/opendata_2/FeatureServer/15`;
 
-const CURRENT_FIELDS = "PIN,Owner,HouseNumber,StreetName,StreetType,City,CityName,State,Zipcode,Township,Acreage,Class,FireDistrict,NeighborhoodCode,TotalMarketValue,AppraisedValue,TaxValue,LandValue,BuildingValue,PropCard";
+const CURRENT_FIELDS = "PIN,Owner,HouseNumber,StreetPrefix,StreetName,StreetType,StreetPostDirection,City,CityName,State,Zipcode,Township,Acreage,Class,FireDistrict,NeighborhoodCode,TotalMarketValue,AppraisedValue,TaxValue,LandValue,BuildingValue,PropCard";
 const PREVIOUS_FIELDS = "PIN,Owner,TotalMarketValue,AppraisedValue,TaxValue,LandValue,BuildingValue";
 
 const CITY_TO_DISTRICT = {
@@ -52,9 +52,9 @@ const FIRE_CODE_TO_AREA = {
 
 function derivePropertyLocation(city, fireDistrict) {
   const cityCode = (city || "").trim().toUpperCase();
-  const fireCode = (fireDistrict || "").trim().toUpperCase();
+  // Only use city name for incorporated areas — those are reliable
   if (cityCode && CITY_CODE_TO_NAME[cityCode]) return CITY_CODE_TO_NAME[cityCode];
-  if (fireCode && FIRE_CODE_TO_AREA[fireCode]) return FIRE_CODE_TO_AREA[fireCode];
+  // For unincorporated areas, return null — CityName/Zipcode are mailing address, not property location
   return null;
 }
 
