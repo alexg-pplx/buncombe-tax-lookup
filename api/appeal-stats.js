@@ -14,3 +14,4 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
   res.json(APPEAL_STATS);
 };
+// appeal stats endpoint
