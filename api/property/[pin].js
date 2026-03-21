@@ -22,6 +22,28 @@ module.exports = async function handler(req, res) {
     const neighborhoodCode = (current.NeighborhoodCode || "").trim();
     const neighborhood = getNeighborhoodData(neighborhoodCode);
 
+    // If current values are $0 (likely appeal), fetch 2026 reappraisal value from PRC
+    let reappraisalValue = null;
+    const currentTotal = parseValue(current.TotalMarketValue);
+    if (currentTotal === 0) {
+      try {
+        const prcRes = await fetch(`https://prc-buncombe.spatialest.com/api/v1/recordcard/${pin}`);
+        if (prcRes.ok) {
+          const prc = await prcRes.json();
+          const hist = prc?.parcel?.sections?.[4]?.[0];
+          if (Array.isArray(hist)) {
+            const entry = hist.find(e => e.YearID === 2026 && e.ShortDescription?.includes("REAPPRAISAL"));
+            if (entry?.TotalAppraisedValue) {
+              const val = parseInt(String(entry.TotalAppraisedValue).replace(/[^0-9]/g, ""), 10);
+              if (!isNaN(val) && val > 0) reappraisalValue = val;
+            }
+          }
+        }
+      } catch (e) {
+        console.warn("PRC fetch failed:", e.message);
+      }
+    }
+
     const property = {
       pin: current.PIN,
       owner: current.Owner || "",
@@ -39,6 +61,7 @@ module.exports = async function handler(req, res) {
       propertyClass: current.Class || "",
       fireDistrict: current.FireDistrict || "",
       neighborhoodCode,
+      reappraisalValue,
       neighborhood,
       detectedDistrictCode,
       currentValue: {
