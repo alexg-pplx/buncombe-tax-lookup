@@ -1,4 +1,4 @@
-const { NEIGHBORHOOD_STATS, getNeighborhoodPercentile } = require("./_shared");
+const { NEIGHBORHOOD_STATS, NEIGHBORHOOD_LABELS, getNeighborhoodPercentile } = require("./_shared");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -11,8 +11,12 @@ module.exports = async function handler(req, res) {
     const neighborhoods = Object.entries(NEIGHBORHOOD_STATS).map(([code, data]) => {
       const below = allMedians.filter(m => m < data.median_increase).length;
       const percentileRank = Math.round((below / allMedians.length) * 100);
+      const labelInfo = NEIGHBORHOOD_LABELS[code] || {};
       return {
         code,
+        label: labelInfo.label || "",
+        descriptor: labelInfo.descriptor || "",
+        topStreets: labelInfo.topStreets || [],
         parcels: data.parcels,
         medianIncrease: data.median_increase,
         meanIncrease: data.mean_increase,

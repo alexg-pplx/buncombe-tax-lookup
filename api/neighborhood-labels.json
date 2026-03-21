@@ -1,0 +1,6394 @@
+{
+  "SWB-": {
+    "label": "Asheville \u2014 Waightstill Mountain",
+    "area": "Asheville",
+    "descriptor": "Waightstill Mountain",
+    "topStreets": [
+      "Glenn Bridge",
+      "Ball Gap"
+    ],
+    "topSubs": [
+      "Waightstill Mountain",
+      "Ashley Woods"
+    ]
+  },
+  "IV-I": {
+    "label": "Barnardsville \u2014 Dillingham area",
+    "area": "Barnardsville",
+    "descriptor": "Dillingham area",
+    "topStreets": [
+      "Dillingham",
+      "Fork"
+    ],
+    "topSubs": [
+      "H Lewis & Mildred M Earley Property",
+      "Wildcat Knob Corp"
+    ]
+  },
+  "SM-S": {
+    "label": "Leicester \u2014 Turkey Creek area",
+    "area": "Leicester",
+    "descriptor": "Turkey Creek area",
+    "topStreets": [
+      "Turkey Creek",
+      "Sandy Mush Creek"
+    ],
+    "topSubs": [
+      "Nellie Triplett Lunsford Estate",
+      "George M Kerr Et Al"
+    ]
+  },
+  "EA-H": {
+    "label": "Asheville \u2014 Hawthorne",
+    "area": "Asheville",
+    "descriptor": "Hawthorne",
+    "topStreets": [
+      "Old Haw Creek",
+      "New Haw Creek"
+    ],
+    "topSubs": [
+      "Hawthorne",
+      "Homeland Park"
+    ]
+  },
+  "SWAN": {
+    "label": "Asheville \u2014 Beacon Village",
+    "area": "Asheville",
+    "descriptor": "Beacon Village",
+    "topStreets": [
+      "Lower Grassy Branch",
+      "Bull Creek"
+    ],
+    "topSubs": [
+      "Beacon Village",
+      "Grovemont"
+    ]
+  },
+  "EA-K": {
+    "label": "Asheville \u2014 Kenilworth",
+    "area": "Asheville",
+    "descriptor": "Kenilworth",
+    "topStreets": [
+      "Kenilworth",
+      "White Pine"
+    ],
+    "topSubs": [
+      "Kenilworth",
+      "Kenilworth Forest"
+    ]
+  },
+  "WA-R": {
+    "label": "Asheville \u2014 Horney Heights",
+    "area": "Asheville",
+    "descriptor": "Horney Heights",
+    "topStreets": [
+      "Fairfax",
+      "Virginia"
+    ],
+    "topSubs": [
+      "Horney Heights",
+      "Villa Heights"
+    ]
+  },
+  "LE-C": {
+    "label": "Woodfin \u2014 Crest Mountain",
+    "area": "Woodfin",
+    "descriptor": "Crest Mountain",
+    "topStreets": [
+      "Scott Meadows",
+      "Chimney Crest"
+    ],
+    "topSubs": [
+      "Crest Mountain",
+      "Mount Carmel"
+    ]
+  },
+  "NW-B": {
+    "label": "Asheville \u2014 Hazelwood",
+    "area": "Asheville",
+    "descriptor": "Hazelwood",
+    "topStreets": [
+      "Brickyard",
+      "Huffman"
+    ],
+    "topSubs": [
+      "Preston J Peterkin Prop",
+      "Hazelwood"
+    ]
+  },
+  "NA-L": {
+    "label": "Asheville \u2014 Lakeview Park",
+    "area": "Asheville",
+    "descriptor": "Lakeview Park",
+    "topStreets": [
+      "Lakeshore",
+      "Lynn Cove"
+    ],
+    "topSubs": [
+      "Lakeview Park",
+      "Lakeview Estates"
+    ]
+  },
+  "EN-R": {
+    "label": "Asheville \u2014 Mt View Hills",
+    "area": "Asheville",
+    "descriptor": "Mt View Hills",
+    "topStreets": [
+      "Monte Vista",
+      "Oak Hill"
+    ],
+    "topSubs": [
+      "Edwin S Hartshorn Jr Prop",
+      "Mt View Hills"
+    ]
+  },
+  "EN-I": {
+    "label": "Enka/Candler \u2014 Hookers Gap area",
+    "area": "Enka/Candler",
+    "descriptor": "Hookers Gap area",
+    "topStreets": [
+      "Hookers Gap",
+      "Milksick Cove"
+    ],
+    "topSubs": [
+      "Laurel Lake Estates",
+      "Howell R .& Johnnie Bennett"
+    ]
+  },
+  "NW-E": {
+    "label": "Asheville \u2014 Sulphur Springs Park",
+    "area": "Asheville",
+    "descriptor": "Sulphur Springs Park",
+    "topStreets": [
+      "Appalachian",
+      "Estelle Park"
+    ],
+    "topSubs": [
+      "Sulphur Springs Park",
+      "Estelle Park"
+    ]
+  },
+  "SC-S": {
+    "label": "Asheville \u2014 Roosevelt Park",
+    "area": "Asheville",
+    "descriptor": "Roosevelt Park",
+    "topStreets": [
+      "Chapel",
+      "Rock Hill"
+    ],
+    "topSubs": [
+      "Roosevelt Park",
+      "Biltmore Terrace"
+    ]
+  },
+  "FA-W": {
+    "label": "Fairview \u2014 Whitaker Heights",
+    "area": "Fairview",
+    "descriptor": "Whitaker Heights",
+    "topStreets": [
+      "Church",
+      "Whitaker"
+    ],
+    "topSubs": [
+      "Whitaker Heights",
+      "Waterford Lakes"
+    ]
+  },
+  "BR-L": {
+    "label": "East Buncombe \u2014 Laurel Mountain Preserve",
+    "area": "East Buncombe",
+    "descriptor": "Laurel Mountain Preserve",
+    "topStreets": [
+      "Old Fort",
+      "Bird Creek Estates"
+    ],
+    "topSubs": [
+      "Laurel Mountain Preserve",
+      "Bird Creek Estates"
+    ]
+  },
+  "SA-R": {
+    "label": "Asheville",
+    "area": "Asheville",
+    "descriptor": "",
+    "topStreets": [],
+    "topSubs": []
+  },
+  "EBST": {
+    "label": "Black Mountain \u2014 The Settings Of Black Mountain",
+    "area": "Black Mountain",
+    "descriptor": "The Settings Of Black Mountain",
+    "topStreets": [
+      "Settings",
+      "Old Lafayette"
+    ],
+    "topSubs": [
+      "The Settings Of Black Mountain",
+      "Black Mountain Holdings"
+    ]
+  },
+  "NW-N": {
+    "label": "Asheville \u2014 Deaver View Park",
+    "area": "Asheville",
+    "descriptor": "Deaver View Park",
+    "topStreets": [
+      "Deaverview",
+      "Hazel Mill"
+    ],
+    "topSubs": [
+      "Deaver View Park",
+      "A C Rhudy"
+    ]
+  },
+  "WF-E": {
+    "label": "Woodfin \u2014 Elkmont Heights",
+    "area": "Woodfin",
+    "descriptor": "Elkmont Heights",
+    "topStreets": [
+      "Elkmont",
+      "Beaver"
+    ],
+    "topSubs": [
+      "Elkmont Heights",
+      "W J Gentry & Sons"
+    ]
+  },
+  "SABP": {
+    "label": "Asheville \u2014 Glen Oaks",
+    "area": "Asheville",
+    "descriptor": "Glen Oaks",
+    "topStreets": [
+      "White Ash",
+      "Columbine"
+    ],
+    "topSubs": [
+      "Glen Oaks",
+      "Braeside At Biltmore Park"
+    ]
+  },
+  "SA-K": {
+    "label": "Asheville \u2014 Kenwood",
+    "area": "Asheville",
+    "descriptor": "Kenwood",
+    "topStreets": [
+      "King Heights",
+      "Tuckaway"
+    ],
+    "topSubs": [
+      "Kenwood",
+      "King Heights"
+    ]
+  },
+  "RC-R": {
+    "label": "Weaverville \u2014 Reems Creek Golf Community",
+    "area": "Weaverville",
+    "descriptor": "Reems Creek Golf Community",
+    "topStreets": [
+      "Ox Creek",
+      "Reems Creek"
+    ],
+    "topSubs": [
+      "Reems Creek Golf Community",
+      "Reems Creek Village"
+    ]
+  },
+  "EN-S": {
+    "label": "Asheville \u2014 Justice Ridge area",
+    "area": "Asheville",
+    "descriptor": "Justice Ridge area",
+    "topStreets": [
+      "Justice Ridge",
+      "Old Us 19 23"
+    ],
+    "topSubs": [
+      "Stoneridge At Hayes Mtn",
+      "Solomon Luther Land"
+    ]
+  },
+  "SA-S": {
+    "label": "Asheville \u2014 Southside Village",
+    "area": "Asheville",
+    "descriptor": "Southside Village",
+    "topStreets": [
+      "Saint Andrews",
+      "Mountain Site"
+    ],
+    "topSubs": [
+      "St Andrews",
+      "Southside Village"
+    ]
+  },
+  "HWF2": {
+    "label": "Asheville \u2014 Haywood area",
+    "area": "Asheville",
+    "descriptor": "Haywood area",
+    "topStreets": [
+      "Haywood",
+      "Burton"
+    ],
+    "topSubs": [
+      "Green & Thrash",
+      "Mrs Sd Patterson"
+    ]
+  },
+  "NA-E": {
+    "label": "Asheville \u2014 Grove Park",
+    "area": "Asheville",
+    "descriptor": "Grove Park",
+    "topStreets": [
+      "Elk Mountain Scenic",
+      "Edgewood"
+    ],
+    "topSubs": [
+      "Grove Park",
+      "Edgewood"
+    ]
+  },
+  "FA-B": {
+    "label": "Fairview \u2014 Blue Ridge Forest",
+    "area": "Fairview",
+    "descriptor": "Blue Ridge Forest",
+    "topStreets": [
+      "Brush Creek",
+      "Upper Brush Creek"
+    ],
+    "topSubs": [
+      "Blue Ridge Forest",
+      "Brush Creek Farms"
+    ]
+  },
+  "LE-V": {
+    "label": "Woodfin \u2014 Village Creek West",
+    "area": "Woodfin",
+    "descriptor": "Village Creek West",
+    "topStreets": [
+      "Verde",
+      "Destination"
+    ],
+    "topSubs": [
+      "Brookgreen Llc",
+      "Village Creek West"
+    ]
+  },
+  "LE-R": {
+    "label": "Woodfin \u2014 Alexander area",
+    "area": "Woodfin",
+    "descriptor": "Alexander area",
+    "topStreets": [
+      "Alexander",
+      "Olivette"
+    ],
+    "topSubs": [
+      "The Ridge",
+      "Ramsey Run"
+    ]
+  },
+  "SA-B": {
+    "label": "Asheville \u2014 Ballantree",
+    "area": "Asheville",
+    "descriptor": "Ballantree",
+    "topStreets": [
+      "Ballantree",
+      "Braddock"
+    ],
+    "topSubs": [
+      "Ballantree",
+      "Brookwood"
+    ]
+  },
+  "NA-H": {
+    "label": "Asheville \u2014 Hy-Vu Terrace",
+    "area": "Asheville",
+    "descriptor": "Hy-Vu Terrace",
+    "topStreets": [
+      "Fenner",
+      "Skyview"
+    ],
+    "topSubs": [
+      "Hy-Vu Terrace",
+      "Hills Of Beaverdam"
+    ]
+  },
+  "SS-C": {
+    "label": "Asheville \u2014 E Riverside Urban Renewal Area",
+    "area": "Asheville",
+    "descriptor": "E Riverside Urban Renewal Area",
+    "topStreets": [
+      "French Broad",
+      "Ora"
+    ],
+    "topSubs": [
+      "E Riverside Urban Renewal Area",
+      "Prop Of Asheville Land Co"
+    ]
+  },
+  "EN-A": {
+    "label": "Enka/Candler \u2014 Ashewood",
+    "area": "Enka/Candler",
+    "descriptor": "Ashewood",
+    "topStreets": [
+      "Bamboo",
+      "Asbury"
+    ],
+    "topSubs": [
+      "Ashewood",
+      "Ashley Acres"
+    ]
+  },
+  "EBMN": {
+    "label": "Montreat \u2014 Montreat",
+    "area": "Montreat",
+    "descriptor": "Montreat",
+    "topStreets": [
+      "Greybeard",
+      "Lookout"
+    ],
+    "topSubs": [
+      "Montreat",
+      "Mountain Retreat"
+    ]
+  },
+  "NW-O": {
+    "label": "Asheville \u2014 Old County Home area",
+    "area": "Asheville",
+    "descriptor": "Old County Home area",
+    "topStreets": [
+      "Old County Home",
+      "Bear Creek"
+    ],
+    "topSubs": [
+      "G E Crouch",
+      "J A Baker"
+    ]
+  },
+  "C6GB": {
+    "label": "Asheville \u2014 Chedworth Hills",
+    "area": "Asheville",
+    "descriptor": "Chedworth Hills",
+    "topStreets": [
+      "London",
+      "Iris"
+    ],
+    "topSubs": [
+      "Chedworth Hills",
+      "T J Reed Est"
+    ]
+  },
+  "SWBB": {
+    "label": "Enka/Candler \u2014 Biltmore Lake",
+    "area": "Enka/Candler",
+    "descriptor": "Biltmore Lake",
+    "topStreets": [
+      "Orvis Stone",
+      "Fennel Dun"
+    ],
+    "topSubs": [
+      "Biltmore Lake",
+      "Biltmore Lake Townhomes"
+    ]
+  },
+  "WF-R": {
+    "label": "Woodfin \u2014 Rydele Heights",
+    "area": "Woodfin",
+    "descriptor": "Rydele Heights",
+    "topStreets": [
+      "Elk Mountain",
+      "New Stock"
+    ],
+    "topSubs": [
+      "Rydele Heights",
+      "Riverwalk"
+    ]
+  },
+  "LE-L": {
+    "label": "West Buncombe \u2014 Leicester Village",
+    "area": "West Buncombe",
+    "descriptor": "Leicester Village",
+    "topStreets": [
+      "Lynwood",
+      "Climbing Aster"
+    ],
+    "topSubs": [
+      "Leicester Village",
+      "Lees Ridge"
+    ]
+  },
+  "CA-L": {
+    "label": "Enka/Candler \u2014 Lindon Cove Crossing",
+    "area": "Enka/Candler",
+    "descriptor": "Lindon Cove Crossing",
+    "topStreets": [
+      "Bailey",
+      "Bennett"
+    ],
+    "topSubs": [
+      "Lindon Cove Crossing",
+      "Laurel Ridge Estates"
+    ]
+  },
+  "EN-W": {
+    "label": "Asheville \u2014 Woodside Hills",
+    "area": "Asheville",
+    "descriptor": "Woodside Hills",
+    "topStreets": [
+      "Mayfair",
+      "Glencliff"
+    ],
+    "topSubs": [
+      "Woodside Hills",
+      "Hideaway Glen"
+    ]
+  },
+  "NW-R": {
+    "label": "Woodfin \u2014 Richmond Hill Park",
+    "area": "Woodfin",
+    "descriptor": "Richmond Hill Park",
+    "topStreets": [
+      "Gorman Bridge",
+      "Spivey Mountain"
+    ],
+    "topSubs": [
+      "Richmond Hill Park",
+      "Wolf Park"
+    ]
+  },
+  "WF-V": {
+    "label": "Woodfin \u2014 Village Of Country Creek",
+    "area": "Woodfin",
+    "descriptor": "Village Of Country Creek",
+    "topStreets": [
+      "Starling",
+      "Hillcreek"
+    ],
+    "topSubs": [
+      "Village Of Country Creek",
+      "Ventana"
+    ]
+  },
+  "WE-K": {
+    "label": "Weaverville \u2014 Kyfields area",
+    "area": "Weaverville",
+    "descriptor": "Kyfields area",
+    "topStreets": [
+      "Kyfields",
+      "Lakeview"
+    ],
+    "topSubs": [
+      "Kyfields Towne Homes",
+      "Kyfields Town Homes"
+    ]
+  },
+  "EB-O": {
+    "label": "Black Mountain \u2014 Oaken Hills Subd",
+    "area": "Black Mountain",
+    "descriptor": "Oaken Hills Subd",
+    "topStreets": [
+      "Oaken Hill",
+      "Highland"
+    ],
+    "topSubs": [
+      "Oaken Hills Subd",
+      "Orchard Of Black Mountain Condos"
+    ]
+  },
+  "FA-O": {
+    "label": "Fairview \u2014 Old Fort area",
+    "area": "Fairview",
+    "descriptor": "Old Fort area",
+    "topStreets": [
+      "Old Fort",
+      "Flat Top Mountain"
+    ],
+    "topSubs": [
+      "Benjamin F Nesbitt Estate",
+      "T H Trantham Estate"
+    ]
+  },
+  "RY-M": {
+    "label": "Fairview \u2014 Mcgee Estates",
+    "area": "Fairview",
+    "descriptor": "Mcgee Estates",
+    "topStreets": [
+      "Clay",
+      "Mcgee Ridge"
+    ],
+    "topSubs": [
+      "Mcgee Estates"
+    ]
+  },
+  "EA-P": {
+    "label": "Asheville \u2014 Parkway Forest",
+    "area": "Asheville",
+    "descriptor": "Parkway Forest",
+    "topStreets": [
+      "Pleasant Ridge",
+      "Oteen Church"
+    ],
+    "topSubs": [
+      "Parkway Forest",
+      "Parkway Hills"
+    ]
+  },
+  "NA-K": {
+    "label": "Asheville \u2014 Kimberly Heights",
+    "area": "Asheville",
+    "descriptor": "Kimberly Heights",
+    "topStreets": [
+      "Kimberly",
+      "Griffing"
+    ],
+    "topSubs": [
+      "Kimberly Heights",
+      "Kimberly Woods"
+    ]
+  },
+  "EB-T": {
+    "label": "Black Mountain \u2014 Lakewood",
+    "area": "Black Mountain",
+    "descriptor": "Lakewood",
+    "topStreets": [
+      "Cragmont",
+      "Oconeechee"
+    ],
+    "topSubs": [
+      "Methodist Colony Co",
+      "Lakewood"
+    ]
+  },
+  "FA-R": {
+    "label": "Fairview \u2014 Rainbow Ridge",
+    "area": "Fairview",
+    "descriptor": "Rainbow Ridge",
+    "topStreets": [
+      "Lynnette",
+      "Rilandwell"
+    ],
+    "topSubs": [
+      "Rainbow Ridge",
+      "Rilandwell Estates"
+    ]
+  },
+  "NA-G": {
+    "label": "Asheville \u2014 Grovewood Park",
+    "area": "Asheville",
+    "descriptor": "Grovewood Park",
+    "topStreets": [
+      "Woodcrest",
+      "Gracelyn"
+    ],
+    "topSubs": [
+      "Grovewood Park",
+      "Gracelynn"
+    ]
+  },
+  "NB-S": {
+    "label": "Jupiter \u2014 Sunset Hills",
+    "area": "Jupiter",
+    "descriptor": "Sunset Hills",
+    "topStreets": [
+      "Twin Ridge",
+      "Spicewood"
+    ],
+    "topSubs": [
+      "Sunset Hills",
+      "Spicewood"
+    ]
+  },
+  "NA-B": {
+    "label": "Asheville \u2014 Beaverbrook",
+    "area": "Asheville",
+    "descriptor": "Beaverbrook",
+    "topStreets": [
+      "Pinecroft",
+      "Webb Cove"
+    ],
+    "topSubs": [
+      "Beaverbrook",
+      "Belvedere"
+    ]
+  },
+  "FB-R": {
+    "label": "Leicester \u2014 Old Nc 20 area",
+    "area": "Leicester",
+    "descriptor": "Old Nc 20 area",
+    "topStreets": [
+      "Old Nc 20",
+      "Bear Creek"
+    ],
+    "topSubs": [
+      "Rose Hill Plantation Condominium",
+      "Red Oak Plantation"
+    ]
+  },
+  "EB-R": {
+    "label": "Black Mountain \u2014 Ridgecrest",
+    "area": "Black Mountain",
+    "descriptor": "Ridgecrest",
+    "topStreets": [
+      "North Fork",
+      "Walkertown"
+    ],
+    "topSubs": [
+      "Ridgecrest",
+      "Rhododendron"
+    ]
+  },
+  "WFRM": {
+    "label": "Woodfin \u2014 Reynolds Mountain",
+    "area": "Woodfin",
+    "descriptor": "Reynolds Mountain",
+    "topStreets": [
+      "Summit Tower",
+      "Points West"
+    ],
+    "topSubs": [
+      "Reynolds Mountain",
+      "The Terraces At Reynolds Mountain"
+    ]
+  },
+  "RY-U": {
+    "label": "Fairview \u2014 Echo Lake",
+    "area": "Fairview",
+    "descriptor": "Echo Lake",
+    "topStreets": [
+      "Old Fort",
+      "Flat Top Mountain"
+    ],
+    "topSubs": [
+      "Echo Lake",
+      "Geneata Wright Estate"
+    ]
+  },
+  "BR-U": {
+    "label": "Garren Creek \u2014 Fairview Forest Estates",
+    "area": "Garren Creek",
+    "descriptor": "Fairview Forest Estates",
+    "topStreets": [
+      "Garren Creek",
+      "Flat Creek"
+    ],
+    "topSubs": [
+      "Fairview Forest Estates",
+      "United Research Land Development"
+    ]
+  },
+  "BR-S": {
+    "label": "Broad River \u2014 Shumont area",
+    "area": "Broad River",
+    "descriptor": "Shumont area",
+    "topStreets": [
+      "Shumont",
+      "Sand Branch"
+    ],
+    "topSubs": [
+      "Shumont Properties",
+      "C F Shuman"
+    ]
+  },
+  "BLBF": {
+    "label": "Biltmore Forest \u2014 Biltmore Forest",
+    "area": "Biltmore Forest",
+    "descriptor": "Biltmore Forest",
+    "topStreets": [
+      "Vanderbilt",
+      "Forest"
+    ],
+    "topSubs": [
+      "Biltmore Forest",
+      "J E Brown Tract"
+    ]
+  },
+  "SA-W": {
+    "label": "Asheville \u2014 White Pine area",
+    "area": "Asheville",
+    "descriptor": "White Pine area",
+    "topStreets": [
+      "White Pine",
+      "Watson"
+    ],
+    "topSubs": [
+      "White Pine Circle",
+      "Willoughby Run"
+    ]
+  },
+  "BR-N": {
+    "label": "Garren Creek \u2014 Spring Acres",
+    "area": "Garren Creek",
+    "descriptor": "Spring Acres",
+    "topStreets": [
+      "Nc 9",
+      "Rock Creek"
+    ],
+    "topSubs": [
+      "Hardison Estate",
+      "Spring Acres"
+    ]
+  },
+  "CA-U": {
+    "label": "Upper Hominy \u2014 Pisgah area",
+    "area": "Upper Hominy",
+    "descriptor": "Pisgah area",
+    "topStreets": [
+      "Pisgah",
+      "Curtis Creek"
+    ],
+    "topSubs": [
+      "A B Davis Prop",
+      "Gladyview Estates"
+    ]
+  },
+  "NB-R": {
+    "label": "Weaverville \u2014 Old Mars Hill area",
+    "area": "Weaverville",
+    "descriptor": "Old Mars Hill area",
+    "topStreets": [
+      "Old Mars Hill",
+      "Jupiter"
+    ],
+    "topSubs": [
+      "Brooks Ledford & J V Shoemaker",
+      "Ridge Brook Estates"
+    ]
+  },
+  "WF-W": {
+    "label": "Woodfin \u2014 Woodland Hills",
+    "area": "Woodfin",
+    "descriptor": "Woodland Hills",
+    "topStreets": [
+      "Cherry Springs",
+      "Walnut Springs"
+    ],
+    "topSubs": [
+      "Woodland Hills",
+      "The Springs Of North Asheville"
+    ]
+  },
+  "OK-O": {
+    "label": "Asheville \u2014 Chedworth Hills",
+    "area": "Asheville",
+    "descriptor": "Chedworth Hills",
+    "topStreets": [
+      "Fairview",
+      "Onteora"
+    ],
+    "topSubs": [
+      "Chedworth Hills",
+      "Broad View Park"
+    ]
+  },
+  "FB-W": {
+    "label": "Leicester \u2014 Whispering Pines",
+    "area": "Leicester",
+    "descriptor": "Whispering Pines",
+    "topStreets": [
+      "Quiet Woods",
+      "Frank Lawson"
+    ],
+    "topSubs": [
+      "Whispering Pines",
+      "Windy Hill"
+    ]
+  },
+  "CBDD": {
+    "label": "Asheville \u2014 Lexington area",
+    "area": "Asheville",
+    "descriptor": "Lexington area",
+    "topStreets": [
+      "Lexington",
+      "Eagle"
+    ],
+    "topSubs": [
+      "Richmond Pearson",
+      "Hilliard Estate Revision"
+    ]
+  },
+  "C7SB": {
+    "label": "Asheville \u2014 Underwood area",
+    "area": "Asheville",
+    "descriptor": "Underwood area",
+    "topStreets": [
+      "Underwood",
+      "Rutledge"
+    ],
+    "topSubs": [
+      "Airport Design",
+      "R B Jones Investments Llc"
+    ]
+  },
+  "SA-H": {
+    "label": "Asheville \u2014 Hyde Park Subdivision Phase 1",
+    "area": "Asheville",
+    "descriptor": "Hyde Park Subdivision Phase 1",
+    "topStreets": [
+      "Foxberry",
+      "Hyde Park"
+    ],
+    "topSubs": [
+      "Hunters Trace",
+      "Hyde Park Subdivision Phase 1"
+    ]
+  },
+  "EB-C": {
+    "label": "Black Mountain \u2014 Christmont",
+    "area": "Black Mountain",
+    "descriptor": "Christmont",
+    "topStreets": [
+      "Greenbriar",
+      "Carolina"
+    ],
+    "topSubs": [
+      "Christmont",
+      "Cheshire"
+    ]
+  },
+  "CBFC": {
+    "label": "Asheville \u2014 College area",
+    "area": "Asheville",
+    "descriptor": "College area",
+    "topStreets": [
+      "College",
+      "Valley"
+    ],
+    "topSubs": [
+      "Buncombe County",
+      "Wnc Real Estate Foundation, Llc"
+    ]
+  },
+  "NA-D": {
+    "label": "Asheville \u2014 Woodrow area",
+    "area": "Asheville",
+    "descriptor": "Woodrow area",
+    "topStreets": [
+      "Woodrow",
+      "Hillside"
+    ],
+    "topSubs": [
+      "Doubleday Addition",
+      "C E Graham Property"
+    ]
+  },
+  "WF-S": {
+    "label": "Woodfin \u2014 Stoneybrook",
+    "area": "Woodfin",
+    "descriptor": "Stoneybrook",
+    "topStreets": [
+      "Knoll Ridge",
+      "Sunny Ridge"
+    ],
+    "topSubs": [
+      "Stoneybrook",
+      "Sunny Ridge Estates"
+    ]
+  },
+  "RC-A": {
+    "label": "Weaverville \u2014 Amblers Knoll area",
+    "area": "Weaverville",
+    "descriptor": "Amblers Knoll area",
+    "topStreets": [
+      "Amblers Knoll",
+      "Terra Glen"
+    ],
+    "topSubs": [
+      "Amblers Chase",
+      "Amber Glenn"
+    ]
+  },
+  "WE-P": {
+    "label": "Weaverville \u2014 Pinerose",
+    "area": "Weaverville",
+    "descriptor": "Pinerose",
+    "topStreets": [
+      "Creekside View",
+      "Craftsman View"
+    ],
+    "topSubs": [
+      "Pinebrook Farms",
+      "Pinerose"
+    ]
+  },
+  "SHTC": {
+    "label": "Asheville \u2014 Rev Plat L 6-8 J D Barnard",
+    "area": "Asheville",
+    "descriptor": "Rev Plat L 6-8 J D Barnard",
+    "topStreets": [
+      "Chestnut",
+      "Clayton"
+    ],
+    "topSubs": [
+      "Rev Plat L 6-8 J D Barnard Prop",
+      "Alice T Connally"
+    ]
+  },
+  "RY-G": {
+    "label": "Fairview \u2014 Graylyn Estates",
+    "area": "Fairview",
+    "descriptor": "Graylyn Estates",
+    "topStreets": [
+      "Gap Creek",
+      "Number Nine"
+    ],
+    "topSubs": [
+      "Graylyn Estates",
+      "Dorothy Mae Maness"
+    ]
+  },
+  "SA-P": {
+    "label": "Asheville \u2014 Poplar Ridge",
+    "area": "Asheville",
+    "descriptor": "Poplar Ridge",
+    "topStreets": [
+      "Pinners Cove",
+      "Park"
+    ],
+    "topSubs": [
+      "Poplar Ridge",
+      "Park Avenue"
+    ]
+  },
+  "LE-U": {
+    "label": "West Buncombe \u2014 Dix Creek No 2 area",
+    "area": "West Buncombe",
+    "descriptor": "Dix Creek No 2 area",
+    "topStreets": [
+      "Dix Creek No 2",
+      "Dix Creek No 1"
+    ],
+    "topSubs": [
+      "Emmett Etux Ellen Davis",
+      "Jeffrey Mayrand"
+    ]
+  },
+  "SA-A": {
+    "label": "Asheville \u2014 Arnstein Acres",
+    "area": "Asheville",
+    "descriptor": "Arnstein Acres",
+    "topStreets": [
+      "Cascade",
+      "Citra"
+    ],
+    "topSubs": [
+      "Arnstein Acres",
+      "Ashbrook"
+    ]
+  },
+  "NW-D": {
+    "label": "Enka/Candler \u2014 Deavermont Park",
+    "area": "Enka/Candler",
+    "descriptor": "Deavermont Park",
+    "topStreets": [
+      "Starnes Cove",
+      "Pisgah View"
+    ],
+    "topSubs": [
+      "Deavermont Park",
+      "Brooks Estates"
+    ]
+  },
+  "EA-S": {
+    "label": "Asheville \u2014 Sondley Estates",
+    "area": "Asheville",
+    "descriptor": "Sondley Estates",
+    "topStreets": [
+      "Sondley",
+      "Stonebridge"
+    ],
+    "topSubs": [
+      "Sondley Estates",
+      "Springtime"
+    ]
+  },
+  "WA-U": {
+    "label": "Asheville \u2014 Upstream area",
+    "area": "Asheville",
+    "descriptor": "Upstream area",
+    "topStreets": [
+      "Upstream"
+    ],
+    "topSubs": [
+      "Carrier Riverview Llc"
+    ]
+  },
+  "WF-C": {
+    "label": "Weaverville \u2014 Creekside Village",
+    "area": "Weaverville",
+    "descriptor": "Creekside Village",
+    "topStreets": [
+      "Loftin",
+      "Barnett Shoals"
+    ],
+    "topSubs": [
+      "Creekside Village",
+      "Cotton Mill  Subdivision"
+    ]
+  },
+  "NA-T": {
+    "label": "Asheville \u2014 Patton Mountain area",
+    "area": "Asheville",
+    "descriptor": "Patton Mountain area",
+    "topStreets": [
+      "Patton Mountain",
+      "Chantilly"
+    ],
+    "topSubs": [
+      "The Thoms Estate",
+      "The Thoms Estate Phase Ii"
+    ]
+  },
+  "FB-H": {
+    "label": "Woodfin \u2014 High Valley Estates",
+    "area": "Woodfin",
+    "descriptor": "High Valley Estates",
+    "topStreets": [
+      "Indian Paintbrush",
+      "High Valley Estates"
+    ],
+    "topSubs": [
+      "High Valley Estates",
+      "Hills Of French Broad"
+    ]
+  },
+  "WE-R": {
+    "label": "Weaverville \u2014 Wildwood Acres",
+    "area": "Weaverville",
+    "descriptor": "Wildwood Acres",
+    "topStreets": [
+      "Main",
+      "Wildwood"
+    ],
+    "topSubs": [
+      "J W Phipps Property",
+      "Wildwood Acres"
+    ]
+  },
+  "SWBC": {
+    "label": "Skyland \u2014 The Cliffs At Walnut Cove",
+    "area": "Skyland",
+    "descriptor": "The Cliffs At Walnut Cove",
+    "topStreets": [
+      "Walnut Valley",
+      "Linkside"
+    ],
+    "topSubs": [
+      "The Cliffs At Walnut Cove",
+      "The Townhomes At Walnut Cove"
+    ]
+  },
+  "MER2": {
+    "label": "Asheville \u2014 Merrimon area",
+    "area": "Asheville",
+    "descriptor": "Merrimon area",
+    "topStreets": [
+      "Merrimon",
+      "Beaverdam"
+    ],
+    "topSubs": [
+      "Atkinson Reynolds & Co",
+      "Robert A Long Estate"
+    ]
+  },
+  "SA-F": {
+    "label": "Fairview \u2014 Fox Ridge",
+    "area": "Fairview",
+    "descriptor": "Fox Ridge",
+    "topStreets": [
+      "Fox Hollow",
+      "Fox Ridge"
+    ],
+    "topSubs": [
+      "Fox Ridge",
+      "Fox Hollow"
+    ]
+  },
+  "NB-T": {
+    "label": "Jupiter \u2014 Twin Brook Hills",
+    "area": "Jupiter",
+    "descriptor": "Twin Brook Hills",
+    "topStreets": [
+      "Double Brook",
+      "Brook Knoll"
+    ],
+    "topSubs": [
+      "Twin Brook Hills",
+      "Timber Trail"
+    ]
+  },
+  "WF-B": {
+    "label": "Woodfin \u2014 Laurel Terrace",
+    "area": "Woodfin",
+    "descriptor": "Laurel Terrace",
+    "topStreets": [
+      "Naples",
+      "Wellington"
+    ],
+    "topSubs": [
+      "Laurel Terrace",
+      "Barebridge Hills"
+    ]
+  },
+  "SA-G": {
+    "label": "Asheville \u2014 Glen Cove",
+    "area": "Asheville",
+    "descriptor": "Glen Cove",
+    "topStreets": [
+      "Glen Cove",
+      "Tree Top"
+    ],
+    "topSubs": [
+      "Glen Cove",
+      "Glen Arden Estates"
+    ]
+  },
+  "SWFA": {
+    "label": "Asheville \u2014 Royal Pines",
+    "area": "Asheville",
+    "descriptor": "Royal Pines",
+    "topStreets": [
+      "Sweeten Creek",
+      "Rock Hill"
+    ],
+    "topSubs": [
+      "Royal Pines",
+      "Rosscraggon"
+    ]
+  },
+  "FA-H": {
+    "label": "Fairview \u2014 The Cliffs At High Carolina",
+    "area": "Fairview",
+    "descriptor": "The Cliffs At High Carolina",
+    "topStreets": [
+      "High Carolina",
+      "Hickory Nut Cove"
+    ],
+    "topSubs": [
+      "The Cliffs At High Carolina",
+      "Hillshire Woods"
+    ]
+  },
+  "NA-R": {
+    "label": "Asheville \u2014 Reynolds Place",
+    "area": "Asheville",
+    "descriptor": "Reynolds Place",
+    "topStreets": [
+      "Lynn Cove",
+      "Kalmia"
+    ],
+    "topSubs": [
+      "Reynolds Place",
+      "Rice Knob"
+    ]
+  },
+  "FA-G": {
+    "label": "Fairview \u2014 Grand Highlands At Waterford Lakes",
+    "area": "Fairview",
+    "descriptor": "Grand Highlands At Waterford Lakes",
+    "topStreets": [
+      "Garren Creek",
+      "Water Hill"
+    ],
+    "topSubs": [
+      "Grand Highlands At Waterford Lakes",
+      "Garren Acres"
+    ]
+  },
+  "BAFA": {
+    "label": "Asheville \u2014 Stradley Mountain Park",
+    "area": "Asheville",
+    "descriptor": "Stradley Mountain Park",
+    "topStreets": [
+      "Brevard",
+      "Old Brevard"
+    ],
+    "topSubs": [
+      "Stradley Mountain Park",
+      "Jordan Self Serve"
+    ]
+  },
+  "NA-W": {
+    "label": "Asheville \u2014 Witchwood Acres",
+    "area": "Asheville",
+    "descriptor": "Witchwood Acres",
+    "topStreets": [
+      "Marlowe",
+      "Skycliff"
+    ],
+    "topSubs": [
+      "Wildcat Cliffs",
+      "Witchwood Acres"
+    ]
+  },
+  "NB-C": {
+    "label": "Jupiter \u2014 Chickwood area",
+    "area": "Jupiter",
+    "descriptor": "Chickwood area",
+    "topStreets": [
+      "Chickwood",
+      "Chapel Crossing"
+    ],
+    "topSubs": [
+      "Clover Brook",
+      "Chickwood Knoll"
+    ]
+  },
+  "RY-F": {
+    "label": "Fairview \u2014 Old Fort area",
+    "area": "Fairview",
+    "descriptor": "Old Fort area",
+    "topStreets": [
+      "Old Fort",
+      "Churchill Downs"
+    ],
+    "topSubs": [
+      "Fairview Downs",
+      "Fox Run"
+    ]
+  },
+  "LE-S": {
+    "label": "Woodfin \u2014 Scenic Bluff",
+    "area": "Woodfin",
+    "descriptor": "Scenic Bluff",
+    "topStreets": [
+      "Paper Birch",
+      "Shelby"
+    ],
+    "topSubs": [
+      "Scenic Bluff",
+      "Sunset Heights"
+    ]
+  },
+  "LE-M": {
+    "label": "West Buncombe \u2014 Mt Carmel Acres",
+    "area": "West Buncombe",
+    "descriptor": "Mt Carmel Acres",
+    "topStreets": [
+      "Mount Carmel",
+      "Rotunda"
+    ],
+    "topSubs": [
+      "Mt Carmel Acres",
+      "Moores Valley"
+    ]
+  },
+  "SA-E": {
+    "label": "Fairview \u2014 Emmas Grove area",
+    "area": "Fairview",
+    "descriptor": "Emmas Grove area",
+    "topStreets": [
+      "Emmas Grove",
+      "Gravely Branch"
+    ],
+    "topSubs": [
+      "Steve Harrison Etal",
+      "Emmas Way"
+    ]
+  },
+  "RC-T": {
+    "label": "Reems Creek \u2014 Twin Hills",
+    "area": "Reems Creek",
+    "descriptor": "Twin Hills",
+    "topStreets": [
+      "Twin Hills",
+      "Cornelia"
+    ],
+    "topSubs": [
+      "Twin Hills",
+      "Bryce Acres"
+    ]
+  },
+  "EB-L": {
+    "label": "Black Mountain \u2014 Laurel Ridge",
+    "area": "Black Mountain",
+    "descriptor": "Laurel Ridge",
+    "topStreets": [
+      "Great Aspen",
+      "Wedgewood"
+    ],
+    "topSubs": [
+      "Laurel Ridge",
+      "Lynch Cove"
+    ]
+  },
+  "EB-E": {
+    "label": "East Buncombe \u2014 Eden Glen",
+    "area": "East Buncombe",
+    "descriptor": "Eden Glen",
+    "topStreets": [
+      "Eden Glen",
+      "Edith"
+    ],
+    "topSubs": [
+      "Eden Glen",
+      "Carl Patton Heirs"
+    ]
+  },
+  "SA-C": {
+    "label": "Asheville \u2014 Coventry Woods",
+    "area": "Asheville",
+    "descriptor": "Coventry Woods",
+    "topStreets": [
+      "Cane Creek",
+      "Colony"
+    ],
+    "topSubs": [
+      "The Cotswolds",
+      "Coventry Woods"
+    ]
+  },
+  "BKC1": {
+    "label": "Black Mountain \u2014 Cherry area",
+    "area": "Black Mountain",
+    "descriptor": "Cherry area",
+    "topStreets": [
+      "Cherry",
+      "State"
+    ],
+    "topSubs": [
+      "Broadway Devel Corp",
+      "Dr C E Cotton Prop"
+    ]
+  },
+  "WA-A": {
+    "label": "Asheville \u2014 Westwood Heights",
+    "area": "Asheville",
+    "descriptor": "Westwood Heights",
+    "topStreets": [
+      "Sunrise",
+      "Ridgeway"
+    ],
+    "topSubs": [
+      "Anderson Subdivision",
+      "Westwood Heights"
+    ]
+  },
+  "SS-R": {
+    "label": "Asheville \u2014 Land Of Maria W Cocke",
+    "area": "Asheville",
+    "descriptor": "Land Of Maria W Cocke",
+    "topStreets": [
+      "Clingman",
+      "Roberts"
+    ],
+    "topSubs": [
+      "Land Of Maria W Cocke Heirs",
+      "Prop Of Asheville Cotton Mills"
+    ]
+  },
+  "NB-M": {
+    "label": "Jupiter \u2014 Madison View Estates",
+    "area": "Jupiter",
+    "descriptor": "Madison View Estates",
+    "topStreets": [
+      "Heather Mist",
+      "Kelly Fields"
+    ],
+    "topSubs": [
+      "Madison View Estates",
+      "The Meadows At Flat Creek"
+    ]
+  },
+  "EA-F": {
+    "label": "Asheville \u2014 Falcon Ridge At Haw Creek",
+    "area": "Asheville",
+    "descriptor": "Falcon Ridge At Haw Creek",
+    "topStreets": [
+      "Boulder Creek",
+      "Stoneway"
+    ],
+    "topSubs": [
+      "Falcon Ridge At Haw Creek"
+    ]
+  },
+  "EN-M": {
+    "label": "Asheville \u2014 Morgan Branch Estates",
+    "area": "Asheville",
+    "descriptor": "Morgan Branch Estates",
+    "topStreets": [
+      "Morgan Branch",
+      "Young"
+    ],
+    "topSubs": [
+      "Morgan Branch Estates",
+      "Morgan Heights"
+    ]
+  },
+  "NB-N": {
+    "label": "Jupiter \u2014 New Stock Village",
+    "area": "Jupiter",
+    "descriptor": "New Stock Village",
+    "topStreets": [
+      "Sage Crest",
+      "Horizon"
+    ],
+    "topSubs": [
+      "New Stock Village",
+      "Northern Horizons"
+    ]
+  },
+  "NA-S": {
+    "label": "Asheville \u2014 Sherwood Heights",
+    "area": "Asheville",
+    "descriptor": "Sherwood Heights",
+    "topStreets": [
+      "Robinhood",
+      "Spooks Branch"
+    ],
+    "topSubs": [
+      "Sherwood Heights",
+      "Sunset Mountain"
+    ]
+  },
+  "WE-T": {
+    "label": "Weaverville \u2014 College Heights",
+    "area": "Weaverville",
+    "descriptor": "College Heights",
+    "topStreets": [
+      "Church",
+      "Central"
+    ],
+    "topSubs": [
+      "College Heights",
+      "Vandiver Lands"
+    ]
+  },
+  "SA-O": {
+    "label": "Asheville \u2014 Oak Forest",
+    "area": "Asheville",
+    "descriptor": "Oak Forest",
+    "topStreets": [
+      "Oak Forest",
+      "Bevlyn"
+    ],
+    "topSubs": [
+      "Oak Forest",
+      "Okoboji Wilderness"
+    ]
+  },
+  "LHFB": {
+    "label": "West Buncombe \u2014 New Leicester area",
+    "area": "West Buncombe",
+    "descriptor": "New Leicester area",
+    "topStreets": [
+      "New Leicester",
+      "Old County Home"
+    ],
+    "topSubs": []
+  },
+  "SC-R": {
+    "label": "Asheville \u2014 Forest Lake",
+    "area": "Asheville",
+    "descriptor": "Forest Lake",
+    "topStreets": [
+      "Forest Lake",
+      "Ashwood"
+    ],
+    "topSubs": [
+      "Forest Lake",
+      "Ashwood"
+    ]
+  },
+  "FB-S": {
+    "label": "Leicester \u2014 Sunrise Valley",
+    "area": "Leicester",
+    "descriptor": "Sunrise Valley",
+    "topStreets": [
+      "Olympic",
+      "Paramount"
+    ],
+    "topSubs": [
+      "Sunrise Valley",
+      "Stone Creek"
+    ]
+  },
+  "F70A": {
+    "label": "Black Mountain \u2014 Us 70 area",
+    "area": "Black Mountain",
+    "descriptor": "Us 70 area",
+    "topStreets": [
+      "Us 70",
+      "North"
+    ],
+    "topSubs": [
+      "Meredith Lands",
+      "Callie Gilbert"
+    ]
+  },
+  "EB-B": {
+    "label": "Black Mountain \u2014 Brooks Cove",
+    "area": "Black Mountain",
+    "descriptor": "Brooks Cove",
+    "topStreets": [
+      "Mccoy Cove",
+      "Beech Glen"
+    ],
+    "topSubs": [
+      "Brooks Cove",
+      "Beech Glen"
+    ]
+  },
+  "RC-H": {
+    "label": "Weaverville \u2014 Hamburg Crossing",
+    "area": "Weaverville",
+    "descriptor": "Hamburg Crossing",
+    "topStreets": [
+      "Mountain Meadow",
+      "Highland Pointe"
+    ],
+    "topSubs": [
+      "Hamburg Crossing",
+      "Hawks Landing"
+    ]
+  },
+  "CBDA": {
+    "label": "Asheville \u2014 Broadway area",
+    "area": "Asheville",
+    "descriptor": "Broadway area",
+    "topStreets": [
+      "Broadway",
+      "Biltmore"
+    ],
+    "topSubs": [
+      "Smith Estate Prop",
+      "Plat 1 Wm Johnston Estate"
+    ]
+  },
+  "OK-W": {
+    "label": "Asheville \u2014 Acona area",
+    "area": "Asheville",
+    "descriptor": "Acona area",
+    "topStreets": [
+      "Acona",
+      "Merchant"
+    ],
+    "topSubs": [
+      "Wanoca Cottages",
+      "Willow Arbor Condos"
+    ]
+  },
+  "LE-F": {
+    "label": "West Buncombe \u2014 Foster Estates",
+    "area": "West Buncombe",
+    "descriptor": "Foster Estates",
+    "topStreets": [
+      "Foster Estate",
+      "Brookside"
+    ],
+    "topSubs": [
+      "Foster Estates",
+      "Franklin Place"
+    ]
+  },
+  "BKC3": {
+    "label": "Black Mountain \u2014 State area",
+    "area": "Black Mountain",
+    "descriptor": "State area",
+    "topStreets": [
+      "State",
+      "Old Us 70"
+    ],
+    "topSubs": [
+      "H B Kerlee Prop",
+      "Wm St George Walker Prop"
+    ]
+  },
+  "RC-P": {
+    "label": "Reems Creek \u2014 Woodthorn area",
+    "area": "Reems Creek",
+    "descriptor": "Woodthorn area",
+    "topStreets": [
+      "Woodthorn",
+      "Woodbriar"
+    ],
+    "topSubs": [
+      "Woodbriar Subdivision Phase 1",
+      "Woodbriar Subdivision Phase 2"
+    ]
+  },
+  "RC-L": {
+    "label": "Weaverville \u2014 Lillie Farm Cove",
+    "area": "Weaverville",
+    "descriptor": "Lillie Farm Cove",
+    "topStreets": [
+      "Yarrow Meadow",
+      "Lillie Farm"
+    ],
+    "topSubs": [
+      "Lillie Farm Cove"
+    ]
+  },
+  "SA-L": {
+    "label": "Asheville \u2014 Lake Julian Trails",
+    "area": "Asheville",
+    "descriptor": "Lake Julian Trails",
+    "topStreets": [
+      "Aberdeen",
+      "Oakhurst"
+    ],
+    "topSubs": [
+      "Lake Julian Trails",
+      "Lutheridge"
+    ]
+  },
+  "EA-A": {
+    "label": "Asheville \u2014 Hazzard Heights",
+    "area": "Asheville",
+    "descriptor": "Hazzard Heights",
+    "topStreets": [
+      "Ridge",
+      "Martin Luther King Jr"
+    ],
+    "topSubs": [
+      "Oakhurst Subdiv",
+      "Hazzard Heights"
+    ]
+  },
+  "RY-H": {
+    "label": "Reynolds \u2014 Hunters Ridge",
+    "area": "Reynolds",
+    "descriptor": "Hunters Ridge",
+    "topStreets": [
+      "Bent Tree",
+      "Laurel Creek"
+    ],
+    "topSubs": [
+      "Hunters Ridge"
+    ]
+  },
+  "OK-T": {
+    "label": "Asheville \u2014 Twin Springs",
+    "area": "Asheville",
+    "descriptor": "Twin Springs",
+    "topStreets": [
+      "Mctindal",
+      "Peeler"
+    ],
+    "topSubs": [
+      "Twin Springs"
+    ]
+  },
+  "FA-F": {
+    "label": "Fairview \u2014 Fairview Forest",
+    "area": "Fairview",
+    "descriptor": "Fairview Forest",
+    "topStreets": [
+      "Fairview Forest",
+      "Hickory Forest"
+    ],
+    "topSubs": [
+      "Fairview Forest",
+      "Flat Top Mountain"
+    ]
+  },
+  "FA-M": {
+    "label": "Fairview \u2014 Monarch Estates",
+    "area": "Fairview",
+    "descriptor": "Monarch Estates",
+    "topStreets": [
+      "Sovereign",
+      "Mountain Country Acres"
+    ],
+    "topSubs": [
+      "Monarch Estates",
+      "Mountain Country Acres"
+    ]
+  },
+  "LSRS": {
+    "label": "Asheville \u2014 Skyland Springs",
+    "area": "Asheville",
+    "descriptor": "Skyland Springs",
+    "topStreets": [
+      "Long Shoals",
+      "Julian Shoals"
+    ],
+    "topSubs": [
+      "Skyland Springs",
+      "Mr & Mrs Wesley Kaupp Prop"
+    ]
+  },
+  "LE-N": {
+    "label": "West Buncombe \u2014 Newfound Estates",
+    "area": "West Buncombe",
+    "descriptor": "Newfound Estates",
+    "topStreets": [
+      "New Leicester",
+      "Goughes Branch"
+    ],
+    "topSubs": [
+      "Sylvia Johnson Clark",
+      "Newfound Estates"
+    ]
+  },
+  "HN3F": {
+    "label": "Asheville \u2014 Royal Pines",
+    "area": "Asheville",
+    "descriptor": "Royal Pines",
+    "topStreets": [
+      "Hendersonville",
+      "Sweeten Creek"
+    ],
+    "topSubs": [
+      "Royal Pines",
+      "C W Beale Estate"
+    ]
+  },
+  "SARA": {
+    "label": "Biltmore Forest \u2014 Ramble Biltmore Forest",
+    "area": "Biltmore Forest",
+    "descriptor": "Ramble Biltmore Forest",
+    "topStreets": [
+      "Emerald Necklace",
+      "Brookline"
+    ],
+    "topSubs": [
+      "Ramble Biltmore Forest",
+      "Ramble"
+    ]
+  },
+  "WF-T": {
+    "label": "Woodfin \u2014 Town & Country Estates",
+    "area": "Woodfin",
+    "descriptor": "Town & Country Estates",
+    "topStreets": [
+      "Audubon",
+      "Tiffany"
+    ],
+    "topSubs": [
+      "Town & Country Estates",
+      "T & T Estates"
+    ]
+  },
+  "SA-M": {
+    "label": "Asheville \u2014 Mountain View",
+    "area": "Asheville",
+    "descriptor": "Mountain View",
+    "topStreets": [
+      "Merrills Cove",
+      "Sunny Meadows"
+    ],
+    "topSubs": [
+      "Mount Royal",
+      "Mountain View"
+    ]
+  },
+  "HN2F": {
+    "label": "Asheville \u2014 Skyland Springs",
+    "area": "Asheville",
+    "descriptor": "Skyland Springs",
+    "topStreets": [
+      "Hendersonville",
+      "Peachtree"
+    ],
+    "topSubs": [
+      "Skyland Springs",
+      "Sizemore Developers Llc"
+    ]
+  },
+  "RY-C": {
+    "label": "Reynolds \u2014 Cedar Wood Estates",
+    "area": "Reynolds",
+    "descriptor": "Cedar Wood Estates",
+    "topStreets": [
+      "Coachmans",
+      "Cedar Mountain"
+    ],
+    "topSubs": [
+      "Cedar Wood Estates",
+      "The Cliffs"
+    ]
+  },
+  "NW-W": {
+    "label": "Asheville \u2014 Westmore",
+    "area": "Asheville",
+    "descriptor": "Westmore",
+    "topStreets": [
+      "Deaverview",
+      "Cedar Hill"
+    ],
+    "topSubs": [
+      "Tom C Smith",
+      "Westmore"
+    ]
+  },
+  "WE-S": {
+    "label": "Weaverville \u2014 Shadowbrook",
+    "area": "Weaverville",
+    "descriptor": "Shadowbrook",
+    "topStreets": [
+      "Shadowbrook",
+      "Salem Acres"
+    ],
+    "topSubs": [
+      "Shadowbrook",
+      "Salem Acres"
+    ]
+  },
+  "FA-C": {
+    "label": "Fairview \u2014 The Crossings At Cane Creek",
+    "area": "Fairview",
+    "descriptor": "The Crossings At Cane Creek",
+    "topStreets": [
+      "Crossings",
+      "Erin Glen"
+    ],
+    "topSubs": [
+      "The Crossings At Cane Creek",
+      "Clear View"
+    ]
+  },
+  "SNXY": {
+    "label": "Swannanoa \u2014 Patton Cove area",
+    "area": "Swannanoa",
+    "descriptor": "Patton Cove area",
+    "topStreets": [
+      "Patton Cove",
+      "Byas"
+    ],
+    "topSubs": [
+      "Cheryl A Strickland",
+      "Winnie Burpell"
+    ]
+  },
+  "ENIF": {
+    "label": "Asheville \u2014 Smokey Park area",
+    "area": "Asheville",
+    "descriptor": "Smokey Park area",
+    "topStreets": [
+      "Smokey Park",
+      "Acton"
+    ],
+    "topSubs": [
+      "Home Depot Usa Inc",
+      "Sub For Imic Hotels"
+    ]
+  },
+  "EN-V": {
+    "label": "Enka/Candler \u2014 The Village At Knotty Alder Court",
+    "area": "Enka/Candler",
+    "descriptor": "The Village At Knotty Alder Court",
+    "topStreets": [
+      "Westfield",
+      "Brookstone"
+    ],
+    "topSubs": [
+      "Vistas Of Westfield",
+      "The Village At Knotty Alder Court"
+    ]
+  },
+  "OK-F": {
+    "label": "Asheville \u2014 Fairview Oaks",
+    "area": "Asheville",
+    "descriptor": "Fairview Oaks",
+    "topStreets": [
+      "Fairview Oaks"
+    ],
+    "topSubs": [
+      "Fairview Oaks"
+    ]
+  },
+  "LE-B": {
+    "label": "Woodfin \u2014 Olivette",
+    "area": "Woodfin",
+    "descriptor": "Olivette",
+    "topStreets": [
+      "Camelia",
+      "View Ridge"
+    ],
+    "topSubs": [
+      "Olivette",
+      "Briarcliff Crossing"
+    ]
+  },
+  "CBDW": {
+    "label": "Asheville \u2014 Battery Park Hill",
+    "area": "Asheville",
+    "descriptor": "Battery Park Hill",
+    "topStreets": [
+      "Battery Park",
+      "Patton"
+    ],
+    "topSubs": [
+      "Battery Park Hill",
+      "Battery Pk"
+    ]
+  },
+  "EN-B": {
+    "label": "Asheville \u2014 Brigadoon",
+    "area": "Asheville",
+    "descriptor": "Brigadoon",
+    "topStreets": [
+      "Heather",
+      "Big Cove"
+    ],
+    "topSubs": [
+      "Brigadoon",
+      "Big Cove Estates"
+    ]
+  },
+  "EB-M": {
+    "label": "Black Mountain \u2014 Mt Mitchell Terrace",
+    "area": "Black Mountain",
+    "descriptor": "Mt Mitchell Terrace",
+    "topStreets": [
+      "Old Toll",
+      "Mockingbird"
+    ],
+    "topSubs": [
+      "Mt Mitchell Terrace",
+      "Mountainbrook Village"
+    ]
+  },
+  "BR-R": {
+    "label": "Broad River \u2014 Rainbow Estates",
+    "area": "Broad River",
+    "descriptor": "Rainbow Estates",
+    "topStreets": [
+      "Shumont",
+      "Autumn View"
+    ],
+    "topSubs": [
+      "Rainbow Estates",
+      "Rock Creek Hills"
+    ]
+  },
+  "EA-B": {
+    "label": "Asheville \u2014 Beverly Hills",
+    "area": "Asheville",
+    "descriptor": "Beverly Hills",
+    "topStreets": [
+      "Beverly",
+      "Fairway"
+    ],
+    "topSubs": [
+      "Beverly Hills",
+      "Arco Gardens"
+    ]
+  },
+  "EA-C": {
+    "label": "Asheville \u2014 Covewood",
+    "area": "Asheville",
+    "descriptor": "Covewood",
+    "topStreets": [
+      "Chunns Cove",
+      "Craig"
+    ],
+    "topSubs": [
+      "Covewood",
+      "Chunns Cove Estates"
+    ]
+  },
+  "WF-F": {
+    "label": "French Broad \u2014 Foxwood Estates",
+    "area": "French Broad",
+    "descriptor": "Foxwood Estates",
+    "topStreets": [
+      "Old Marshall",
+      "Foxwood"
+    ],
+    "topSubs": [
+      "Foxwood Estates",
+      "Guy English Estate"
+    ]
+  },
+  "LE-T": {
+    "label": "West Buncombe \u2014 Fieldcrest area",
+    "area": "West Buncombe",
+    "descriptor": "Fieldcrest area",
+    "topStreets": [
+      "Fieldcrest",
+      "Holly Hill"
+    ],
+    "topSubs": [
+      "Tiny Farms",
+      "Ralph L Smith"
+    ]
+  },
+  "SA-T": {
+    "label": "Skyland \u2014 The Oaks",
+    "area": "Skyland",
+    "descriptor": "The Oaks",
+    "topStreets": [
+      "Turnberry",
+      "Oak Branch"
+    ],
+    "topSubs": [
+      "The Oaks",
+      "Turnberry"
+    ]
+  },
+  "WE-A": {
+    "label": "North Buncombe \u2014 Autumn Hills",
+    "area": "North Buncombe",
+    "descriptor": "Autumn Hills",
+    "topStreets": [
+      "Autumn Hills",
+      "Alpine"
+    ],
+    "topSubs": [
+      "Autumn Hills",
+      "Alpine Meadows"
+    ]
+  },
+  "RY-A": {
+    "label": "Reynolds \u2014 Earl K & Mabel Cowan",
+    "area": "Reynolds",
+    "descriptor": "Earl K & Mabel Cowan",
+    "topStreets": [
+      "Avondale",
+      "Lovers Loop"
+    ],
+    "topSubs": [
+      "Earl K & Mabel Cowan Property",
+      "Autumn Trail Estates"
+    ]
+  },
+  "LE-H": {
+    "label": "Woodfin \u2014 Harmony",
+    "area": "Woodfin",
+    "descriptor": "Harmony",
+    "topStreets": [
+      "Friendly",
+      "Hickory"
+    ],
+    "topSubs": [
+      "Harmony",
+      "Highland Green"
+    ]
+  },
+  "SC-C": {
+    "label": "Asheville \u2014 Cimarron",
+    "area": "Asheville",
+    "descriptor": "Cimarron",
+    "topStreets": [
+      "Cimarron",
+      "Cheyenne"
+    ],
+    "topSubs": [
+      "Cimarron",
+      "Chapel Park"
+    ]
+  },
+  "NW-H": {
+    "label": "Asheville \u2014 New Heights",
+    "area": "Asheville",
+    "descriptor": "New Heights",
+    "topStreets": [
+      "New Heights",
+      "Partnership"
+    ],
+    "topSubs": [
+      "New Heights",
+      "Hudson Hills"
+    ]
+  },
+  "SA-D": {
+    "label": "Asheville \u2014 Deerwood",
+    "area": "Asheville",
+    "descriptor": "Deerwood",
+    "topStreets": [
+      "Deerlake",
+      "Bideford"
+    ],
+    "topSubs": [
+      "Deerwood",
+      "Devonshire"
+    ]
+  },
+  "FA-L": {
+    "label": "Fairview \u2014 Laurel Haven",
+    "area": "Fairview",
+    "descriptor": "Laurel Haven",
+    "topStreets": [
+      "Laurel Haven",
+      "Ivy Cove"
+    ],
+    "topSubs": [
+      "Laurel Haven",
+      "Laurel Woods"
+    ]
+  },
+  "NW-L": {
+    "label": "Asheville \u2014 Maplewood area",
+    "area": "Asheville",
+    "descriptor": "Maplewood area",
+    "topStreets": [
+      "Maplewood",
+      "Lager"
+    ],
+    "topSubs": [
+      "Je Ledford & Others",
+      "Leslie D Briggs"
+    ]
+  },
+  "MF-M": {
+    "label": "Asheville \u2014 Lenox Park",
+    "area": "Asheville",
+    "descriptor": "Lenox Park",
+    "topStreets": [
+      "Pearson",
+      "Cumberland"
+    ],
+    "topSubs": [
+      "Lenox Park",
+      "Arborvale Park"
+    ]
+  },
+  "EA-R": {
+    "label": "Asheville \u2014 Redwood Forest",
+    "area": "Asheville",
+    "descriptor": "Redwood Forest",
+    "topStreets": [
+      "Hillview",
+      "Clement"
+    ],
+    "topSubs": [
+      "Rolling Green",
+      "Redwood Forest"
+    ]
+  },
+  "NA-M": {
+    "label": "Asheville \u2014 Mountview Gardens",
+    "area": "Asheville",
+    "descriptor": "Mountview Gardens",
+    "topStreets": [
+      "Alclare",
+      "Town Mountain"
+    ],
+    "topSubs": [
+      "Mountview Gardens",
+      "Mountain Meadows"
+    ]
+  },
+  "CA-M": {
+    "label": "Upper Hominy \u2014 Mc Acres",
+    "area": "Upper Hominy",
+    "descriptor": "Mc Acres",
+    "topStreets": [
+      "Lemon Creek",
+      "Motts"
+    ],
+    "topSubs": [
+      "Mc Acres",
+      "Mountain Vista Estates"
+    ]
+  },
+  "RC-D": {
+    "label": "Weaverville \u2014 Leisure Woods",
+    "area": "Weaverville",
+    "descriptor": "Leisure Woods",
+    "topStreets": [
+      "Dula Springs",
+      "Leisure"
+    ],
+    "topSubs": [
+      "Dogwood Knolls",
+      "Leisure Woods"
+    ]
+  },
+  "WA-W": {
+    "label": "Asheville \u2014 Wilshire Park",
+    "area": "Asheville",
+    "descriptor": "Wilshire Park",
+    "topStreets": [
+      "Providence",
+      "Wilshire"
+    ],
+    "topSubs": [
+      "Wilshire Park",
+      "Westwood Cohousing Community"
+    ]
+  },
+  "LE-G": {
+    "label": "Woodfin \u2014 View area",
+    "area": "Woodfin",
+    "descriptor": "View area",
+    "topStreets": [
+      "View",
+      "Newfound"
+    ],
+    "topSubs": [
+      "John M James",
+      "Thomas J & Sandra H Ross"
+    ]
+  },
+  "CA-R": {
+    "label": "Upper Hominy \u2014 Ridgeview Acres",
+    "area": "Upper Hominy",
+    "descriptor": "Ridgeview Acres",
+    "topStreets": [
+      "Youngs Cove",
+      "Mountain"
+    ],
+    "topSubs": [
+      "Ruth Villa Subdivision",
+      "Ridgeview Acres"
+    ]
+  },
+  "RY-R": {
+    "label": "Reynolds \u2014 Rose Hill area",
+    "area": "Reynolds",
+    "descriptor": "Rose Hill area",
+    "topStreets": [
+      "Rose Hill",
+      "Bee Ridge"
+    ],
+    "topSubs": [
+      "Prop Of Judith Ann B Maples & Other",
+      "B & G Development Corp Property"
+    ]
+  },
+  "WA-M": {
+    "label": "Asheville \u2014 Mountain Song Subdivision",
+    "area": "Asheville",
+    "descriptor": "Mountain Song Subdivision",
+    "topStreets": [
+      "Malvern",
+      "Alma"
+    ],
+    "topSubs": [
+      "Malvern Walk",
+      "Mountain Song Subdivision"
+    ]
+  },
+  "EN-T": {
+    "label": "Enka/Candler \u2014 Trexler Estates",
+    "area": "Enka/Candler",
+    "descriptor": "Trexler Estates",
+    "topStreets": [
+      "Holcombe Cove",
+      "Sunnie Rae"
+    ],
+    "topSubs": [
+      "Trexler Estates",
+      "Tipton Farms"
+    ]
+  },
+  "SM-C": {
+    "label": "Leicester \u2014 Country Place",
+    "area": "Leicester",
+    "descriptor": "Country Place",
+    "topStreets": [
+      "Newfound",
+      "Browntown"
+    ],
+    "topSubs": [
+      "Country Place",
+      "J V Noland Farm"
+    ]
+  },
+  "PTFA": {
+    "label": "Asheville \u2014 Horney Heights",
+    "area": "Asheville",
+    "descriptor": "Horney Heights",
+    "topStreets": [
+      "Patton",
+      "Mimosa"
+    ],
+    "topSubs": [
+      "Horney Heights",
+      "J T Horney Prop"
+    ]
+  },
+  "SM-I": {
+    "label": "Leicester \u2014 Indian Hills area",
+    "area": "Leicester",
+    "descriptor": "Indian Hills area",
+    "topStreets": [
+      "Indian Hills",
+      "Indian Ridge"
+    ],
+    "topSubs": [
+      "Indian Hill"
+    ]
+  },
+  "RC-F": {
+    "label": "Weaverville \u2014 Fox Lair Crossing",
+    "area": "Weaverville",
+    "descriptor": "Fox Lair Crossing",
+    "topStreets": [
+      "Forest Knoll",
+      "Camsyn"
+    ],
+    "topSubs": [
+      "Fox Lair Crossing",
+      "Forest Knoll"
+    ]
+  },
+  "C6SC": {
+    "label": "Asheville \u2014 Glenn Bridge area",
+    "area": "Asheville",
+    "descriptor": "Glenn Bridge area",
+    "topStreets": [
+      "Glenn Bridge",
+      "Bradley Branch"
+    ],
+    "topSubs": [
+      "Eighty Eighty / Sbb",
+      "M Realty Llc"
+    ]
+  },
+  "NB-J": {
+    "label": "Jupiter \u2014 Jupiter Hills",
+    "area": "Jupiter",
+    "descriptor": "Jupiter Hills",
+    "topStreets": [
+      "Jupiter",
+      "Jupiter Hills"
+    ],
+    "topSubs": [
+      "Jupiter Hills",
+      "Jupiter Crest"
+    ]
+  },
+  "WF-G": {
+    "label": "Woodfin \u2014 Greenwood Fields area",
+    "area": "Woodfin",
+    "descriptor": "Greenwood Fields area",
+    "topStreets": [
+      "Greenwood Fields",
+      "Green Creek"
+    ],
+    "topSubs": [
+      "Greenwood Fields"
+    ]
+  },
+  "ROCA": {
+    "label": "Asheville \u2014 Ridgefield",
+    "area": "Asheville",
+    "descriptor": "Ridgefield",
+    "topStreets": [
+      "Ridgefield",
+      "Heart"
+    ],
+    "topSubs": [
+      "Ridgefield",
+      "Asheville Endocrinology Properties"
+    ]
+  },
+  "EN-F": {
+    "label": "Asheville \u2014 The Farm At Bradshaw Lane",
+    "area": "Asheville",
+    "descriptor": "The Farm At Bradshaw Lane",
+    "topStreets": [
+      "Fairfield",
+      "Creek Run"
+    ],
+    "topSubs": [
+      "The Farm At Bradshaw Lane",
+      "Fairfield"
+    ]
+  },
+  "IV-G": {
+    "label": "Barnardsville \u2014 Green Ridge Falls",
+    "area": "Barnardsville",
+    "descriptor": "Green Ridge Falls",
+    "topStreets": [
+      "Green Ridge Falls",
+      "Rockytop"
+    ],
+    "topSubs": [
+      "Greenridge Falls",
+      "Green Ridge Falls"
+    ]
+  },
+  "EB-A": {
+    "label": "Swannanoa \u2014 Alpine Mountain",
+    "area": "Swannanoa",
+    "descriptor": "Alpine Mountain",
+    "topStreets": [
+      "Lytle Cove",
+      "Wildflower Cove"
+    ],
+    "topSubs": [
+      "Alice I & Harry L Carter Jr",
+      "Alpine Mountain"
+    ]
+  },
+  "PTFB": {
+    "label": "Asheville \u2014 Patton area",
+    "area": "Asheville",
+    "descriptor": "Patton area",
+    "topStreets": [
+      "Patton",
+      "Hansel"
+    ],
+    "topSubs": [
+      "Robert L & Joan R Ledford",
+      "Horneys Hayes Subdiv"
+    ]
+  },
+  "WA-B": {
+    "label": "Asheville \u2014 Pb 182/74",
+    "area": "Asheville",
+    "descriptor": "Pb 182/74",
+    "topStreets": [
+      "Spinet",
+      "Burton"
+    ],
+    "topSubs": [
+      "Banks Knoll",
+      "Pb 182/74"
+    ]
+  },
+  "NA-A": {
+    "label": "Asheville \u2014 Annandale",
+    "area": "Asheville",
+    "descriptor": "Annandale",
+    "topStreets": [
+      "Annandale",
+      "Coleman"
+    ],
+    "topSubs": [
+      "Annandale",
+      "Hillside Park"
+    ]
+  },
+  "SM-W": {
+    "label": "Leicester \u2014 Walnut Creek Estates",
+    "area": "Leicester",
+    "descriptor": "Walnut Creek Estates",
+    "topStreets": [
+      "Walnut",
+      "Turkey Creek"
+    ],
+    "topSubs": [
+      "Walnut Creek Estates",
+      "Wild Turkey Cove"
+    ]
+  },
+  "BR-T": {
+    "label": "Garren Creek \u2014 Toms Creek",
+    "area": "Garren Creek",
+    "descriptor": "Toms Creek",
+    "topStreets": [
+      "Burnt Ridge",
+      "Burgin Ridge"
+    ],
+    "topSubs": [
+      "Toms Creek",
+      "Woodcliffe"
+    ]
+  },
+  "RC-M": {
+    "label": "Weaverville \u2014 Meadows In The Woods",
+    "area": "Weaverville",
+    "descriptor": "Meadows In The Woods",
+    "topStreets": [
+      "Water Leaf",
+      "Camelfield"
+    ],
+    "topSubs": [
+      "Maple Trace",
+      "Meadows In The Woods"
+    ]
+  },
+  "EN-G": {
+    "label": "Enka/Candler \u2014 Green Meadows Estates",
+    "area": "Enka/Candler",
+    "descriptor": "Green Meadows Estates",
+    "topStreets": [
+      "Asvista",
+      "Green Acres"
+    ],
+    "topSubs": [
+      "Green Meadows Estates",
+      "Green Oaks"
+    ]
+  },
+  "MEDA": {
+    "label": "Asheville \u2014 Mcdowell area",
+    "area": "Asheville",
+    "descriptor": "Mcdowell area",
+    "topStreets": [
+      "Mcdowell",
+      "Biltmore"
+    ],
+    "topSubs": [
+      "East Riverside Urban Renewal",
+      "Forest Hill Co Prop"
+    ]
+  },
+  "FA-T": {
+    "label": "Fairview \u2014 Mountain Shadows",
+    "area": "Fairview",
+    "descriptor": "Mountain Shadows",
+    "topStreets": [
+      "Sugar Hollow",
+      "Charlotte"
+    ],
+    "topSubs": [
+      "Mountain Shadows",
+      "Tuscany Meadows"
+    ]
+  },
+  "RYSC": {
+    "label": "Fairview \u2014 Southcliff",
+    "area": "Fairview",
+    "descriptor": "Southcliff",
+    "topStreets": [
+      "Southcliff",
+      "Stills Creek"
+    ],
+    "topSubs": [
+      "Southcliff",
+      "Southcliff Peregrines Ridge Section"
+    ]
+  },
+  "WE-N": {
+    "label": "Weaverville \u2014 Benedict area",
+    "area": "Weaverville",
+    "descriptor": "Benedict area",
+    "topStreets": [
+      "Benedict",
+      "Pinnacle"
+    ],
+    "topSubs": [
+      "Northridge Commons Townhomes",
+      "North Pinnacle"
+    ]
+  },
+  "LE-W": {
+    "label": "Woodfin \u2014 Willowbrook",
+    "area": "Woodfin",
+    "descriptor": "Willowbrook",
+    "topStreets": [
+      "Willow Brook",
+      "Sydney"
+    ],
+    "topSubs": [
+      "Willowbrook",
+      "Windy Hill Farms"
+    ]
+  },
+  "HWFA": {
+    "label": "Asheville \u2014 Johnston-Woods",
+    "area": "Asheville",
+    "descriptor": "Johnston-Woods",
+    "topStreets": [
+      "Haywood",
+      "Brevard"
+    ],
+    "topSubs": [
+      "Johnston-Woods",
+      "Hayes Subdiv"
+    ]
+  },
+  "EN-E": {
+    "label": "Enka/Candler \u2014 English Estates",
+    "area": "Enka/Candler",
+    "descriptor": "English Estates",
+    "topStreets": [
+      "Eye View",
+      "English Oaks"
+    ],
+    "topSubs": [
+      "English Estates",
+      "Candler View Park"
+    ]
+  },
+  "BILC": {
+    "label": "Asheville \u2014 Thompson area",
+    "area": "Asheville",
+    "descriptor": "Thompson area",
+    "topStreets": [
+      "Thompson",
+      "Glendale"
+    ],
+    "topSubs": [
+      "Koon Industrial Development",
+      "J W Cheeseborough"
+    ]
+  },
+  "SWRA": {
+    "label": "Asheville \u2014 Sweeten Creek area",
+    "area": "Asheville",
+    "descriptor": "Sweeten Creek area",
+    "topStreets": [
+      "Sweeten Creek",
+      "Mills Gap"
+    ],
+    "topSubs": [
+      "Sweeten Creek",
+      "Sweeten Creek Realty"
+    ]
+  },
+  "EN-P": {
+    "label": "Asheville \u2014 Paradise Ridge",
+    "area": "Asheville",
+    "descriptor": "Paradise Ridge",
+    "topStreets": [
+      "Parkview",
+      "Paradise Ridge"
+    ],
+    "topSubs": [
+      "Pisgah Estate Condominium",
+      "Paradise Ridge"
+    ]
+  },
+  "TNFA": {
+    "label": "Asheville \u2014 Arco Gardens",
+    "area": "Asheville",
+    "descriptor": "Arco Gardens",
+    "topStreets": [
+      "Tunnel",
+      "Haw Creek Mews"
+    ],
+    "topSubs": [
+      "Arco Gardens",
+      "Fairstone Heights"
+    ]
+  },
+  "FB-T": {
+    "label": "Leicester \u2014 Turkey Creek Estates",
+    "area": "Leicester",
+    "descriptor": "Turkey Creek Estates",
+    "topStreets": [
+      "Turkey Creek",
+      "Tipton Hill"
+    ],
+    "topSubs": [
+      "Turkey Creek Estates",
+      "Timber Ridge"
+    ]
+  },
+  "RY-W": {
+    "label": "Reynolds \u2014 Windsong Estates",
+    "area": "Reynolds",
+    "descriptor": "Windsong Estates",
+    "topStreets": [
+      "Cypress Hollow",
+      "Smokey Holler"
+    ],
+    "topSubs": [
+      "Windsong Estates",
+      "The Willows"
+    ]
+  },
+  "WF-H": {
+    "label": "Woodfin \u2014 The Heights At Altura",
+    "area": "Woodfin",
+    "descriptor": "The Heights At Altura",
+    "topStreets": [
+      "Altura",
+      "Dimora"
+    ],
+    "topSubs": [
+      "Altura Communities",
+      "The Heights At Altura"
+    ]
+  },
+  "FB-N": {
+    "label": "Leicester \u2014 Noland Hills",
+    "area": "Leicester",
+    "descriptor": "Noland Hills",
+    "topStreets": [
+      "Noland Hills",
+      "Icenhower"
+    ],
+    "topSubs": [
+      "Noland Hills",
+      "Warren Porter Prop"
+    ]
+  },
+  "NW-M": {
+    "label": "Asheville \u2014 Rolling Oaks Estates",
+    "area": "Asheville",
+    "descriptor": "Rolling Oaks Estates",
+    "topStreets": [
+      "Rolling Oaks",
+      "Mockingbird"
+    ],
+    "topSubs": [
+      "Rolling Oaks Estates",
+      "Mk Properties"
+    ]
+  },
+  "EN-H": {
+    "label": "Asheville \u2014 Holbrook",
+    "area": "Asheville",
+    "descriptor": "Holbrook",
+    "topStreets": [
+      "Marathon",
+      "Malcolm"
+    ],
+    "topSubs": [
+      "Holbrook",
+      "Hamrick Farm"
+    ]
+  },
+  "WA-S": {
+    "label": "Asheville \u2014 City Homes On State Street Condo",
+    "area": "Asheville",
+    "descriptor": "City Homes On State Street Condo",
+    "topStreets": [
+      "Haywood",
+      "Shelburne Woods"
+    ],
+    "topSubs": [
+      "French Broad Terr",
+      "City Homes On State Street Condo"
+    ]
+  },
+  "EN-J": {
+    "label": "Enka/Candler \u2014 Justice Ridge Estates",
+    "area": "Enka/Candler",
+    "descriptor": "Justice Ridge Estates",
+    "topStreets": [
+      "Wilderness",
+      "Jackson View"
+    ],
+    "topSubs": [
+      "Justice Ridge Estates",
+      "Jays Mountain"
+    ]
+  },
+  "SPFC": {
+    "label": "Asheville \u2014 Smokey Park area",
+    "area": "Asheville",
+    "descriptor": "Smokey Park area",
+    "topStreets": [
+      "Smokey Park",
+      "Old Us 19 23"
+    ],
+    "topSubs": [
+      "Solomon Luther Land",
+      "Williams Est"
+    ]
+  },
+  "EB-F": {
+    "label": "Black Mountain \u2014 Forest Hills",
+    "area": "Black Mountain",
+    "descriptor": "Forest Hills",
+    "topStreets": [
+      "Woodland",
+      "Lakey Gap"
+    ],
+    "topSubs": [
+      "Forest Hills",
+      "Fairway Villas"
+    ]
+  },
+  "SRFE": {
+    "label": "Asheville \u2014 Swannanoa River area",
+    "area": "Asheville",
+    "descriptor": "Swannanoa River area",
+    "topStreets": [
+      "Swannanoa River",
+      "Truckers"
+    ],
+    "topSubs": [
+      "City Of Asheville",
+      "Mountain Mortgage, Inc."
+    ]
+  },
+  "TNLA": {
+    "label": "Asheville \u2014 Tunnel area",
+    "area": "Asheville",
+    "descriptor": "Tunnel area",
+    "topStreets": [
+      "Tunnel",
+      "Buckstone"
+    ],
+    "topSubs": [
+      "Marvin M Pearlman Rev",
+      "Pinnacle Prop Of Wnc"
+    ]
+  },
+  "EA-M": {
+    "label": "Asheville \u2014 Mountainbrook",
+    "area": "Asheville",
+    "descriptor": "Mountainbrook",
+    "topStreets": [
+      "Mountainbrook",
+      "Abundance"
+    ],
+    "topSubs": [
+      "Mountainbrook",
+      "Mayfair Glen"
+    ]
+  },
+  "BR-O": {
+    "label": "Garren Creek \u2014 Old Fort area",
+    "area": "Garren Creek",
+    "descriptor": "Old Fort area",
+    "topStreets": [
+      "Old Fort",
+      "Chestnut Hill"
+    ],
+    "topSubs": [
+      "John & Margaret Bartholomew",
+      "J W Garrison Heirs"
+    ]
+  },
+  "RY-B": {
+    "label": "Reynolds \u2014 Byers Park",
+    "area": "Reynolds",
+    "descriptor": "Byers Park",
+    "topStreets": [
+      "Rose Hill",
+      "Pinners Cove"
+    ],
+    "topSubs": [
+      "Byers Park",
+      "W E Mcdowell"
+    ]
+  },
+  "WE-H": {
+    "label": "Weaverville \u2014 Horizon Hills",
+    "area": "Weaverville",
+    "descriptor": "Horizon Hills",
+    "topStreets": [
+      "Scenic View",
+      "Nader"
+    ],
+    "topSubs": [
+      "Horizon Hills",
+      "Hanna North Subdivision"
+    ]
+  },
+  "WA-L": {
+    "label": "Asheville \u2014 Lucerne Park",
+    "area": "Asheville",
+    "descriptor": "Lucerne Park",
+    "topStreets": [
+      "Laurel",
+      "Maple Ridge"
+    ],
+    "topSubs": [
+      "Lucerne Park",
+      "Laurelwood"
+    ]
+  },
+  "WVLC": {
+    "label": "Weaverville \u2014 Main area",
+    "area": "Weaverville",
+    "descriptor": "Main area",
+    "topStreets": [
+      "Main",
+      "Merrimon"
+    ],
+    "topSubs": [
+      "Old Hotel Prop",
+      "Vandiver Lands"
+    ]
+  },
+  "APFA": {
+    "label": "Asheville \u2014 Airport area",
+    "area": "Asheville",
+    "descriptor": "Airport area",
+    "topStreets": [
+      "Airport",
+      "Pinner"
+    ],
+    "topSubs": [
+      "Southridge Assoc. Llc",
+      "River View Acres"
+    ]
+  },
+  "EN-L": {
+    "label": "Enka/Candler \u2014 Mountain Vista At Luther Cove",
+    "area": "Enka/Candler",
+    "descriptor": "Mountain Vista At Luther Cove",
+    "topStreets": [
+      "Luther Cove",
+      "Pete Luther"
+    ],
+    "topSubs": [
+      "Mountain Vista At Luther Cove",
+      "Pleasant Valley Estates"
+    ]
+  },
+  "NW-C": {
+    "label": "Asheville \u2014 Camelot",
+    "area": "Asheville",
+    "descriptor": "Camelot",
+    "topStreets": [
+      "Lancelot",
+      "King Arthur"
+    ],
+    "topSubs": [
+      "Camelot",
+      "Cedar Knoll"
+    ]
+  },
+  "EA-W": {
+    "label": "Asheville \u2014 Wind In The Oaks",
+    "area": "Asheville",
+    "descriptor": "Wind In The Oaks",
+    "topStreets": [
+      "Windswept",
+      "Craftsman"
+    ],
+    "topSubs": [
+      "The Wildes",
+      "Wind In The Oaks"
+    ]
+  },
+  "FA-U": {
+    "label": "Fairview \u2014 Owenby Cove area",
+    "area": "Fairview",
+    "descriptor": "Owenby Cove area",
+    "topStreets": [
+      "Owenby Cove",
+      "Garren Creek"
+    ],
+    "topSubs": [
+      "Homer & Lettie Owenby Estate",
+      "Anderson Property"
+    ]
+  },
+  "NRCC": {
+    "label": "Weaverville \u2014 Northridge Commons area",
+    "area": "Weaverville",
+    "descriptor": "Northridge Commons area",
+    "topStreets": [
+      "Northridge Commons",
+      "Monticello"
+    ],
+    "topSubs": [
+      "Lowes Home Centers Inc",
+      "Trisha & John Hollifield"
+    ]
+  },
+  "ENIR": {
+    "label": "Asheville \u2014 Crowell area",
+    "area": "Asheville",
+    "descriptor": "Crowell area",
+    "topStreets": [
+      "Crowell",
+      "Old Haywood"
+    ],
+    "topSubs": [
+      "R A Crowell Prop",
+      "Edward E Best Prop"
+    ]
+  },
+  "MER1": {
+    "label": "Asheville \u2014 Merrimon area",
+    "area": "Asheville",
+    "descriptor": "Merrimon area",
+    "topStreets": [
+      "Merrimon",
+      "Liberty"
+    ],
+    "topSubs": [
+      "Sharpless Lot",
+      "Cap Asheville, Llc"
+    ]
+  },
+  "SA-V": {
+    "label": "Asheville \u2014 Virginia Commons area",
+    "area": "Asheville",
+    "descriptor": "Virginia Commons area",
+    "topStreets": [
+      "Virginia Commons",
+      "Distant View"
+    ],
+    "topSubs": [
+      "Virginia Commons",
+      "The Views Of Asheville"
+    ]
+  },
+  "EB-G": {
+    "label": "East Buncombe \u2014 Allen Mountain",
+    "area": "East Buncombe",
+    "descriptor": "Allen Mountain",
+    "topStreets": [
+      "Galax",
+      "Allen Mountain"
+    ],
+    "topSubs": [
+      "Allen Mountain",
+      "Spring Hill"
+    ]
+  },
+  "IV-S": {
+    "label": "Barnardsville \u2014 Sugar Hill Estates",
+    "area": "Barnardsville",
+    "descriptor": "Sugar Hill Estates",
+    "topStreets": [
+      "North Fork",
+      "Sugar Hill"
+    ],
+    "topSubs": [
+      "Sugar Hill Estates",
+      "Stockton Ridge"
+    ]
+  },
+  "BR-A": {
+    "label": "Broad River \u2014 Anderson Acres area",
+    "area": "Broad River",
+    "descriptor": "Anderson Acres area",
+    "topStreets": [
+      "Anderson Acres",
+      "Nc 9"
+    ],
+    "topSubs": []
+  },
+  "LE-J": {
+    "label": "West Buncombe \u2014 Juno Acres",
+    "area": "West Buncombe",
+    "descriptor": "Juno Acres",
+    "topStreets": [
+      "Juno",
+      "Jamie Hill"
+    ],
+    "topSubs": [
+      "Juno Acres",
+      "Fredrick B Smathers"
+    ]
+  },
+  "RY-S": {
+    "label": "Fairview \u2014 Sycamore Cove",
+    "area": "Fairview",
+    "descriptor": "Sycamore Cove",
+    "topStreets": [
+      "Sharon Ridge",
+      "Westside Village"
+    ],
+    "topSubs": [
+      "Sycamore Cove",
+      "Sharon Ridge Estates"
+    ]
+  },
+  "RIV1": {
+    "label": "Asheville \u2014 Mountain Housing Opportunities",
+    "area": "Asheville",
+    "descriptor": "Mountain Housing Opportunities",
+    "topStreets": [
+      "Depot",
+      "Clingman Avenue"
+    ],
+    "topSubs": [
+      "Prop Of Asheville Land Co",
+      "Mountain Housing Opportunities"
+    ]
+  },
+  "NA-J": {
+    "label": "Asheville \u2014 Jackson Park",
+    "area": "Asheville",
+    "descriptor": "Jackson Park",
+    "topStreets": [
+      "Chatham",
+      "Barnard"
+    ],
+    "topSubs": [
+      "Jackson Park",
+      "Robert A Long Estate"
+    ]
+  },
+  "TNEA": {
+    "label": "Asheville \u2014 Tunnel area",
+    "area": "Asheville",
+    "descriptor": "Tunnel area",
+    "topStreets": [
+      "Tunnel",
+      "Rivers Edge"
+    ],
+    "topSubs": [
+      "Pbp Enterprises",
+      "T J Ingle Estate"
+    ]
+  },
+  "CBDC": {
+    "label": "Asheville \u2014 Amended Plat Investors Land Co",
+    "area": "Asheville",
+    "descriptor": "Amended Plat Investors Land Co",
+    "topStreets": [
+      "Biltmore",
+      "Carolina"
+    ],
+    "topSubs": [
+      "Amended Plat Investors Land Co",
+      "Coca Cola Bottling"
+    ]
+  },
+  "WE-B": {
+    "label": "North Buncombe \u2014 Brookview Estates",
+    "area": "North Buncombe",
+    "descriptor": "Brookview Estates",
+    "topStreets": [
+      "Sage",
+      "Jasper"
+    ],
+    "topSubs": [
+      "Brookview Estates"
+    ]
+  },
+  "74C3": {
+    "label": "Fairview \u2014 Charlotte area",
+    "area": "Fairview",
+    "descriptor": "Charlotte area",
+    "topStreets": [
+      "Charlotte",
+      "Lady Luck"
+    ],
+    "topSubs": [
+      "Julius L Jenkins Sd",
+      "J L Jenkins Prop"
+    ]
+  },
+  "NB-H": {
+    "label": "Jupiter \u2014 High Country Estates",
+    "area": "Jupiter",
+    "descriptor": "High Country Estates",
+    "topStreets": [
+      "Hampton",
+      "High Country"
+    ],
+    "topSubs": [
+      "High Country Estates",
+      "Hamptons"
+    ]
+  },
+  "WVLW": {
+    "label": "Weaverville \u2014 Weaver area",
+    "area": "Weaverville",
+    "descriptor": "Weaver area",
+    "topStreets": [
+      "Weaver",
+      "Weaver Village"
+    ],
+    "topSubs": [
+      "Weaverville Plaza Associates",
+      "Weaverville Partners Llc"
+    ]
+  },
+  "NB-E": {
+    "label": "Jupiter \u2014 The Estates At Sheppards Branch",
+    "area": "Jupiter",
+    "descriptor": "The Estates At Sheppards Branch",
+    "topStreets": [
+      "England Woods",
+      "White Cedar"
+    ],
+    "topSubs": [
+      "Evergreen Trace",
+      "The Estates At Sheppards Branch"
+    ]
+  },
+  "WF-O": {
+    "label": "Woodfin \u2014 Pine Burr Park",
+    "area": "Woodfin",
+    "descriptor": "Pine Burr Park",
+    "topStreets": [
+      "Weaverville",
+      "Old Home"
+    ],
+    "topSubs": [
+      "Pine Burr Park",
+      "W B Ramsey Prop"
+    ]
+  },
+  "RY-E": {
+    "label": "Fairview \u2014 Eastwood Village Condo",
+    "area": "Fairview",
+    "descriptor": "Eastwood Village Condo",
+    "topStreets": [
+      "Olde Eastwood Villag",
+      "Enochs"
+    ],
+    "topSubs": [
+      "Eastwood Village Condo",
+      "Enochs Way"
+    ]
+  },
+  "HN1F": {
+    "label": "Biltmore Forest \u2014 Hendersonville area",
+    "area": "Biltmore Forest",
+    "descriptor": "Hendersonville area",
+    "topStreets": [
+      "Hendersonville",
+      "Ardmore"
+    ],
+    "topSubs": [
+      "Gay Green",
+      "Mrs S J Delvechio"
+    ]
+  },
+  "MER4": {
+    "label": "Woodfin \u2014 Weaverville area",
+    "area": "Woodfin",
+    "descriptor": "Weaverville area",
+    "topStreets": [
+      "Weaverville",
+      "Merrimon"
+    ],
+    "topSubs": [
+      "R D Buckner Estate",
+      "W A Swain Property"
+    ]
+  },
+  "NA-F": {
+    "label": "Woodfin \u2014 The Forest",
+    "area": "Woodfin",
+    "descriptor": "The Forest",
+    "topStreets": [
+      "Black Oak",
+      "Macon"
+    ],
+    "topSubs": [
+      "The Forest",
+      "Fox Trails"
+    ]
+  },
+  "WF-K": {
+    "label": "North Buncombe \u2014 Kirk Glen",
+    "area": "North Buncombe",
+    "descriptor": "Kirk Glen",
+    "topStreets": [
+      "Applecross",
+      "Alexander Chapel"
+    ],
+    "topSubs": [
+      "Kirk Glen",
+      "Ka-Sar Woods"
+    ]
+  },
+  "NA-C": {
+    "label": "Asheville \u2014 Colonial Place",
+    "area": "Asheville",
+    "descriptor": "Colonial Place",
+    "topStreets": [
+      "Mount Vernon",
+      "Creekside"
+    ],
+    "topSubs": [
+      "Colonial Place",
+      "Creekside"
+    ]
+  },
+  "RY-V": {
+    "label": "Reynolds \u2014 Village Park",
+    "area": "Reynolds",
+    "descriptor": "Village Park",
+    "topStreets": [
+      "Village Pointe",
+      "Meadow Village"
+    ],
+    "topSubs": [
+      "Village Park"
+    ]
+  },
+  "SC-W": {
+    "label": "Asheville \u2014 Wilson Creek",
+    "area": "Asheville",
+    "descriptor": "Wilson Creek",
+    "topStreets": [
+      "Wilson Creek",
+      "Woodbridge Park"
+    ],
+    "topSubs": [
+      "Wilson Creek",
+      "Woodbridge Park"
+    ]
+  },
+  "SPII": {
+    "label": "Enka/Candler \u2014 Smokey Park area",
+    "area": "Enka/Candler",
+    "descriptor": "Smokey Park area",
+    "topStreets": [
+      "Smokey Park",
+      "Wiggins"
+    ],
+    "topSubs": [
+      "Patton Dev Co."
+    ]
+  },
+  "LHFA": {
+    "label": "Asheville \u2014 Horneys Hayes S/D",
+    "area": "Asheville",
+    "descriptor": "Horneys Hayes S/D",
+    "topStreets": [
+      "New Leicester",
+      "Old County Home"
+    ],
+    "topSubs": [
+      "J A Baker",
+      "Horneys Hayes S/D"
+    ]
+  },
+  "HN4F": {
+    "label": "Asheville \u2014 Dade-Olina Park",
+    "area": "Asheville",
+    "descriptor": "Dade-Olina Park",
+    "topStreets": [
+      "Hendersonville",
+      "Sharp Solutions"
+    ],
+    "topSubs": [
+      "Dade-Olina Park",
+      "Oak Park"
+    ]
+  },
+  "EB-D": {
+    "label": "Black Mountain \u2014 Washington Heights",
+    "area": "Black Mountain",
+    "descriptor": "Washington Heights",
+    "topStreets": [
+      "View",
+      "Lakey Gap"
+    ],
+    "topSubs": [
+      "Washington Heights",
+      "Mt View Devel"
+    ]
+  },
+  "EA-V": {
+    "label": "Asheville \u2014 Village At Chunns Cove",
+    "area": "Asheville",
+    "descriptor": "Village At Chunns Cove",
+    "topStreets": [
+      "Little Cedar",
+      "Macallan"
+    ],
+    "topSubs": [
+      "Viewpointe Condos",
+      "Village At Chunns Cove"
+    ]
+  },
+  "CA-S": {
+    "label": "Enka/Candler \u2014 Standhill Acres",
+    "area": "Enka/Candler",
+    "descriptor": "Standhill Acres",
+    "topStreets": [
+      "Standhill",
+      "Spring Garden"
+    ],
+    "topSubs": [
+      "Standhill Acres",
+      "Bennett Road Subdivision"
+    ]
+  },
+  "SPDD": {
+    "label": "Enka/Candler \u2014 Smokey Park area",
+    "area": "Enka/Candler",
+    "descriptor": "Smokey Park area",
+    "topStreets": [
+      "Smokey Park",
+      "Wiggins"
+    ],
+    "topSubs": [
+      "T P Jones Prop",
+      "Webb B Saunders Prop"
+    ]
+  },
+  "BRDC": {
+    "label": "Asheville \u2014 Broadway area",
+    "area": "Asheville",
+    "descriptor": "Broadway area",
+    "topStreets": [
+      "Broadway",
+      "Marcellus"
+    ],
+    "topSubs": [
+      "Lenox Park",
+      "Rumbaugh Prop"
+    ]
+  },
+  "74B2": {
+    "label": "Fairview \u2014 Charlotte area",
+    "area": "Fairview",
+    "descriptor": "Charlotte area",
+    "topStreets": [
+      "Charlotte",
+      "Emmas Grove"
+    ],
+    "topSubs": [
+      "Kate Clay Prop",
+      "Curtis Trantham Est"
+    ]
+  },
+  "NA-O": {
+    "label": "Asheville \u2014 Oak Terrace",
+    "area": "Asheville",
+    "descriptor": "Oak Terrace",
+    "topStreets": [
+      "Spears",
+      "Orchard Ridge"
+    ],
+    "topSubs": [
+      "Oak Terrace",
+      "Orchard Ridge Estates"
+    ]
+  },
+  "CBF1": {
+    "label": "Asheville \u2014 Haywood area",
+    "area": "Asheville",
+    "descriptor": "Haywood area",
+    "topStreets": [
+      "Haywood",
+      "Biltmore"
+    ],
+    "topSubs": [
+      "East Riverside Urban Renewal",
+      "Buchanan Business Property"
+    ]
+  },
+  "F702": {
+    "label": "Swannanoa \u2014 Us 70 area",
+    "area": "Swannanoa",
+    "descriptor": "Us 70 area",
+    "topStreets": [
+      "Us 70",
+      "Old Lytle Cove"
+    ],
+    "topSubs": [
+      "W W Slade",
+      "Joseph F Mongovis"
+    ]
+  },
+  "C6SI": {
+    "label": "Asheville \u2014 Beale area",
+    "area": "Asheville",
+    "descriptor": "Beale area",
+    "topStreets": [
+      "Beale",
+      "Old Shoals"
+    ],
+    "topSubs": [
+      "F05 G & H Industries (Lshld)"
+    ]
+  },
+  "NB-B": {
+    "label": "Jupiter \u2014 Brigadoon Estates",
+    "area": "Jupiter",
+    "descriptor": "Brigadoon Estates",
+    "topStreets": [
+      "Macdougall",
+      "Macduff"
+    ],
+    "topSubs": [
+      "Brigadoon Estates",
+      "Brigadoon"
+    ]
+  },
+  "WVFI": {
+    "label": "Weaverville \u2014 Reems Creek area",
+    "area": "Weaverville",
+    "descriptor": "Reems Creek area",
+    "topStreets": [
+      "Reems Creek",
+      "Aiken"
+    ],
+    "topSubs": [
+      "Alta K Morris Prop",
+      "H G Mcclean"
+    ]
+  },
+  "WF-L": {
+    "label": "Woodfin \u2014 Foxfire Mountain Homes",
+    "area": "Woodfin",
+    "descriptor": "Foxfire Mountain Homes",
+    "topStreets": [
+      "Leisure Mountain",
+      "Lackey"
+    ],
+    "topSubs": [
+      "Foxfire Mountain Homes",
+      "Woodland Hills"
+    ]
+  },
+  "CA-A": {
+    "label": "Upper Hominy \u2014 Davis Creek Associates",
+    "area": "Upper Hominy",
+    "descriptor": "Davis Creek Associates",
+    "topStreets": [
+      "Apgar",
+      "Arborwood"
+    ],
+    "topSubs": [
+      "Arborwood Trails",
+      "Davis Creek Associates"
+    ]
+  },
+  "GWCA": {
+    "label": "Asheville \u2014 Glenn Willow area",
+    "area": "Asheville",
+    "descriptor": "Glenn Willow area",
+    "topStreets": [
+      "Glenn Willow"
+    ],
+    "topSubs": []
+  },
+  "CBFP": {
+    "label": "Asheville \u2014 Patton area",
+    "area": "Asheville",
+    "descriptor": "Patton area",
+    "topStreets": [
+      "Patton",
+      "Ann"
+    ],
+    "topSubs": [
+      "Nellie Park Revised",
+      "J P Dunlop Property"
+    ]
+  },
+  "NB-G": {
+    "label": "Jupiter \u2014 Garrison Hills",
+    "area": "Jupiter",
+    "descriptor": "Garrison Hills",
+    "topStreets": [
+      "Gracie",
+      "Emory Paige"
+    ],
+    "topSubs": [
+      "Garrison Hills"
+    ]
+  },
+  "NA-U": {
+    "label": "Asheville \u2014 University Terrace Condos",
+    "area": "Asheville",
+    "descriptor": "University Terrace Condos",
+    "topStreets": [
+      "Hyannis",
+      "W T Weaver"
+    ],
+    "topSubs": [
+      "University Terrace Condos",
+      "Jackson Park"
+    ]
+  },
+  "FA-A": {
+    "label": "Fairview \u2014 Ambient Hills",
+    "area": "Fairview",
+    "descriptor": "Ambient Hills",
+    "topStreets": [
+      "Alexander Crest",
+      "Ambience"
+    ],
+    "topSubs": [
+      "Alexander Crest",
+      "Ambient Hills"
+    ]
+  },
+  "ACPX": {
+    "label": "Asheville \u2014 Sand Hill area",
+    "area": "Asheville",
+    "descriptor": "Sand Hill area",
+    "topStreets": [
+      "Sand Hill",
+      "Enka Heritage"
+    ],
+    "topSubs": [
+      "Fletcher Partners",
+      "Fletcher Partners Inc."
+    ]
+  },
+  "F70I": {
+    "label": "Black Mountain \u2014 Us 70 area",
+    "area": "Black Mountain",
+    "descriptor": "Us 70 area",
+    "topStreets": [
+      "Us 70",
+      "Blue Ridge"
+    ],
+    "topSubs": [
+      "Black Mountain Center",
+      "John Roy & Chris Payne"
+    ]
+  },
+  "NB-P": {
+    "label": "Jupiter \u2014 Pinecrest",
+    "area": "Jupiter",
+    "descriptor": "Pinecrest",
+    "topStreets": [
+      "Pine Cove",
+      "Ponders"
+    ],
+    "topSubs": [
+      "Pinecrest",
+      "Ponders Ridge"
+    ]
+  },
+  "FA-E": {
+    "label": "Fairview \u2014 Echo Valley Estates",
+    "area": "Fairview",
+    "descriptor": "Echo Valley Estates",
+    "topStreets": [
+      "Bear",
+      "Whitaker View"
+    ],
+    "topSubs": [
+      "Echo Valley Estates",
+      "Echo Ridge"
+    ]
+  },
+  "LE-A": {
+    "label": "Leicester \u2014 Alexander Acres",
+    "area": "Leicester",
+    "descriptor": "Alexander Acres",
+    "topStreets": [
+      "Alexander Ridge",
+      "Judith"
+    ],
+    "topSubs": [
+      "Alexander Acres",
+      "Alexander Ridge"
+    ]
+  },
+  "PTRA": {
+    "label": "Asheville \u2014 Old Haywood area",
+    "area": "Asheville",
+    "descriptor": "Old Haywood area",
+    "topStreets": [
+      "Old Haywood",
+      "Piney Park"
+    ],
+    "topSubs": [
+      "Kithcart Property",
+      "J T Horney Prop"
+    ]
+  },
+  "NA-N": {
+    "label": "Asheville \u2014 Norwood area",
+    "area": "Asheville",
+    "descriptor": "Norwood area",
+    "topStreets": [
+      "Norwood",
+      "Woodward"
+    ],
+    "topSubs": [
+      "Norwood Addition",
+      "Wolfe Mccormick & Weaver Prop"
+    ]
+  },
+  "RC-O": {
+    "label": "Reems Creek \u2014 Oxbow Crossing",
+    "area": "Reems Creek",
+    "descriptor": "Oxbow Crossing",
+    "topStreets": [
+      "Ox Bow",
+      "Jump Cove"
+    ],
+    "topSubs": [
+      "Oxbow Crossing"
+    ]
+  },
+  "EN-C": {
+    "label": "Enka/Candler \u2014 Cedar Hollow",
+    "area": "Enka/Candler",
+    "descriptor": "Cedar Hollow",
+    "topStreets": [
+      "Pine Tree",
+      "Canaan"
+    ],
+    "topSubs": [
+      "Cedar Hollow",
+      "Challedon"
+    ]
+  },
+  "SA-Q": {
+    "label": "Asheville \u2014 Quail Hollow",
+    "area": "Asheville",
+    "descriptor": "Quail Hollow",
+    "topStreets": [
+      "Quail Hollow",
+      "Fairhaven"
+    ],
+    "topSubs": [
+      "Quail Hollow",
+      "Quail Cove"
+    ]
+  },
+  "WF-N": {
+    "label": "Woodfin \u2014 Northside Estates",
+    "area": "Woodfin",
+    "descriptor": "Northside Estates",
+    "topStreets": [
+      "Northbend",
+      "Bannister"
+    ],
+    "topSubs": [
+      "Northside Estates",
+      "West City View"
+    ]
+  },
+  "RIV5": {
+    "label": "Asheville \u2014 Riverside area",
+    "area": "Asheville",
+    "descriptor": "Riverside area",
+    "topStreets": [
+      "Riverside",
+      "Woodfin"
+    ],
+    "topSubs": [
+      "Prop Of Asheville Realty & Inv Co",
+      "Farm Equipment Co Of Asheville Inc"
+    ]
+  },
+  "BR-H": {
+    "label": "Broad River \u2014 High Cliffs At Round Mountain",
+    "area": "Broad River",
+    "descriptor": "High Cliffs At Round Mountain",
+    "topStreets": [
+      "High Cliffs",
+      "Havens Creek"
+    ],
+    "topSubs": [
+      "High Cliffs At Round Mountain",
+      "The Havens"
+    ]
+  },
+  "RC-C": {
+    "label": "Weaverville \u2014 Chimney Laurel On Elk Mountain",
+    "area": "Weaverville",
+    "descriptor": "Chimney Laurel On Elk Mountain",
+    "topStreets": [
+      "Compass Park",
+      "Chimney Laurel"
+    ],
+    "topSubs": [
+      "Chimney Laurel On Elk Mountain",
+      "Compass Park"
+    ]
+  },
+  "FB-B": {
+    "label": "French Broad \u2014 Breton Ridge",
+    "area": "French Broad",
+    "descriptor": "Breton Ridge",
+    "topStreets": [
+      "Breton Ridge",
+      "Bear Creek Hills"
+    ],
+    "topSubs": [
+      "Breton Ridge",
+      "Bear Creek Estates"
+    ]
+  },
+  "EB-S": {
+    "label": "Black Mountain \u2014 Sweet Birch Park area",
+    "area": "Black Mountain",
+    "descriptor": "Sweet Birch Park area",
+    "topStreets": [
+      "Sweet Birch Park",
+      "Sunset"
+    ],
+    "topSubs": [
+      "Sweet Birch Commons",
+      "Midway Brook"
+    ]
+  },
+  "BR-J": {
+    "label": "Garren Creek \u2014 Hidden Falls Estates",
+    "area": "Garren Creek",
+    "descriptor": "Hidden Falls Estates",
+    "topStreets": [
+      "Johnny Marlow",
+      "Lovett Falls"
+    ],
+    "topSubs": [
+      "Hidden Falls Estates",
+      "Gary Dennis & Tina Fender Marlow"
+    ]
+  },
+  "BRVE": {
+    "label": "Skyland \u2014 Park South",
+    "area": "Skyland",
+    "descriptor": "Park South",
+    "topStreets": [
+      "Park South",
+      "Brevard"
+    ],
+    "topSubs": [
+      "Park South",
+      "John N & Barbara Iannucci Property"
+    ]
+  },
+  "PTRC": {
+    "label": "Asheville \u2014 Regent Park area",
+    "area": "Asheville",
+    "descriptor": "Regent Park area",
+    "topStreets": [
+      "Regent Park",
+      "Patton"
+    ],
+    "topSubs": [
+      "Firc Westgate Llc",
+      "E Clayton"
+    ]
+  },
+  "CBDB": {
+    "label": "Asheville \u2014 Lexington area",
+    "area": "Asheville",
+    "descriptor": "Lexington area",
+    "topStreets": [
+      "Lexington",
+      "Market"
+    ],
+    "topSubs": [
+      "Smith Estate Prop",
+      "Investors Land Co"
+    ]
+  },
+  "SM-N": {
+    "label": "Leicester \u2014 Newfound Gap Acres",
+    "area": "Leicester",
+    "descriptor": "Newfound Gap Acres",
+    "topStreets": [
+      "Bear Wallow",
+      "Newfound"
+    ],
+    "topSubs": [
+      "Newfound Gap Acres",
+      "Clifford Ham Inc"
+    ]
+  },
+  "WE-C": {
+    "label": "North Buncombe \u2014 Clearview Estates",
+    "area": "North Buncombe",
+    "descriptor": "Clearview Estates",
+    "topStreets": [
+      "Kennedy",
+      "Mandy"
+    ],
+    "topSubs": [
+      "Clearview Estates",
+      "William G & Phyllis C Mithcell"
+    ]
+  },
+  "STLA": {
+    "label": "Asheville \u2014 Tunnel area",
+    "area": "Asheville",
+    "descriptor": "Tunnel area",
+    "topStreets": [
+      "Tunnel",
+      "Peaks Center"
+    ],
+    "topSubs": [
+      "Commonwealth Dreamland Partners Lp",
+      "R W Johnson Estate"
+    ]
+  },
+  "SA-I": {
+    "label": "Reynolds \u2014 Indian Falls Estates",
+    "area": "Reynolds",
+    "descriptor": "Indian Falls Estates",
+    "topStreets": [
+      "Indian Falls",
+      "Indian"
+    ],
+    "topSubs": [
+      "Indian Falls Estates"
+    ]
+  },
+  "MH1B": {
+    "label": "Woodfin",
+    "area": "Woodfin",
+    "descriptor": "",
+    "topStreets": [
+      "Charlotte",
+      "Old Shoals"
+    ],
+    "topSubs": [
+      "C M Ward & Brenda W Ward",
+      "Perry Alexander Home Place"
+    ]
+  },
+  "CA-B": {
+    "label": "Upper Hominy \u2014 Beaver Creek",
+    "area": "Upper Hominy",
+    "descriptor": "Beaver Creek",
+    "topStreets": [
+      "Beaver Creek",
+      "Buck Spring Acres"
+    ],
+    "topSubs": [
+      "Beaver Creek",
+      "Buck Springs Acres"
+    ]
+  },
+  "CHRA": {
+    "label": "Asheville \u2014 Charlotte area",
+    "area": "Asheville",
+    "descriptor": "Charlotte area",
+    "topStreets": [
+      "Charlotte",
+      "Chestnut"
+    ],
+    "topSubs": [
+      "John H Killian Prop",
+      "Grove Park"
+    ]
+  },
+  "NA-P": {
+    "label": "Asheville \u2014 Proximity Park",
+    "area": "Asheville",
+    "descriptor": "Proximity Park",
+    "topStreets": [
+      "Edgemont",
+      "Broadway"
+    ],
+    "topSubs": [
+      "Proximity Park",
+      "Peach Knob Meadows"
+    ]
+  },
+  "RY-L": {
+    "label": "Reynolds \u2014 Laurel Place",
+    "area": "Reynolds",
+    "descriptor": "Laurel Place",
+    "topStreets": [
+      "Ledgestone",
+      "Cedarcliff"
+    ],
+    "topSubs": [
+      "Laurel Place",
+      "Ledgestone"
+    ]
+  },
+  "OK-S": {
+    "label": "Asheville \u2014 Steele",
+    "area": "Asheville",
+    "descriptor": "Steele",
+    "topStreets": [
+      "Dawson",
+      "Saint Davids"
+    ],
+    "topSubs": [
+      "Steele",
+      "St. Davids Subdivision"
+    ]
+  },
+  "OK-R": {
+    "label": "Asheville \u2014 Oakley Park",
+    "area": "Asheville",
+    "descriptor": "Oakley Park",
+    "topStreets": [
+      "Fairview",
+      "Rosemont"
+    ],
+    "topSubs": [
+      "Oakley Park",
+      "Rosemont"
+    ]
+  },
+  "LE-D": {
+    "label": "West Buncombe \u2014 Dix Creek Heights",
+    "area": "West Buncombe",
+    "descriptor": "Dix Creek Heights",
+    "topStreets": [
+      "Dorothy",
+      "Danielbrooke"
+    ],
+    "topSubs": [
+      "Dix Creek Heights",
+      "Danielbrooke"
+    ]
+  },
+  "BR-M": {
+    "label": "Garren Creek \u2014 Miller Cove",
+    "area": "Garren Creek",
+    "descriptor": "Miller Cove",
+    "topStreets": [
+      "Miller Cove",
+      "Faholoa Ridge"
+    ],
+    "topSubs": [
+      "Miller Cove",
+      "Darrel & Candace Easr"
+    ]
+  },
+  "NW-A": {
+    "label": "Enka/Candler \u2014 Iron Ridge area",
+    "area": "Enka/Candler",
+    "descriptor": "Iron Ridge area",
+    "topStreets": [
+      "Iron Ridge",
+      "Eve"
+    ],
+    "topSubs": [
+      "Asheville West",
+      "Adams Hill"
+    ]
+  },
+  "RIV2": {
+    "label": "Asheville \u2014 T & T Enterprises & Ronald Crane",
+    "area": "Asheville",
+    "descriptor": "T & T Enterprises & Ronald Crane",
+    "topStreets": [
+      "Roberts",
+      "Riverside"
+    ],
+    "topSubs": [
+      "Lyman Estate",
+      "T & T Enterprises & Ronald Crane"
+    ]
+  },
+  "NC9D": {
+    "label": "Black Mountain \u2014 Nc 9 area",
+    "area": "Black Mountain",
+    "descriptor": "Nc 9 area",
+    "topStreets": [
+      "Nc 9",
+      "Blue Ridge"
+    ],
+    "topSubs": [
+      "Mt View Devel",
+      "William White"
+    ]
+  },
+  "FA-D": {
+    "label": "Fairview \u2014 Dove'S Landing",
+    "area": "Fairview",
+    "descriptor": "Dove'S Landing",
+    "topStreets": [
+      "Nancy Ashworth",
+      "Drovers"
+    ],
+    "topSubs": [
+      "Drovers Road Preserve",
+      "Dove'S Landing"
+    ]
+  },
+  "VICA": {
+    "label": "Skyland \u2014 Vista area",
+    "area": "Skyland",
+    "descriptor": "Vista area",
+    "topStreets": [
+      "Vista",
+      "Trident"
+    ],
+    "topSubs": [
+      "Vista Industrial Center",
+      "Land-O-Sun Dairies Inc"
+    ]
+  },
+  "CA-H": {
+    "label": "Enka/Candler \u2014 Holly Ridge",
+    "area": "Enka/Candler",
+    "descriptor": "Holly Ridge",
+    "topStreets": [
+      "Holly Ridge",
+      "Enka Lake"
+    ],
+    "topSubs": [
+      "Holly Ridge",
+      "Hidden Forest"
+    ]
+  },
+  "BR-I": {
+    "label": "Broad River \u2014 Idylwild",
+    "area": "Broad River",
+    "descriptor": "Idylwild",
+    "topStreets": [
+      "Lower Flat Creek",
+      "Rock Garden"
+    ],
+    "topSubs": [
+      "Idylwild",
+      "William Dickerson"
+    ]
+  },
+  "SC-M": {
+    "label": "Asheville \u2014 Mill Stone area",
+    "area": "Asheville",
+    "descriptor": "Mill Stone area",
+    "topStreets": [
+      "Mill Stone",
+      "Round Top"
+    ],
+    "topSubs": [
+      "Mill Stone"
+    ]
+  },
+  "EN-D": {
+    "label": "Enka/Candler \u2014 Dixon Terrace",
+    "area": "Enka/Candler",
+    "descriptor": "Dixon Terrace",
+    "topStreets": [
+      "Dixon",
+      "Country"
+    ],
+    "topSubs": [
+      "Dixon Terrace",
+      "Dogwood Acres"
+    ]
+  },
+  "HVIX": {
+    "label": "Asheville \u2014 Hendersonville area",
+    "area": "Asheville",
+    "descriptor": "Hendersonville area",
+    "topStreets": [
+      "Hendersonville",
+      "Vanderbilt"
+    ],
+    "topSubs": [
+      "Reeds Addition",
+      "Biltmore Farms"
+    ]
+  },
+  "BRDA": {
+    "label": "Asheville \u2014 Broadway area",
+    "area": "Asheville",
+    "descriptor": "Broadway area",
+    "topStreets": [
+      "Broadway",
+      "Ocala"
+    ],
+    "topSubs": [
+      "City Of Asheville",
+      "Doubleday Addition"
+    ]
+  },
+  "SS-A": {
+    "label": "Asheville \u2014 Park Avenue North",
+    "area": "Asheville",
+    "descriptor": "Park Avenue North",
+    "topStreets": [
+      "Park",
+      "Jefferson"
+    ],
+    "topSubs": [
+      "Park Avenue North",
+      "Ashe Bunc Tech Comm College"
+    ]
+  },
+  "BR-D": {
+    "label": "Broad River \u2014 Deer Run Estates",
+    "area": "Broad River",
+    "descriptor": "Deer Run Estates",
+    "topStreets": [
+      "Deer",
+      "Old Bald Mountain"
+    ],
+    "topSubs": [
+      "Deer Run Estates",
+      "Eagles Rest"
+    ]
+  },
+  "NB-A": {
+    "label": "Jupiter \u2014 Homestead Ridge area",
+    "area": "Jupiter",
+    "descriptor": "Homestead Ridge area",
+    "topStreets": [
+      "Homestead Ridge",
+      "Clover Mountain"
+    ],
+    "topSubs": [
+      "Amber Knolls"
+    ]
+  },
+  "CA-I": {
+    "label": "Enka/Candler \u2014 Ironwood",
+    "area": "Enka/Candler",
+    "descriptor": "Ironwood",
+    "topStreets": [
+      "Ivey Farms",
+      "Ironwood"
+    ],
+    "topSubs": [
+      "Ivey Farms",
+      "Ironwood"
+    ]
+  },
+  "EB-H": {
+    "label": "Black Mountain \u2014 Hickory Ridge",
+    "area": "Black Mountain",
+    "descriptor": "Hickory Ridge",
+    "topStreets": [
+      "Scenic View",
+      "Mandolin"
+    ],
+    "topSubs": [
+      "Nine South",
+      "Hickory Ridge"
+    ]
+  },
+  "BAFB": {
+    "label": "Asheville \u2014 Brevard area",
+    "area": "Asheville",
+    "descriptor": "Brevard area",
+    "topStreets": [
+      "Brevard",
+      "Overland Industrial"
+    ],
+    "topSubs": [
+      "Skyview Industrial Park",
+      "John Herron"
+    ]
+  },
+  "NB-W": {
+    "label": "Jupiter \u2014 Worthington Ridge",
+    "area": "Jupiter",
+    "descriptor": "Worthington Ridge",
+    "topStreets": [
+      "Worthington",
+      "White Thorn"
+    ],
+    "topSubs": [
+      "Worthington Ridge",
+      "White Thorn Acres"
+    ]
+  },
+  "BLAR": {
+    "label": "Asheville \u2014 Biltmore area",
+    "area": "Asheville",
+    "descriptor": "Biltmore area",
+    "topStreets": [
+      "Biltmore",
+      "Swannanoa River"
+    ],
+    "topSubs": [
+      "Prop Of W W Guy",
+      "Biltmore Ave Commercial Development"
+    ]
+  },
+  "RC-S": {
+    "label": "North Buncombe \u2014 Strawberry area",
+    "area": "North Buncombe",
+    "descriptor": "Strawberry area",
+    "topStreets": [
+      "Strawberry",
+      "Snapfinger"
+    ],
+    "topSubs": [
+      "Strawberry Fields",
+      "Stonewood Subdivision"
+    ]
+  },
+  "FB-O": {
+    "label": "Leicester \u2014 One Oak Estates",
+    "area": "Leicester",
+    "descriptor": "One Oak Estates",
+    "topStreets": [
+      "Colton",
+      "Haden"
+    ],
+    "topSubs": [
+      "One Oak Estates",
+      "Oak Knoll Estates"
+    ]
+  },
+  "MH1C": {
+    "label": "Asheville",
+    "area": "Asheville",
+    "descriptor": "",
+    "topStreets": [
+      "Sand Hill",
+      "Bluebonnet"
+    ],
+    "topSubs": [
+      "O E Starnes Prop",
+      "Garden-Acres"
+    ]
+  },
+  "BRVR": {
+    "label": "Asheville \u2014 Brevard area",
+    "area": "Asheville",
+    "descriptor": "Brevard area",
+    "topStreets": [
+      "Brevard",
+      "Dogwood"
+    ],
+    "topSubs": [
+      "S N Stevens Jr Heirs",
+      "Walter & Thelma Honeycutt Prop"
+    ]
+  },
+  "BR-F": {
+    "label": "Broad River \u2014 Kimberly area",
+    "area": "Broad River",
+    "descriptor": "Kimberly area",
+    "topStreets": [
+      "Kimberly",
+      "Flora"
+    ],
+    "topSubs": [
+      "Bonnie Highlands",
+      "Marlene & Stephen Young"
+    ]
+  },
+  "WA-G": {
+    "label": "Asheville \u2014 Grandview",
+    "area": "Asheville",
+    "descriptor": "Grandview",
+    "topStreets": [
+      "Gaia",
+      "Grandview"
+    ],
+    "topSubs": [
+      "Gaia Condos",
+      "Grandview"
+    ]
+  },
+  "FA-S": {
+    "label": "Fairview \u2014 Sugar Hollow",
+    "area": "Fairview",
+    "descriptor": "Sugar Hollow",
+    "topStreets": [
+      "Smith Knolls",
+      "Sugar Hollow"
+    ],
+    "topSubs": [
+      "Sugar Hollow",
+      "Smith Knolls"
+    ]
+  },
+  "APII": {
+    "label": "Asheville \u2014 Rockwood area",
+    "area": "Asheville",
+    "descriptor": "Rockwood area",
+    "topStreets": [
+      "Rockwood",
+      "New Airport"
+    ],
+    "topSubs": [
+      "Crown Asheville Llc",
+      "Underground Supply Inc"
+    ]
+  },
+  "CBFB": {
+    "label": "Asheville \u2014 Charlotte area",
+    "area": "Asheville",
+    "descriptor": "Charlotte area",
+    "topStreets": [
+      "Charlotte",
+      "John Walker"
+    ],
+    "topSubs": [
+      "City Of Asheville",
+      "Trinity Chapel"
+    ]
+  },
+  "NW-S": {
+    "label": "Asheville \u2014 Knollwood",
+    "area": "Asheville",
+    "descriptor": "Knollwood",
+    "topStreets": [
+      "Skyview",
+      "Starmount"
+    ],
+    "topSubs": [
+      "Knollwood",
+      "Shadow Oaks"
+    ]
+  },
+  "FB-M": {
+    "label": "French Broad \u2014 Mountain View Estates",
+    "area": "French Broad",
+    "descriptor": "Mountain View Estates",
+    "topStreets": [
+      "Mountain View",
+      "Sweet Birch"
+    ],
+    "topSubs": [
+      "Mountain View Estates",
+      "Meadows Estates"
+    ]
+  },
+  "CA-T": {
+    "label": "Enka/Candler \u2014 Treetops",
+    "area": "Enka/Candler",
+    "descriptor": "Treetops",
+    "topStreets": [
+      "Treetops",
+      "Grassy Meadow"
+    ],
+    "topSubs": [
+      "Treetops",
+      "The Meadow"
+    ]
+  },
+  "NW-G": {
+    "label": "Asheville \u2014 Emma area",
+    "area": "Asheville",
+    "descriptor": "Emma area",
+    "topStreets": [
+      "Emma",
+      "Greenius"
+    ],
+    "topSubs": [
+      "Green Path Commons"
+    ]
+  },
+  "NW-V": {
+    "label": "Asheville \u2014 Villas area",
+    "area": "Asheville",
+    "descriptor": "Villas area",
+    "topStreets": [
+      "Villas"
+    ],
+    "topSubs": [
+      "Villas At Cedar Hill"
+    ]
+  },
+  "SA-J": {
+    "label": "Skyland \u2014 Jackson Meadow area",
+    "area": "Skyland",
+    "descriptor": "Jackson Meadow area",
+    "topStreets": [
+      "Jackson Meadow",
+      "Jon Kraus"
+    ],
+    "topSubs": [
+      "Country Walk"
+    ]
+  },
+  "MER5": {
+    "label": "Woodfin \u2014 Pine Burr Park",
+    "area": "Woodfin",
+    "descriptor": "Pine Burr Park",
+    "topStreets": [
+      "Weaverville",
+      "Old Weaverville"
+    ],
+    "topSubs": [
+      "Pine Burr Park",
+      "Laurel Terrace"
+    ]
+  },
+  "EB-W": {
+    "label": "Black Mountain \u2014 Woodlands Of Black Mountain",
+    "area": "Black Mountain",
+    "descriptor": "Woodlands Of Black Mountain",
+    "topStreets": [
+      "Camp Branch",
+      "Woodlands"
+    ],
+    "topSubs": [
+      "Woodlands Of Black Mountain",
+      "Camp Branch Acres"
+    ]
+  },
+  "RC-U": {
+    "label": "Weaverville \u2014 Union Chapel area",
+    "area": "Weaverville",
+    "descriptor": "Union Chapel area",
+    "topStreets": [
+      "Union Chapel"
+    ],
+    "topSubs": [
+      "Blt Enterprises",
+      "Blt Enterprises Llc"
+    ]
+  },
+  "C7EA": {
+    "label": "Asheville \u2014 Amboy Heights",
+    "area": "Asheville",
+    "descriptor": "Amboy Heights",
+    "topStreets": [
+      "Amboy",
+      "Meadow"
+    ],
+    "topSubs": [
+      "Amboy Heights",
+      "Riverview S/D"
+    ]
+  },
+  "NLAT": {
+    "label": "Asheville \u2014 Louisiana area",
+    "area": "Asheville",
+    "descriptor": "Louisiana area",
+    "topStreets": [
+      "Louisiana",
+      "Emma"
+    ],
+    "topSubs": [
+      "Mat Burlson Property",
+      "Caledonia Mcintyre"
+    ]
+  },
+  "MH1R": {
+    "label": "Asheville \u2014 Oteen Church area",
+    "area": "Asheville",
+    "descriptor": "Oteen Church area",
+    "topStreets": [
+      "Oteen Church",
+      "Deno"
+    ],
+    "topSubs": [
+      "Albert Hice",
+      "Swannanoa Hills"
+    ]
+  },
+  "NB-F": {
+    "label": "Jupiter \u2014 Forks Of Ivy Acres",
+    "area": "Jupiter",
+    "descriptor": "Forks Of Ivy Acres",
+    "topStreets": [
+      "Locust Meadow",
+      "Foxtrap Ridge"
+    ],
+    "topSubs": [
+      "Forks Of Ivy Acres",
+      "Foxtrap Ridge"
+    ]
+  },
+  "LE-P": {
+    "label": "Woodfin \u2014 Panorama area",
+    "area": "Woodfin",
+    "descriptor": "Panorama area",
+    "topStreets": [
+      "Panorama",
+      "Cane Brook"
+    ],
+    "topSubs": [
+      "Poplar Hill",
+      "Plowing Rock Settlement"
+    ]
+  },
+  "C7OD": {
+    "label": "Asheville \u2014 Pond area",
+    "area": "Asheville",
+    "descriptor": "Pond area",
+    "topStreets": [
+      "Pond",
+      "Mcintosh"
+    ],
+    "topSubs": [
+      "Great Eastern Sun",
+      "Ellis Fincher Jr & Vmh Inc"
+    ]
+  },
+  "SM-G": {
+    "label": "Leicester \u2014 Gillespie Heights",
+    "area": "Leicester",
+    "descriptor": "Gillespie Heights",
+    "topStreets": [
+      "Gillespie",
+      "Parham"
+    ],
+    "topSubs": [
+      "Gillespie Heights",
+      "The Glade"
+    ]
+  },
+  "LHFC": {
+    "label": "West Buncombe \u2014 New Leicester area",
+    "area": "West Buncombe",
+    "descriptor": "New Leicester area",
+    "topStreets": [
+      "New Leicester",
+      "Old County Home"
+    ],
+    "topSubs": [
+      "Mountain 1St Bank & Trust",
+      "Reeves Suttles"
+    ]
+  },
+  "CA-N": {
+    "label": "Enka/Candler \u2014 Seasons At Biltmore Lake",
+    "area": "Enka/Candler",
+    "descriptor": "Seasons At Biltmore Lake",
+    "topStreets": [
+      "Vista Lake",
+      "Cardinal"
+    ],
+    "topSubs": [
+      "Seasons At Biltmore Lake",
+      "Nottingham Estates"
+    ]
+  },
+  "BRVD": {
+    "label": "Asheville \u2014 Brevard area",
+    "area": "Asheville",
+    "descriptor": "Brevard area",
+    "topStreets": [
+      "Brevard",
+      "Pine"
+    ],
+    "topSubs": [
+      "Buncombe County",
+      "D J R Enterprises Llc"
+    ]
+  },
+  "BCV1": {
+    "label": "Swannanoa \u2014 South area",
+    "area": "Swannanoa",
+    "descriptor": "South area",
+    "topStreets": [
+      "South",
+      "Alexander"
+    ],
+    "topSubs": [
+      "A N Alexander",
+      "J A Brandl"
+    ]
+  },
+  "FB-A": {
+    "label": "Leicester \u2014 Golden area",
+    "area": "Leicester",
+    "descriptor": "Golden area",
+    "topStreets": [
+      "Golden",
+      "Old Nc 20"
+    ],
+    "topSubs": [
+      "Alexander Lane",
+      "Alexander Farms"
+    ]
+  },
+  "SMMS": {
+    "label": "Leicester \u2014 Mount Soma College Campus Housing",
+    "area": "Leicester",
+    "descriptor": "Mount Soma College Campus Housing",
+    "topStreets": [
+      "Mount Soma",
+      "Lila"
+    ],
+    "topSubs": [
+      "Mount Soma",
+      "Mount Soma College Campus Housing"
+    ]
+  },
+  "MFDX": {
+    "label": "Asheville \u2014 Cherry area",
+    "area": "Asheville",
+    "descriptor": "Cherry area",
+    "topStreets": [
+      "Cherry",
+      "Montford"
+    ],
+    "topSubs": [
+      "Head Of Montford Redev. Proj",
+      "P K Wilde Prop"
+    ]
+  },
+  "RC-B": {
+    "label": "North Buncombe \u2014 Barkley Terrace",
+    "area": "North Buncombe",
+    "descriptor": "Barkley Terrace",
+    "topStreets": [
+      "Wheeler",
+      "Brandon"
+    ],
+    "topSubs": [
+      "Barkley Terrace",
+      "Brandon Estates"
+    ]
+  },
+  "LHRB": {
+    "label": "Asheville \u2014 Eliada Home area",
+    "area": "Asheville",
+    "descriptor": "Eliada Home area",
+    "topStreets": [
+      "Eliada Home",
+      "Oak Hill"
+    ],
+    "topSubs": [
+      "Wind Ridge",
+      "Craggy Land Co"
+    ]
+  },
+  "OK-C": {
+    "label": "Asheville \u2014 Crayton Park",
+    "area": "Asheville",
+    "descriptor": "Crayton Park",
+    "topStreets": [
+      "Crayton Park",
+      "Crayton Creek"
+    ],
+    "topSubs": [
+      "Crayton Park",
+      "Cardinal Park"
+    ]
+  },
+  "EA-O": {
+    "label": "Asheville \u2014 Oteen Park",
+    "area": "Asheville",
+    "descriptor": "Oteen Park",
+    "topStreets": [
+      "Oteen Park"
+    ],
+    "topSubs": [
+      "Oteen Park"
+    ]
+  },
+  "NW-P": {
+    "label": "Asheville \u2014 Sulphur Springs Park",
+    "area": "Asheville",
+    "descriptor": "Sulphur Springs Park",
+    "topStreets": [
+      "Honeysuckle",
+      "Cherokee"
+    ],
+    "topSubs": [
+      "Sulphur Springs Park",
+      "Azalea Breeze"
+    ]
+  },
+  "LE-O": {
+    "label": "West Buncombe \u2014 Zoeys Cove Subdivision",
+    "area": "West Buncombe",
+    "descriptor": "Zoeys Cove Subdivision",
+    "topStreets": [
+      "Panorama",
+      "In God We Trust"
+    ],
+    "topSubs": [
+      "Edward G Sluder",
+      "Zoeys Cove Subdivision"
+    ]
+  },
+  "F70P": {
+    "label": "Swannanoa \u2014 Us 70 area",
+    "area": "Swannanoa",
+    "descriptor": "Us 70 area",
+    "topStreets": [
+      "Us 70",
+      "Patton Cove"
+    ],
+    "topSubs": [
+      "The Meadows",
+      "Brenda Lummus"
+    ]
+  },
+  "LE-K": {
+    "label": "West Buncombe \u2014 Knollview area",
+    "area": "West Buncombe",
+    "descriptor": "Knollview area",
+    "topStreets": [
+      "Knollview",
+      "Ferguson"
+    ],
+    "topSubs": [
+      "The Knolls",
+      "Kings Ct"
+    ]
+  },
+  "CA-W": {
+    "label": "Upper Hominy \u2014 White Rock Mountain Preserve",
+    "area": "Upper Hominy",
+    "descriptor": "White Rock Mountain Preserve",
+    "topStreets": [
+      "Krista",
+      "Queen"
+    ],
+    "topSubs": [
+      "Woodlands Trails Condos",
+      "White Rock Mountain Preserve"
+    ]
+  },
+  "BARA": {
+    "label": "Asheville \u2014 Rocky Ridge area",
+    "area": "Asheville",
+    "descriptor": "Rocky Ridge area",
+    "topStreets": [
+      "Rocky Ridge",
+      "Wedgefield"
+    ],
+    "topSubs": [
+      "Stradley Mountain Park",
+      "Rocky Ridge Hospitality Corp Inc"
+    ]
+  },
+  "FB-K": {
+    "label": "Leicester \u2014 Knoll Top Acres",
+    "area": "Leicester",
+    "descriptor": "Knoll Top Acres",
+    "topStreets": [
+      "Selby",
+      "Knoll Top"
+    ],
+    "topSubs": [
+      "Knoll Top Acres",
+      "Kenn Heights"
+    ]
+  },
+  "FVRA": {
+    "label": "Asheville \u2014 Fairview area",
+    "area": "Asheville",
+    "descriptor": "Fairview area",
+    "topStreets": [
+      "Fairview",
+      "Swannanoa River"
+    ],
+    "topSubs": [
+      "Shopping Center Group",
+      "Riverbend"
+    ]
+  },
+  "RY-T": {
+    "label": "Reynolds \u2014 The Woods",
+    "area": "Reynolds",
+    "descriptor": "The Woods",
+    "topStreets": [
+      "Cedar",
+      "Twin Creeks"
+    ],
+    "topSubs": [
+      "The Woods",
+      "Twin Creeks"
+    ]
+  },
+  "FB-F": {
+    "label": "Leicester \u2014 Farmstead area",
+    "area": "Leicester",
+    "descriptor": "Farmstead area",
+    "topStreets": [
+      "Farmstead",
+      "Page"
+    ],
+    "topSubs": [
+      "Farmstead Subdivision",
+      "Fox Run"
+    ]
+  },
+  "FCII": {
+    "label": "North Buncombe \u2014 Buncombe School area",
+    "area": "North Buncombe",
+    "descriptor": "Buncombe School area",
+    "topStreets": [
+      "Buncombe School",
+      "Old Mars Hill"
+    ],
+    "topSubs": [
+      "Mountain 1St Bank And Trust",
+      "Bunc Co Board Of Ed"
+    ]
+  },
+  "FB-G": {
+    "label": "Leicester \u2014 Green Acres Estates",
+    "area": "Leicester",
+    "descriptor": "Green Acres Estates",
+    "topStreets": [
+      "Green Acres",
+      "Marion"
+    ],
+    "topSubs": [
+      "Green Acres Estates",
+      "John & Betty Clemmons (Private)"
+    ]
+  },
+  "BMVA": {
+    "label": "Asheville \u2014 Biltmore Village",
+    "area": "Asheville",
+    "descriptor": "Biltmore Village",
+    "topStreets": [
+      "All Souls",
+      "Lodge"
+    ],
+    "topSubs": [
+      "Plaza Realty Co",
+      "Biltmore Village"
+    ]
+  },
+  "SRFA": {
+    "label": "Asheville \u2014 Kenilworth",
+    "area": "Asheville",
+    "descriptor": "Kenilworth",
+    "topStreets": [
+      "Swannanoa River",
+      "Britt"
+    ],
+    "topSubs": [
+      "Kenilworth",
+      "George W Craig Property"
+    ]
+  },
+  "BKCC": {
+    "label": "Black Mountain \u2014 Ridgeway",
+    "area": "Black Mountain",
+    "descriptor": "Ridgeway",
+    "topStreets": [
+      "Black Mountain",
+      "Ridgeway"
+    ],
+    "topSubs": [
+      "Ridgeway",
+      "E J Kerlee Vs J W Mckoy Prop"
+    ]
+  },
+  "BR-K": {
+    "label": "Broad River \u2014 Nc 9 area",
+    "area": "Broad River",
+    "descriptor": "Nc 9 area",
+    "topStreets": [
+      "Nc 9",
+      "Crooked Creek"
+    ],
+    "topSubs": [
+      "The Knolls"
+    ]
+  },
+  "IV-C": {
+    "label": "Barnardsville \u2014 Cambrook Place",
+    "area": "Barnardsville",
+    "descriptor": "Cambrook Place",
+    "topStreets": [
+      "Libby",
+      "Cove Springs"
+    ],
+    "topSubs": [
+      "Cambrook Place",
+      "Chautauqua Ridge"
+    ]
+  },
+  "BR-G": {
+    "label": "Broad River \u2014 Gateway Mountain",
+    "area": "Broad River",
+    "descriptor": "Gateway Mountain",
+    "topStreets": [
+      "Quarry Trail",
+      "Shumont"
+    ],
+    "topSubs": [
+      "Gateway Mountain",
+      "Ridgecrest"
+    ]
+  },
+  "RY-O": {
+    "label": "Fairview \u2014 Oakmont",
+    "area": "Fairview",
+    "descriptor": "Oakmont",
+    "topStreets": [
+      "Oakmont",
+      "Rainbow Hill"
+    ],
+    "topSubs": [
+      "Oakmont",
+      "Oz Manufactured Home"
+    ]
+  },
+  "RIVA": {
+    "label": "Woodfin \u2014 Riverside area",
+    "area": "Woodfin",
+    "descriptor": "Riverside area",
+    "topStreets": [
+      "Riverside",
+      "Forest"
+    ],
+    "topSubs": [
+      "The Town Of Woodfin",
+      "Woodfin Land Co"
+    ]
+  },
+  "FB-P": {
+    "label": "Leicester \u2014 Piney Knob Estates",
+    "area": "Leicester",
+    "descriptor": "Piney Knob Estates",
+    "topStreets": [
+      "Piney Knob",
+      "Harkins"
+    ],
+    "topSubs": [
+      "Piney Knob Estates",
+      "Pineyview Estates"
+    ]
+  },
+  "CA-C": {
+    "label": "Enka/Candler \u2014 Candler View",
+    "area": "Enka/Candler",
+    "descriptor": "Candler View",
+    "topStreets": [
+      "Curtis Creek",
+      "Hillside Ridge"
+    ],
+    "topSubs": [
+      "Candler View",
+      "Cumbres Subdivision"
+    ]
+  },
+  "74A1": {
+    "label": "Reynolds \u2014 Charlotte area",
+    "area": "Reynolds",
+    "descriptor": "Charlotte area",
+    "topStreets": [
+      "Charlotte",
+      "Rocket"
+    ],
+    "topSubs": [
+      "J L Sales Jr & Peggy S Edwards",
+      "Devereux Enterprises"
+    ]
+  },
+  "EA-T": {
+    "label": "Asheville \u2014 Dillingham Woods",
+    "area": "Asheville",
+    "descriptor": "Dillingham Woods",
+    "topStreets": [
+      "Leslie",
+      "Thornes"
+    ],
+    "topSubs": [
+      "Trappers Run",
+      "Dillingham Woods"
+    ]
+  },
+  "LHFH": {
+    "label": "Asheville \u2014 New Leicester area",
+    "area": "Asheville",
+    "descriptor": "New Leicester area",
+    "topStreets": [
+      "New Leicester"
+    ],
+    "topSubs": [
+      "Z R Sheppard",
+      "J Paul Long"
+    ]
+  },
+  "WA-C": {
+    "label": "Asheville \u2014 Craggy Park",
+    "area": "Asheville",
+    "descriptor": "Craggy Park",
+    "topStreets": [
+      "Orrinel",
+      "Mauricet"
+    ],
+    "topSubs": [
+      "Craggy Park",
+      "Craggy Park Phase 1"
+    ]
+  },
+  "EN-K": {
+    "label": "Enka/Candler \u2014 Kayce Acres",
+    "area": "Enka/Candler",
+    "descriptor": "Kayce Acres",
+    "topStreets": [
+      "Kayce",
+      "Milksick Cove"
+    ],
+    "topSubs": [
+      "Kayce Acres",
+      "Kaycae Acres"
+    ]
+  },
+  "RC-E": {
+    "label": "Reems Creek \u2014 Eller Cove Estates",
+    "area": "Reems Creek",
+    "descriptor": "Eller Cove Estates",
+    "topStreets": [
+      "Eller Cove",
+      "Old Eller Woods"
+    ],
+    "topSubs": [
+      "Eller Cove Estates",
+      "Eller Woods Subdivision"
+    ]
+  },
+  "SARE": {
+    "label": "Asheville \u2014 Sardis area",
+    "area": "Asheville",
+    "descriptor": "Sardis area",
+    "topStreets": [
+      "Sardis",
+      "Old Sardis Road"
+    ],
+    "topSubs": [
+      "First Troy Spe Llc",
+      "Rlr Properties Inc."
+    ]
+  },
+  "LHF1": {
+    "label": "Asheville \u2014 New Leicester area",
+    "area": "Asheville",
+    "descriptor": "New Leicester area",
+    "topStreets": [
+      "New Leicester",
+      "Chamberlain"
+    ],
+    "topSubs": [
+      "A P Rich",
+      "Leicester Canton Llc"
+    ]
+  },
+  "HR2R": {
+    "label": "Asheville \u2014 Mirabelle area",
+    "area": "Asheville",
+    "descriptor": "Mirabelle area",
+    "topStreets": [
+      "Mirabelle",
+      "Walden Ridge"
+    ],
+    "topSubs": [
+      "Walden Ridge Professional Park",
+      "Clare Bridge Of Asheville Llc"
+    ]
+  },
+  "WA-H": {
+    "label": "Asheville \u2014 Sevan area",
+    "area": "Asheville",
+    "descriptor": "Sevan area",
+    "topStreets": [
+      "Sevan",
+      "Trellis"
+    ],
+    "topSubs": [
+      "Habitat For Humanity",
+      "Hudson Street Condominium"
+    ]
+  },
+  "WA-F": {
+    "label": "Asheville \u2014 Riverview",
+    "area": "Asheville",
+    "descriptor": "Riverview",
+    "topStreets": [
+      "Riverview"
+    ],
+    "topSubs": [
+      "Riverview",
+      "Helen Stiles Morrison"
+    ]
+  },
+  "WCPA": {
+    "label": "Asheville \u2014 Westside Commercial Park",
+    "area": "Asheville",
+    "descriptor": "Westside Commercial Park",
+    "topStreets": [
+      "Westside",
+      "Emma"
+    ],
+    "topSubs": [
+      "Westside Commercial Park",
+      "Westside Industrial Park"
+    ]
+  },
+  "PTRB": {
+    "label": "Asheville \u2014 Resort area",
+    "area": "Asheville",
+    "descriptor": "Resort area",
+    "topStreets": [
+      "Resort",
+      "Sawyer"
+    ],
+    "topSubs": [
+      "L Dale Thrash",
+      "T L Clayton Estate"
+    ]
+  },
+  "TNSC": {
+    "label": "Asheville \u2014 Biltmore Park Town Square",
+    "area": "Asheville",
+    "descriptor": "Biltmore Park Town Square",
+    "topStreets": [
+      "Schenck",
+      "Town Square"
+    ],
+    "topSubs": [
+      "Biltmore Park Town Square",
+      "Town Square East"
+    ]
+  },
+  "NB-L": {
+    "label": "North Buncombe \u2014 Little Flat Creek",
+    "area": "North Buncombe",
+    "descriptor": "Little Flat Creek",
+    "topStreets": [
+      "Red Maple",
+      "Evening Shade"
+    ],
+    "topSubs": [
+      "Little Flat Creek",
+      "Buncombe County Board Of Education"
+    ]
+  },
+  "SPFB": {
+    "label": "Asheville \u2014 Smokey Park area",
+    "area": "Asheville",
+    "descriptor": "Smokey Park area",
+    "topStreets": [
+      "Smokey Park",
+      "Westridge Market"
+    ],
+    "topSubs": [
+      "Westridge Mktpl Assoc & Westridge O",
+      "B C Bryson Prop"
+    ]
+  },
+  "WF-M": {
+    "label": "Woodfin \u2014 Mtn Glen Subd",
+    "area": "Woodfin",
+    "descriptor": "Mtn Glen Subd",
+    "topStreets": [
+      "Grey River",
+      "Mountain Glen"
+    ],
+    "topSubs": [
+      "Chad Roberson",
+      "Mtn Glen Subd"
+    ]
+  },
+  "WE-M": {
+    "label": "Weaverville \u2014 Monticello Estates",
+    "area": "Weaverville",
+    "descriptor": "Monticello Estates",
+    "topStreets": [
+      "Penny",
+      "Monticello Village"
+    ],
+    "topSubs": [
+      "Monticello Estates",
+      "Monticello Commons"
+    ]
+  },
+  "NW-J": {
+    "label": "Asheville \u2014 Edwards area",
+    "area": "Asheville",
+    "descriptor": "Edwards area",
+    "topStreets": [
+      "Edwards",
+      "Starmount"
+    ],
+    "topSubs": [
+      "Dr Cp Edwards Property",
+      "Dr C P Edwards"
+    ]
+  },
+  "CBF2": {
+    "label": "Asheville \u2014 Coxe area",
+    "area": "Asheville",
+    "descriptor": "Coxe area",
+    "topStreets": [
+      "Coxe",
+      "Church"
+    ],
+    "topSubs": [
+      "Buxton Hill",
+      "The Smith Estate"
+    ]
+  },
+  "WE-W": {
+    "label": "Weaverville \u2014 Weaver Village Walk",
+    "area": "Weaverville",
+    "descriptor": "Weaver Village Walk",
+    "topStreets": [
+      "Weaver Village",
+      "Waters Edge"
+    ],
+    "topSubs": [
+      "Weaver Village Walk",
+      "Waters Edge Villas"
+    ]
+  },
+  "RIV3": {
+    "label": "Asheville \u2014 Lyman area",
+    "area": "Asheville",
+    "descriptor": "Lyman area",
+    "topStreets": [
+      "Lyman",
+      "Foundy"
+    ],
+    "topSubs": []
+  },
+  "EA-D": {
+    "label": "Asheville \u2014 Dogwood Grove",
+    "area": "Asheville",
+    "descriptor": "Dogwood Grove",
+    "topStreets": [
+      "Dogwood",
+      "Persimmon"
+    ],
+    "topSubs": [
+      "Dogwood Grove",
+      "Hardesty"
+    ]
+  },
+  "ACCA": {
+    "label": "Asheville \u2014 Walden area",
+    "area": "Asheville",
+    "descriptor": "Walden area",
+    "topStreets": [
+      "Walden",
+      "Glenn Bridge"
+    ],
+    "topSubs": [
+      "Buck Shoals Partners Llc"
+    ]
+  },
+  "APFB": {
+    "label": "Asheville \u2014 Airport area",
+    "area": "Asheville",
+    "descriptor": "Airport area",
+    "topStreets": [
+      "Airport",
+      "Hendersonville"
+    ],
+    "topSubs": [
+      "Susan Nesby Heirs",
+      "Pocahontas Properties Llc"
+    ]
+  },
+  "SARD": {
+    "label": "Asheville \u2014 Bank-West Investment",
+    "area": "Asheville",
+    "descriptor": "Bank-West Investment",
+    "topStreets": [
+      "Sardis",
+      "Sand Hill"
+    ],
+    "topSubs": [
+      "Banks West Investments",
+      "Bank-West Investment"
+    ]
+  },
+  "OK-H": {
+    "label": "Asheville \u2014 Oakwood",
+    "area": "Asheville",
+    "descriptor": "Oakwood",
+    "topStreets": [
+      "Homewood",
+      "Harmony"
+    ],
+    "topSubs": [
+      "Oakwood",
+      "H K Bowling Revised"
+    ]
+  },
+  "FVRB": {
+    "label": "Asheville \u2014 Old Fairview area",
+    "area": "Asheville",
+    "descriptor": "Old Fairview area",
+    "topStreets": [
+      "Old Fairview",
+      "Gashes Creek"
+    ],
+    "topSubs": [
+      "Oaklyn Block Opqr&S",
+      "Shopping Center Group"
+    ]
+  },
+  "NB-O": {
+    "label": "Jupiter \u2014 Oak Ridge Estates",
+    "area": "Jupiter",
+    "descriptor": "Oak Ridge Estates",
+    "topStreets": [
+      "Donna",
+      "Flint Hill"
+    ],
+    "topSubs": [
+      "Oak Ridge Estates",
+      "Darlene Benson & Bruce Richardson"
+    ]
+  },
+  "LSBR": {
+    "label": "Skyland \u2014 Brevard area",
+    "area": "Skyland",
+    "descriptor": "Brevard area",
+    "topStreets": [
+      "Brevard",
+      "Clovernook"
+    ],
+    "topSubs": [
+      "Vista Assoc. Llc",
+      "Teddy Joel Buckner"
+    ]
+  },
+  "S&GA": {
+    "label": "Black Mountain \u2014 Goldview area",
+    "area": "Black Mountain",
+    "descriptor": "Goldview area",
+    "topStreets": [
+      "Goldview",
+      "Old Us 70"
+    ],
+    "topSubs": [
+      "J W Rutherford Heirs",
+      "F05 Sand & Gravel Prod/Lshld"
+    ]
+  },
+  "BR-W": {
+    "label": "Broad River \u2014 Woodcliffe",
+    "area": "Broad River",
+    "descriptor": "Woodcliffe",
+    "topStreets": [
+      "Pinebluff",
+      "Wood Cliff"
+    ],
+    "topSubs": [
+      "Woodcliffe"
+    ]
+  },
+  "DVIA": {
+    "label": "Asheville \u2014 Deaverview area",
+    "area": "Asheville",
+    "descriptor": "Deaverview area",
+    "topStreets": [
+      "Deaverview",
+      "Johnston"
+    ],
+    "topSubs": [
+      "W L Taylor Estate",
+      "Luis & Teresita Lee"
+    ]
+  },
+  "WE-L": {
+    "label": "Weaverville \u2014 Brown area",
+    "area": "Weaverville",
+    "descriptor": "Brown area",
+    "topStreets": [
+      "Brown",
+      "Lakeside Meadows"
+    ],
+    "topSubs": [
+      "Lakeside Meadows"
+    ]
+  },
+  "B&B1": {
+    "label": "Asheville \u2014 Cumberland area",
+    "area": "Asheville",
+    "descriptor": "Cumberland area",
+    "topStreets": [
+      "Cumberland",
+      "Montford"
+    ],
+    "topSubs": [
+      "Carlinabb",
+      "Prop Of Annie Diggs"
+    ]
+  },
+  "SKFB": {
+    "label": "Asheville \u2014 Sweeten Creek Center",
+    "area": "Asheville",
+    "descriptor": "Sweeten Creek Center",
+    "topStreets": [
+      "Sweeten Creek",
+      "Winner"
+    ],
+    "topSubs": [
+      "C W Beale Estate",
+      "Sweeten Creek Center"
+    ]
+  },
+  "FVRC": {
+    "label": "Asheville \u2014 Fairview area",
+    "area": "Asheville",
+    "descriptor": "Fairview area",
+    "topStreets": [
+      "Fairview",
+      "Reed"
+    ],
+    "topSubs": [
+      "Jcs Investments"
+    ]
+  },
+  "CBFR": {
+    "label": "Asheville \u2014 Pearl area",
+    "area": "Asheville",
+    "descriptor": "Pearl area",
+    "topStreets": [
+      "Pearl",
+      "Ann"
+    ],
+    "topSubs": [
+      "Nellie Park"
+    ]
+  },
+  "RMPA": {
+    "label": "Asheville \u2014 Regional Medical Park",
+    "area": "Asheville",
+    "descriptor": "Regional Medical Park",
+    "topStreets": [
+      "Medical Park"
+    ],
+    "topSubs": [
+      "Regional Medical Park"
+    ]
+  },
+  "IV-H": {
+    "label": "Barnardsville \u2014 Horseshoe Ridge",
+    "area": "Barnardsville",
+    "descriptor": "Horseshoe Ridge",
+    "topStreets": [
+      "Horseshoe",
+      "Buena Vista"
+    ],
+    "topSubs": [
+      "Horseshoe Ridge",
+      "Hemlock Overlook"
+    ]
+  },
+  "C7OB": {
+    "label": "Asheville \u2014 Highland Center area",
+    "area": "Asheville",
+    "descriptor": "Highland Center area",
+    "topStreets": [
+      "Highland Center",
+      "Montgomery"
+    ],
+    "topSubs": [
+      "M Realty Llc",
+      "Buncombe County"
+    ]
+  },
+  "EB-J": {
+    "label": "Black Mountain \u2014 Fay Jones area",
+    "area": "Black Mountain",
+    "descriptor": "Fay Jones area",
+    "topStreets": [
+      "Fay Jones",
+      "Rantis"
+    ],
+    "topSubs": []
+  },
+  "FB-C": {
+    "label": "French Broad \u2014 Cove Creek Cottages",
+    "area": "French Broad",
+    "descriptor": "Cove Creek Cottages",
+    "topStreets": [
+      "Cove Cottage",
+      "Old Nc 20"
+    ],
+    "topSubs": [
+      "Cove Creek Cottages"
+    ]
+  },
+  "BR-B": {
+    "label": "Broad River \u2014 Bear Track area",
+    "area": "Broad River",
+    "descriptor": "Bear Track area",
+    "topStreets": [
+      "Bear Track",
+      "Rock Cave"
+    ],
+    "topSubs": [
+      "Bear Track",
+      "Lawrence Yates Etal"
+    ]
+  },
+  "SM-M": {
+    "label": "Leicester \u2014 Montrace",
+    "area": "Leicester",
+    "descriptor": "Montrace",
+    "topStreets": [
+      "Sequoia",
+      "Turkey Creek"
+    ],
+    "topSubs": [
+      "Montrace"
+    ]
+  },
+  "OK-A": {
+    "label": "Asheville \u2014 Alice Clement area",
+    "area": "Asheville",
+    "descriptor": "Alice Clement area",
+    "topStreets": [
+      "Alice Clement",
+      "Shakedown"
+    ],
+    "topSubs": []
+  },
+  "MERR": {
+    "label": "Asheville \u2014 Merrimon area",
+    "area": "Asheville",
+    "descriptor": "Merrimon area",
+    "topStreets": [
+      "Merrimon"
+    ],
+    "topSubs": [
+      "Atkinson Reynolds & Co",
+      "Woolsey Improvement Co"
+    ]
+  },
+  "WA-V": {
+    "label": "Asheville \u2014 Village On Haywood Condominium",
+    "area": "Asheville",
+    "descriptor": "Village On Haywood Condominium",
+    "topStreets": [
+      "Moore",
+      "Haywood"
+    ],
+    "topSubs": [
+      "Robert H Moore Estate",
+      "Village On Haywood Condominium"
+    ]
+  },
+  "INBC": {
+    "label": "Asheville \u2014 Sand Hill area",
+    "area": "Asheville",
+    "descriptor": "Sand Hill area",
+    "topStreets": [
+      "Sand Hill",
+      "Smokey Park"
+    ],
+    "topSubs": [
+      "Enka Ptnrs-Fletcher-Colbond,Enka Wt",
+      "Basf Corporation Prop"
+    ]
+  },
+  "F703": {
+    "label": "Swannanoa \u2014 Us 70 area",
+    "area": "Swannanoa",
+    "descriptor": "Us 70 area",
+    "topStreets": [
+      "Us 70",
+      "Tunnel"
+    ],
+    "topSubs": [
+      "Garden Acres",
+      "Minnie Levy Property"
+    ]
+  },
+  "CKCC": {
+    "label": "Fairview \u2014 Cane Creek area",
+    "area": "Fairview",
+    "descriptor": "Cane Creek area",
+    "topStreets": [
+      "Cane Creek",
+      "Mills Gap"
+    ],
+    "topSubs": [
+      "Archibald Hebb",
+      "Crowell Wright"
+    ]
+  },
+  "EA-G": {
+    "label": "Asheville \u2014 The Grove At Haw Creek",
+    "area": "Asheville",
+    "descriptor": "The Grove At Haw Creek",
+    "topStreets": [
+      "Gashes Creek",
+      "River Stone"
+    ],
+    "topSubs": [
+      "The Grove At Haw Creek",
+      "G W Whitson Heirs Property"
+    ]
+  },
+  "NB-K": {
+    "label": "Jupiter \u2014 Kimberly Hills",
+    "area": "Jupiter",
+    "descriptor": "Kimberly Hills",
+    "topStreets": [
+      "Azalea",
+      "Candy Tuft"
+    ],
+    "topSubs": [
+      "Kimberly Hills",
+      "Vicki S Heidenger & Charles E Recto"
+    ]
+  },
+  "SC-O": {
+    "label": "Reynolds \u2014 Onteora Oaks area",
+    "area": "Reynolds",
+    "descriptor": "Onteora Oaks area",
+    "topStreets": [
+      "Onteora Oaks",
+      "Onteora"
+    ],
+    "topSubs": [
+      "Oakley Cottages"
+    ]
+  },
+  "RMBA": {
+    "label": "Woodfin \u2014 Reynolds Mountain area",
+    "area": "Woodfin",
+    "descriptor": "Reynolds Mountain area",
+    "topStreets": [
+      "Reynolds Mountain",
+      "Weaverville"
+    ],
+    "topSubs": [
+      "Steven R Adams & Vivian R Adams",
+      "Northpoint Commons Llc"
+    ]
+  },
+  "NB-I": {
+    "label": "Jupiter \u2014 Indian area",
+    "area": "Jupiter",
+    "descriptor": "Indian area",
+    "topStreets": [
+      "Indian",
+      "Indian Camp Branch"
+    ],
+    "topSubs": [
+      "Indian Trails"
+    ]
+  },
+  "DGWB": {
+    "label": "Asheville \u2014 Dogwood area",
+    "area": "Asheville",
+    "descriptor": "Dogwood area",
+    "topStreets": [
+      "Dogwood"
+    ],
+    "topSubs": [
+      "Hershel T & Lucy D Anderson",
+      "Heafner Tire Company"
+    ]
+  },
+  "IV-E": {
+    "label": "Barnardsville \u2014 Estates Of Hobson Branch",
+    "area": "Barnardsville",
+    "descriptor": "Estates Of Hobson Branch",
+    "topStreets": [
+      "Willie",
+      "Honey Bee Cove"
+    ],
+    "topSubs": [
+      "Estates Of Hobson Branch",
+      "John & Phyllis Veilleux"
+    ]
+  },
+  "WVL2": {
+    "label": "Weaverville \u2014 Main area",
+    "area": "Weaverville",
+    "descriptor": "Main area",
+    "topStreets": [
+      "Main",
+      "Central"
+    ],
+    "topSubs": [
+      "Old Hotel Prop",
+      "Town Of Weaverville"
+    ]
+  },
+  "WA-D": {
+    "label": "Asheville \u2014 Davenport Park",
+    "area": "Asheville",
+    "descriptor": "Davenport Park",
+    "topStreets": [
+      "Estes"
+    ],
+    "topSubs": [
+      "Davenport Park"
+    ]
+  },
+  "VRMC": {
+    "label": "Woodfin \u2014 Merrimon area",
+    "area": "Woodfin",
+    "descriptor": "Merrimon area",
+    "topStreets": [
+      "Merrimon",
+      "Weaverville"
+    ],
+    "topSubs": [
+      "Redus One, Llc",
+      "Redus One, Llc At Reynolds Mountain"
+    ]
+  },
+  "EN-O": {
+    "label": "Enka/Candler \u2014 Parrot area",
+    "area": "Enka/Candler",
+    "descriptor": "Parrot area",
+    "topStreets": [
+      "Parrot",
+      "Monte Vista"
+    ],
+    "topSubs": [
+      "Janet H Solesbee",
+      "Bosco Llc"
+    ]
+  },
+  "CA-P": {
+    "label": "Enka/Candler \u2014 Pinnacle Valley",
+    "area": "Enka/Candler",
+    "descriptor": "Pinnacle Valley",
+    "topStreets": [
+      "Pinnacle Valley"
+    ],
+    "topSubs": [
+      "Pinnacle Valley"
+    ]
+  },
+  "LSRW": {
+    "label": "Skyland \u2014 Long Shoals area",
+    "area": "Skyland",
+    "descriptor": "Long Shoals area",
+    "topStreets": [
+      "Long Shoals",
+      "Haven"
+    ],
+    "topSubs": [
+      "Ray E Curtis Prop",
+      "West Haven"
+    ]
+  },
+  "RC-W": {
+    "label": "Weaverville \u2014 Dula Springs area",
+    "area": "Weaverville",
+    "descriptor": "Dula Springs area",
+    "topStreets": [
+      "Dula Springs",
+      "Windago"
+    ],
+    "topSubs": [
+      "Kim L Kaddatz & Theresa J E Branham",
+      "Wrightwood Subdivision"
+    ]
+  },
+  "BVIS": {
+    "label": "Skyland \u2014 Commerce area",
+    "area": "Skyland",
+    "descriptor": "Commerce area",
+    "topStreets": [
+      "Commerce",
+      "Industrial"
+    ],
+    "topSubs": [
+      "Metalcraft Manufacturing Inc",
+      "Hoyt L. Cox"
+    ]
+  },
+  "CHRB": {
+    "label": "Asheville \u2014 Charlotte area",
+    "area": "Asheville",
+    "descriptor": "Charlotte area",
+    "topStreets": [
+      "Charlotte",
+      "Orchard"
+    ],
+    "topSubs": [
+      "J D Barnard Prop",
+      "Kasey Prop"
+    ]
+  },
+  "MCIA": {
+    "label": "Weaverville \u2014 Harlon Eugene Hensley & Hansel Lock",
+    "area": "Weaverville",
+    "descriptor": "Harlon Eugene Hensley & Hansel Lock",
+    "topStreets": [
+      "Monticello Commons",
+      "Monticello"
+    ],
+    "topSubs": [
+      "Monticello Commons",
+      "Harlon Eugene Hensley & Hansel Lock"
+    ]
+  },
+  "FA-K": {
+    "label": "Fairview \u2014 Knolls At Brush Creek",
+    "area": "Fairview",
+    "descriptor": "Knolls At Brush Creek",
+    "topStreets": [
+      "Knoll"
+    ],
+    "topSubs": [
+      "Knolls At Brush Creek",
+      "The Knolls At Brush Creek"
+    ]
+  },
+  "LLEX": {
+    "label": "Asheville \u2014 Broadway area",
+    "area": "Asheville",
+    "descriptor": "Broadway area",
+    "topStreets": [
+      "Broadway",
+      "Lexington"
+    ],
+    "topSubs": [
+      "Geo H Starnes",
+      "Ray & Bledsoe Prop"
+    ]
+  },
+  "WVLB": {
+    "label": "Weaverville \u2014 Buncombe School area",
+    "area": "Weaverville",
+    "descriptor": "Buncombe School area",
+    "topStreets": [
+      "Buncombe School",
+      "Dula Springs"
+    ],
+    "topSubs": [
+      "R M G Properties",
+      "Kim Walters"
+    ]
+  },
+  "WF-J": {
+    "label": "North Buncombe \u2014 Wilderness area",
+    "area": "North Buncombe",
+    "descriptor": "Wilderness area",
+    "topStreets": [
+      "Wilderness"
+    ],
+    "topSubs": [
+      "J V Corbin Prop"
+    ]
+  },
+  "SPFA": {
+    "label": "Asheville \u2014 Smokey Park area",
+    "area": "Asheville",
+    "descriptor": "Smokey Park area",
+    "topStreets": [
+      "Smokey Park",
+      "Old Haywood"
+    ],
+    "topSubs": [
+      "Lowes Home Center Inc & Jdn Dev Co",
+      "State Employees Credit Union"
+    ]
+  },
+  "AIPA": {
+    "label": "Skyland \u2014 Loop area",
+    "area": "Skyland",
+    "descriptor": "Loop area",
+    "topStreets": [
+      "Loop",
+      "Oval"
+    ],
+    "topSubs": [
+      "Price & Price Mech",
+      "Celtic Properties Llc"
+    ]
+  },
+  "NRCM": {
+    "label": "Weaverville \u2014 Monticello area",
+    "area": "Weaverville",
+    "descriptor": "Monticello area",
+    "topStreets": [
+      "Monticello",
+      "Northridge Commons"
+    ],
+    "topSubs": []
+  },
+  "SM-O": {
+    "label": "Leicester \u2014 Oak Grove Plantation",
+    "area": "Leicester",
+    "descriptor": "Oak Grove Plantation",
+    "topStreets": [
+      "Oak Mountain",
+      "Spring Oak"
+    ],
+    "topSubs": [
+      "Oak Grove Plantation"
+    ]
+  },
+  "SPRC": {
+    "label": "Enka/Candler \u2014 Rutherford area",
+    "area": "Enka/Candler",
+    "descriptor": "Rutherford area",
+    "topStreets": [
+      "Rutherford",
+      "Maple Ridge"
+    ],
+    "topSubs": [
+      "Solomon Luther Land",
+      "Solomon Luther Rd"
+    ]
+  },
+  "CBCR": {
+    "label": "Asheville \u2014 Ravenscroft",
+    "area": "Asheville",
+    "descriptor": "Ravenscroft",
+    "topStreets": [
+      "Church",
+      "Ravenscroft"
+    ],
+    "topSubs": [
+      "Ravenscroft",
+      "Ronald E Gustafson"
+    ]
+  },
+  "BLCA": {
+    "label": "Asheville \u2014 Retail",
+    "area": "Asheville",
+    "descriptor": "Retail",
+    "topStreets": [
+      "Sand Hill",
+      "Lake"
+    ],
+    "topSubs": [
+      "Retail Tract",
+      "Market Center Tract"
+    ]
+  },
+  "HIPA": {
+    "label": "Asheville \u2014 Highland Park",
+    "area": "Asheville",
+    "descriptor": "Highland Park",
+    "topStreets": [
+      "Zillicoa",
+      "Broadway"
+    ],
+    "topSubs": [
+      "Highland Park",
+      "The Health Adventure Inc"
+    ]
+  },
+  "FA-P": {
+    "label": "Fairview \u2014 Pheasant Ridge",
+    "area": "Fairview",
+    "descriptor": "Pheasant Ridge",
+    "topStreets": [
+      "Pheasant Ridge"
+    ],
+    "topSubs": [
+      "Pheasant Ridge",
+      "Kathy E Milam"
+    ]
+  },
+  "LSIS": {
+    "label": "Asheville \u2014 Long Shoals area",
+    "area": "Asheville",
+    "descriptor": "Long Shoals area",
+    "topStreets": [
+      "Long Shoals",
+      "Carl Alwin"
+    ],
+    "topSubs": [
+      "Long Shoals West",
+      "Mission Hospital Inc"
+    ]
+  },
+  "BNII": {
+    "label": "Jupiter \u2014 Old Mars Hill area",
+    "area": "Jupiter",
+    "descriptor": "Old Mars Hill area",
+    "topStreets": [
+      "Old Mars Hill",
+      "Barnardsville"
+    ],
+    "topSubs": [
+      "Jeffery Dean Bradley Survey",
+      "Enka Candler Storage Llc"
+    ]
+  },
+  "HWFB": {
+    "label": "Asheville \u2014 Haywood area",
+    "area": "Asheville",
+    "descriptor": "Haywood area",
+    "topStreets": [
+      "Haywood",
+      "Craven"
+    ],
+    "topSubs": [
+      "Prop Of Gudger Bros",
+      "Rose A Logan"
+    ]
+  },
+  "CTRA": {
+    "label": "Asheville \u2014 Centrepark",
+    "area": "Asheville",
+    "descriptor": "Centrepark",
+    "topStreets": [
+      "Centrepark",
+      "Piney Mountain"
+    ],
+    "topSubs": [
+      "Centrepark",
+      "Mountain Area Pediatric Associates"
+    ]
+  },
+  "WVLM": {
+    "label": "Weaverville \u2014 Monticello area",
+    "area": "Weaverville",
+    "descriptor": "Monticello area",
+    "topStreets": [
+      "Monticello"
+    ],
+    "topSubs": [
+      "W H Weaver Property",
+      "W H Weaver Prop"
+    ]
+  },
+  "EB-P": {
+    "label": "Black Mountain \u2014 Park Lane Condominiums",
+    "area": "Black Mountain",
+    "descriptor": "Park Lane Condominiums",
+    "topStreets": [
+      "Park",
+      "Pearl"
+    ],
+    "topSubs": [
+      "Park Lane Condominiums",
+      "Catawba Development Corp"
+    ]
+  },
+  "FB-J": {
+    "label": "Leicester \u2014 Moonrise area",
+    "area": "Leicester",
+    "descriptor": "Moonrise area",
+    "topStreets": [
+      "Moonrise",
+      "King"
+    ],
+    "topSubs": [
+      "Jean Scott Boone"
+    ]
+  },
+  "NPCA": {
+    "label": "Asheville \u2014 Peachtree area",
+    "area": "Asheville",
+    "descriptor": "Peachtree area",
+    "topStreets": [
+      "Peachtree"
+    ],
+    "topSubs": [
+      "Eighty Peachtree Condo",
+      "Seventy Six Peachtree Condos"
+    ]
+  },
+  "SS-S": {
+    "label": "Asheville \u2014 Coxe area",
+    "area": "Asheville",
+    "descriptor": "Coxe area",
+    "topStreets": [
+      "Coxe",
+      "Southside"
+    ],
+    "topSubs": [
+      "Sawyer Motor Building Condos",
+      "Southside Townhomes Condominium"
+    ]
+  },
+  "OK-B": {
+    "label": "Asheville \u2014 Lofts Of Mica Village",
+    "area": "Asheville",
+    "descriptor": "Lofts Of Mica Village",
+    "topStreets": [
+      "Village",
+      "Thompson"
+    ],
+    "topSubs": [
+      "Rogers & Assoc. Inc.",
+      "Lofts Of Mica Village"
+    ]
+  },
+  "BCTC": {
+    "label": "Asheville \u2014 445 Biltmore Center",
+    "area": "Asheville",
+    "descriptor": "445 Biltmore Center",
+    "topStreets": [
+      "Hospital"
+    ],
+    "topSubs": [
+      "445 Biltmore Center"
+    ]
+  },
+  "SS-1": {
+    "label": "Asheville \u2014 145 Biltmore Avenue Condos",
+    "area": "Asheville",
+    "descriptor": "145 Biltmore Avenue Condos",
+    "topStreets": [
+      "Biltmore"
+    ],
+    "topSubs": [
+      "145 Biltmore Avenue Condos"
+    ]
+  },
+  "DPKA": {
+    "label": "Asheville \u2014 Doctors area",
+    "area": "Asheville",
+    "descriptor": "Doctors area",
+    "topStreets": [
+      "Doctors"
+    ],
+    "topSubs": [
+      "Doctors Park",
+      "Doctors Park Project"
+    ]
+  },
+  "SS-L": {
+    "label": "Asheville \u2014 Lexington area",
+    "area": "Asheville",
+    "descriptor": "Lexington area",
+    "topStreets": [
+      "Lexington"
+    ],
+    "topSubs": [
+      "Lexington Station"
+    ]
+  },
+  "SS-M": {
+    "label": "Asheville \u2014 Merritt Park Condo",
+    "area": "Asheville",
+    "descriptor": "Merritt Park Condo",
+    "topStreets": [
+      "Clingman"
+    ],
+    "topSubs": [
+      "Merritt Park Condo"
+    ]
+  },
+  "CBD-": {
+    "label": "Asheville \u2014 21 Battery Park Condominiums",
+    "area": "Asheville",
+    "descriptor": "21 Battery Park Condominiums",
+    "topStreets": [
+      "Market",
+      "Patton"
+    ],
+    "topSubs": [
+      "21 Battery Park Condominiums",
+      "60 North Market Condominium"
+    ]
+  },
+  "SC-D": {
+    "label": "Asheville \u2014 Dawnwood area",
+    "area": "Asheville",
+    "descriptor": "Dawnwood area",
+    "topStreets": [
+      "Dawnwood"
+    ],
+    "topSubs": [
+      "Dawnwood Condo"
+    ]
+  },
+  "SC-G": {
+    "label": "Asheville \u2014 Appeldoorn",
+    "area": "Asheville",
+    "descriptor": "Appeldoorn",
+    "topStreets": [
+      "Appeldoorn"
+    ],
+    "topSubs": [
+      "Appeldoorn"
+    ]
+  },
+  "OK-E": {
+    "label": "Asheville \u2014 Eastview area",
+    "area": "Asheville",
+    "descriptor": "Eastview area",
+    "topStreets": [
+      "Eastview"
+    ],
+    "topSubs": [
+      "Eastview Homes Condos"
+    ]
+  },
+  "CCX3": {
+    "label": "Asheville \u2014 Patton area",
+    "area": "Asheville",
+    "descriptor": "Patton area",
+    "topStreets": [
+      "Patton",
+      "Commerce"
+    ],
+    "topSubs": [
+      "Capital Center Condominium"
+    ]
+  },
+  "SS-P": {
+    "label": "Asheville \u2014 Prospect Terrace Condominiums",
+    "area": "Asheville",
+    "descriptor": "Prospect Terrace Condominiums",
+    "topStreets": [
+      "Owens Bell"
+    ],
+    "topSubs": [
+      "Prospect Terrace Condominiums"
+    ]
+  },
+  "BIPB": {
+    "label": "Skyland \u2014 Tavistock Commercial Park Condos",
+    "area": "Skyland",
+    "descriptor": "Tavistock Commercial Park Condos",
+    "topStreets": [
+      "Celtic"
+    ],
+    "topSubs": [
+      "Tavistock Commercial Park Condos"
+    ]
+  },
+  "SKYA": {
+    "label": "Asheville \u2014 Skyland Office Park",
+    "area": "Asheville",
+    "descriptor": "Skyland Office Park",
+    "topStreets": [
+      "Hendersonville"
+    ],
+    "topSubs": [
+      "Skyland Office Park"
+    ]
+  },
+  "OLJ1": {
+    "label": "Asheville \u2014 Overlook At Lake Julian Condos",
+    "area": "Asheville",
+    "descriptor": "Overlook At Lake Julian Condos",
+    "topStreets": [
+      "Julian"
+    ],
+    "topSubs": [
+      "Overlook At Lake Julian Condos"
+    ]
+  },
+  "CWCC": {
+    "label": "Asheville \u2014 College area",
+    "area": "Asheville",
+    "descriptor": "College area",
+    "topStreets": [
+      "College",
+      "Wall"
+    ],
+    "topSubs": [
+      "Wslp College Wall Condominium"
+    ]
+  }
+}

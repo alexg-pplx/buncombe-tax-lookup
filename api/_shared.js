@@ -108,7 +108,7 @@ function parseValue(val) {
   return isNaN(num) ? 0 : num;
 }
 
-// Load neighborhood stats
+// Load neighborhood stats and labels
 const path = require("path");
 const fs = require("fs");
 let NEIGHBORHOOD_STATS = {};
@@ -117,6 +117,14 @@ try {
   NEIGHBORHOOD_STATS = JSON.parse(raw);
 } catch (e) {
   console.warn("neighborhood-stats.json not found", e.message);
+}
+
+let NEIGHBORHOOD_LABELS = {};
+try {
+  const raw = fs.readFileSync(path.join(__dirname, "neighborhood-labels.json"), "utf-8");
+  NEIGHBORHOOD_LABELS = JSON.parse(raw);
+} catch (e) {
+  console.warn("neighborhood-labels.json not found", e.message);
 }
 
 function getNeighborhoodPercentile(code) {
@@ -131,8 +139,12 @@ function getNeighborhoodData(code) {
   const trimmed = (code || "").trim();
   const data = NEIGHBORHOOD_STATS[trimmed];
   if (!data) return null;
+  const labelInfo = NEIGHBORHOOD_LABELS[trimmed] || {};
   return {
     code: trimmed,
+    label: labelInfo.label || "",
+    descriptor: labelInfo.descriptor || "",
+    topStreets: labelInfo.topStreets || [],
     parcels: data.parcels,
     medianIncrease: data.median_increase,
     meanIncrease: data.mean_increase,
@@ -149,5 +161,5 @@ module.exports = {
   CURRENT_LAYER, PREVIOUS_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS,
   queryArcGIS, buildWhereClause, parseValue,
   derivePropertyLocation, detectTaxDistrict,
-  NEIGHBORHOOD_STATS, getNeighborhoodData, getNeighborhoodPercentile,
+  NEIGHBORHOOD_STATS, NEIGHBORHOOD_LABELS, getNeighborhoodData, getNeighborhoodPercentile,
 };
