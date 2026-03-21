@@ -28,33 +28,33 @@ const CITY_CODE_TO_NAME = {
 };
 
 const FIRE_CODE_TO_AREA = {
-  FAS: { name: "Asheville (unincorporated)", zip: "28806" },
-  FSB: { name: "Asheville (unincorporated)", zip: "28806" },
+  FAS: { name: "Asheville", zip: "28805" },
+  FSB: { name: "Asheville", zip: "28806" },
   FBA: { name: "Barnardsville", zip: "28709" },
-  FBR: { name: "Broad River", zip: "28748" },
-  FEB: { name: "East Buncombe", zip: "28778" },
-  FEC: { name: "Enka/Candler", zip: "28715" },
+  FBR: { name: "Black Mountain", zip: "28711" },
+  FEB: { name: "Black Mountain", zip: "28711" },
+  FEC: { name: "Candler", zip: "28715" },
   FFA: { name: "Fairview", zip: "28730" },
-  FFB: { name: "French Broad", zip: "28806" },
-  FGC: { name: "Garren Creek", zip: "28730" },
-  FJU: { name: "Jupiter", zip: "28748" },
+  FFB: { name: "Alexander", zip: "28701" },
+  FGC: { name: "Fairview", zip: "28730" },
+  FJU: { name: "Weaverville", zip: "28787" },
   FLE: { name: "Leicester", zip: "28748" },
-  FNB: { name: "North Buncombe", zip: "28787" },
-  FRC: { name: "Reems Creek", zip: "28787" },
-  FRE: { name: "Reynolds", zip: "28803" },
-  FRI: { name: "Riceville", zip: "28805" },
-  FSK: { name: "Skyland", zip: "28776" },
+  FNB: { name: "Weaverville", zip: "28787" },
+  FRC: { name: "Weaverville", zip: "28787" },
+  FRE: { name: "Asheville", zip: "28803" },
+  FRI: { name: "Asheville", zip: "28805" },
+  FSK: { name: "Arden", zip: "28704" },
   FSW: { name: "Swannanoa", zip: "28778" },
-  FUH: { name: "Upper Hominy", zip: "28715" },
-  FWB: { name: "West Buncombe/Leicester", zip: "28806" },
-  FWO: { name: "Woodfin", zip: "28804" },
+  FUH: { name: "Candler", zip: "28715" },
+  FWB: { name: "Asheville", zip: "28806" },
+  FWO: { name: "Asheville", zip: "28804" },
 };
 
 function derivePropertyLocation(city, fireDistrict) {
   const cityCode = (city || "").trim().toUpperCase();
-  // Only use city name for incorporated areas — those are reliable
+  const fireCode = (fireDistrict || "").trim().toUpperCase();
   if (cityCode && CITY_CODE_TO_NAME[cityCode]) return CITY_CODE_TO_NAME[cityCode];
-  // For unincorporated areas, return null — CityName/Zipcode are mailing address, not property location
+  if (fireCode && FIRE_CODE_TO_AREA[fireCode]) return FIRE_CODE_TO_AREA[fireCode];
   return null;
 }
 
