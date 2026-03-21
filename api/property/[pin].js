@@ -1,4 +1,4 @@
-const { CURRENT_LAYER, PREVIOUS_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS, queryArcGIS, parseValue, derivePropertyLocation, detectTaxDistrict } = require("../_shared");
+const { CURRENT_LAYER, PREVIOUS_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS, queryArcGIS, parseValue, derivePropertyLocation, detectTaxDistrict, getNeighborhoodData } = require("../_shared");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -19,6 +19,9 @@ module.exports = async function handler(req, res) {
     const detectedDistrictCode = detectTaxDistrict(current.City || "", current.FireDistrict || "");
     const derivedLoc = derivePropertyLocation(current.City || "", current.FireDistrict || "");
 
+    const neighborhoodCode = (current.NeighborhoodCode || "").trim();
+    const neighborhood = getNeighborhoodData(neighborhoodCode);
+
     const property = {
       pin: current.PIN,
       owner: current.Owner || "",
@@ -35,6 +38,8 @@ module.exports = async function handler(req, res) {
       acreage: current.Acreage || 0,
       propertyClass: current.Class || "",
       fireDistrict: current.FireDistrict || "",
+      neighborhoodCode,
+      neighborhood,
       detectedDistrictCode,
       currentValue: {
         totalMarket: parseValue(current.TotalMarketValue),

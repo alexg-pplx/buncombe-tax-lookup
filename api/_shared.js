@@ -108,8 +108,46 @@ function parseValue(val) {
   return isNaN(num) ? 0 : num;
 }
 
+// Load neighborhood stats
+const path = require("path");
+const fs = require("fs");
+let NEIGHBORHOOD_STATS = {};
+try {
+  const raw = fs.readFileSync(path.join(__dirname, "neighborhood-stats.json"), "utf-8");
+  NEIGHBORHOOD_STATS = JSON.parse(raw);
+} catch (e) {
+  console.warn("neighborhood-stats.json not found", e.message);
+}
+
+function getNeighborhoodPercentile(code) {
+  const entry = NEIGHBORHOOD_STATS[code];
+  if (!entry) return null;
+  const allMedians = Object.values(NEIGHBORHOOD_STATS).map(n => n.median_increase);
+  const below = allMedians.filter(m => m < entry.median_increase).length;
+  return Math.round((below / allMedians.length) * 100);
+}
+
+function getNeighborhoodData(code) {
+  const trimmed = (code || "").trim();
+  const data = NEIGHBORHOOD_STATS[trimmed];
+  if (!data) return null;
+  return {
+    code: trimmed,
+    parcels: data.parcels,
+    medianIncrease: data.median_increase,
+    meanIncrease: data.mean_increase,
+    p25: data.p25,
+    p75: data.p75,
+    medianValue2026: data.median_2026,
+    medianValue2021: data.median_2021,
+    area: data.area,
+    percentileRank: getNeighborhoodPercentile(trimmed),
+  };
+}
+
 module.exports = {
   CURRENT_LAYER, PREVIOUS_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS,
   queryArcGIS, buildWhereClause, parseValue,
   derivePropertyLocation, detectTaxDistrict,
+  NEIGHBORHOOD_STATS, getNeighborhoodData, getNeighborhoodPercentile,
 };

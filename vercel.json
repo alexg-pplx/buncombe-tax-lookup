@@ -3,6 +3,7 @@
     { "source": "/api/search", "destination": "/api/search" },
     { "source": "/api/property/:pin", "destination": "/api/property/[pin]" },
     { "source": "/api/contact", "destination": "/api/contact" },
+    { "source": "/api/neighborhoods", "destination": "/api/neighborhoods" },
     { "source": "/(.*)", "destination": "/public/$1" }
   ],
   "headers": [
