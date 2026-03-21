@@ -4,6 +4,7 @@
     { "source": "/api/property/:pin", "destination": "/api/property/[pin]" },
     { "source": "/api/contact", "destination": "/api/contact" },
     { "source": "/api/neighborhoods", "destination": "/api/neighborhoods" },
+    { "source": "/api/appeal-stats", "destination": "/api/appeal-stats" },
     { "source": "/(.*)", "destination": "/public/$1" }
   ],
   "headers": [
