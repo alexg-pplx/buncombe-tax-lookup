@@ -91,8 +91,7 @@ module.exports = async function handler(req, res) {
           const dp = (t.saledate || "").split("/");
           if (dp.length !== 3) continue;
           const sd = new Date(parseInt(dp[2]), parseInt(dp[0]) - 1, parseInt(dp[1]));
-          if (sd < new Date(2024, 0, 1) || sd > new Date(2026, 0, 1)) continue;
-          if (compYear > 0 && yearBuilt > 0 && Math.abs(compYear - yearBuilt) > 10) continue;
+          if (sd < new Date(2023, 0, 1) || sd > new Date(2026, 0, 2)) continue;
           
           comps.push({
             address: [r.HouseNumber, r.StreetPrefix, r.StreetName, r.StreetType].filter(Boolean).join(" "),

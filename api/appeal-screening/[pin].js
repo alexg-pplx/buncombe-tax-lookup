@@ -88,13 +88,12 @@ async function findComparableSales(subject) {
         if (dateParts.length !== 3) continue;
         const saleDate = new Date(parseInt(dateParts[2]), parseInt(dateParts[0]) - 1, parseInt(dateParts[1]));
         
-        // Filter: sold within 24 months before Jan 1, 2026
-        const cutoffStart = new Date(2024, 0, 1);
-        const cutoffEnd = new Date(2026, 0, 1);
+        // Filter: sold within 36 months before Jan 1, 2026 (broader net, scored by recency)
+        const cutoffStart = new Date(2023, 0, 1);
+        const cutoffEnd = new Date(2026, 0, 2);
         if (saleDate < cutoffStart || saleDate > cutoffEnd) continue;
         
-        // Filter: similar age (±10 years)
-        if (yearBuilt > 0 && subject.yearBuilt > 0 && Math.abs(yearBuilt - subject.yearBuilt) > 10) continue;
+        // Don't hard-filter by age — score by similarity instead
         
         comps.push({
           pin: compPin,
