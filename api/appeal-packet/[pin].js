@@ -64,7 +64,8 @@ module.exports = async function handler(req, res) {
     const halfBaths = parseInt(building.HalfBath) || 0;
     
     // Get comps (simplified version - top 5 from screening)
-    const compWhere = `Class = '${prop.Class}' AND NeighborhoodCode = '${prop.NeighborhoodCode}' AND SalePrice IS NOT NULL AND SalePrice <> '0' AND PIN <> '${pin}'`;
+    const residentialClasses = "('100','101','121')";
+    const compWhere = `Class IN ${residentialClasses} AND NeighborhoodCode = '${prop.NeighborhoodCode}' AND PIN <> '${pin}'`;
     const compFields = "PIN,HouseNumber,StreetPrefix,StreetName,StreetType,Acreage,TotalMarketValue,LandValue,BuildingValue,SalePrice,DeedDate";
     const compResults = await queryArcGIS(CURRENT_LAYER, compWhere, compFields, 30);
     

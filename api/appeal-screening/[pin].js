@@ -46,8 +46,10 @@ async function getPropertyDetails(pin) {
 }
 
 async function findComparableSales(subject) {
-  // Get recent sales in the same neighborhood, same class
-  const where = `Class = '${subject.propertyClass}' AND NeighborhoodCode = '${subject.neighborhood}' AND SalePrice IS NOT NULL AND SalePrice <> '0' AND PIN <> '${subject.pin}'`;
+  // Get recent sales in the same neighborhood, residential classes
+  // Include 100, 101, 121 as comparable residential types
+  const residentialClasses = "('100','101','121')";
+  const where = `Class IN ${residentialClasses} AND NeighborhoodCode = '${subject.neighborhood}' AND PIN <> '${subject.pin}'`;
   const fields = "PIN,Owner,HouseNumber,StreetPrefix,StreetName,StreetType,Acreage,TotalMarketValue,LandValue,BuildingValue,SalePrice,DeedDate,NeighborhoodCode";
   const results = await queryArcGIS(COMP_LAYER, where, fields, 50);
   
@@ -55,7 +57,8 @@ async function findComparableSales(subject) {
   const comps = [];
   const checked = new Set();
   
-  for (const r of results.slice(0, 20)) {
+  // Check more properties to find enough with qualified sales
+  for (const r of results.slice(0, 30)) {
     const compPin = r.PIN;
     if (checked.has(compPin)) continue;
     checked.add(compPin);
@@ -270,7 +273,7 @@ module.exports = async function handler(req, res) {
     if (!subject) return res.status(404).json({ error: "Property not found" });
     
     // Only screen residential properties
-    if (!['100', '101', '121'].includes(subject.propertyClass)) {
+    if (!['100', '101', '121', '170', '180'].includes(subject.propertyClass)) {
       return res.json({
         subject,
         screening: {
