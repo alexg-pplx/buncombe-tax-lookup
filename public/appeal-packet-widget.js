@@ -421,6 +421,12 @@ ${a.medianSalePrice ? `
 
   // Main: inject the screening card into the property page
   async function init() {
+    // Admin-only gate: only show widget when ?admin=kendra2026 is in the URL
+    const searchAdmin = new URLSearchParams(window.location.search).get('admin');
+    const hashParams = window.location.hash.includes('?') ? new URLSearchParams(window.location.hash.split('?')[1]) : null;
+    const isAdminPreview = searchAdmin === ADMIN_KEY || (hashParams && hashParams.get('admin') === ADMIN_KEY);
+    if (!isAdminPreview) return;
+
     const pin = getPin();
     if (!pin) return;
 
