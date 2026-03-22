@@ -58,12 +58,12 @@
                 <span style="font-size: 15px; font-weight: 700; color: #1a1a1a;">Appeal Screening</span>
                 <span style="display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; color: white; background: ${rc.badge};">${rc.label}</span>
               </div>
-              <p style="font-size: 13px; color: ${rc.text}; margin: 0; max-width: 500px;">${screening.message}</p>
+              <p style="font-size: 13px; color: ${rc.text}; margin: 0; max-width: 500px;">
+                ${screening.rating === 'weak' || screening.rating === 'insufficient' 
+                  ? 'Based on comparable sales data, your assessment appears to be at or near market value. Other factors like property condition, storm damage, or record errors could change this — see below.'
+                  : screening.message}
+              </p>
             </div>
-            ${daysLeft > 0 ? `<div style="text-align: right; flex-shrink: 0;">
-              <div style="font-size: 22px; font-weight: 800; color: #dc2626;">${daysLeft}</div>
-              <div style="font-size: 10px; color: #991b1b; text-transform: uppercase; letter-spacing: 0.5px;">days until deadline</div>
-            </div>` : ''}
           </div>
     `;
 
@@ -88,14 +88,30 @@
               <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${a.compCount || 0}</div>
             </div>
           </div>
-          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0; line-height: 1.6;">This analysis is based on comparable sales data only. Other factors could change the picture:</p>
+          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0; line-height: 1.6;">Comparable sales are only one factor. You may still have grounds to appeal if:</p>
           <ul style="font-size: 12px; color: #555; margin: 0; padding-left: 18px; line-height: 1.8;">
-            <li>Property condition issues or needed repairs</li>
-            <li>Damage from Tropical Storm Helene</li>
-            <li>Errors in your property record (square footage, bedroom count, etc.)</li>
-            <li>Eligibility for tax relief programs (senior exemption, agricultural use, etc.)</li>
+            <li>Your property has condition issues or needs major repairs</li>
+            <li>Your property was damaged by Tropical Storm Helene</li>
+            <li>The county has incorrect information on file (square footage, bedrooms, etc.)</li>
+            <li>You may qualify for tax relief (senior exemption, agricultural/forestry use, etc.)</li>
           </ul>
-          <p style="font-size: 12px; color: #666; margin: 10px 0 0 0; line-height: 1.6;">If any of these apply, we recommend attending a <strong>free appeal clinic</strong> to discuss your situation. Visit buncombetaxlookup.com for dates and locations, or call <strong>(828) 250-4940</strong>.</p>
+          <p style="font-size: 13px; color: #333; margin: 14px 0 8px 0; line-height: 1.6; font-weight: 600;">What to do next:</p>
+          <p style="font-size: 12px; color: #555; margin: 0 0 6px 0; line-height: 1.6;">Call the Tax Assessor's Office at <strong>(828) 250-4940</strong> to speak with an appraiser about your property, or attend a free appeal clinic:</p>
+          <div style="font-size: 12px; color: #555; margin: 6px 0 0 0; line-height: 1.8;">
+            ${(function() {
+              const clinics = [
+                { d: new Date(2026,2,25), t: 'March 25, 3:30\u20136 PM', l: 'Enka-Candler Library, 1404 Sand Hill Rd' },
+                { d: new Date(2026,2,26), t: 'March 26, 6\u20138 PM', l: 'Southside Community Center, 285 Livingston St' },
+                { d: new Date(2026,3,1), t: 'April 1, 4\u20136:30 PM', l: 'Skyland/South Buncombe Library, 260 Overlook Rd' },
+                { d: new Date(2026,3,9), t: 'April 9, 4:30\u20136:30 PM', l: 'Weaverville Community Center, 60 Lakeshore Dr' },
+                { d: new Date(2026,3,16), t: 'April 16, 6\u20138:30 PM', l: 'Leicester Community Center, 2979 New Leicester Hwy' },
+              ];
+              const now = new Date();
+              const future = clinics.filter(c => c.d >= now);
+              if (future.length === 0) return '<em>Visit buncombetaxlookup.com for updated clinic information.</em>';
+              return future.map(c => '\u2022 ' + c.t + ' \u2014 ' + c.l).join('<br>');
+            })()}
+          </div>
         </div>
       `;
     }
