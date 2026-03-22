@@ -288,6 +288,36 @@ function analyzeAppealStrength(subject, comps) {
     if (rating === 'strong') rating = 'moderate';
   }
   
+  // Check if subject is significantly newer than comps — newer homes justify higher values
+  if (subject.yearBuilt > 0 && topComps.some(c => c.yearBuilt > 0)) {
+    const compYears = topComps.filter(c => c.yearBuilt > 0).map(c => c.yearBuilt);
+    const avgCompYear = compYears.reduce((s,y) => s+y, 0) / compYears.length;
+    if (subject.yearBuilt - avgCompYear > 15) {
+      // Subject is 15+ years newer than average comp — that alone explains higher value
+      if (rating === 'strong' || rating === 'moderate') {
+        message += ` Your home (built ${subject.yearBuilt}) is significantly newer than the available comparables (avg. built ${Math.round(avgCompYear)}), which likely accounts for the value difference.`;
+        score = Math.max(score - 20, 15);
+        if (rating === 'strong') rating = 'moderate';
+        if (rating === 'moderate' && score < 40) rating = 'weak';
+      }
+    }
+  }
+  
+  // Check if subject is custom quality vs standard comps
+  if (subject.quality && subject.quality.toUpperCase().includes('CUST')) {
+    const customComps = topComps.filter(c => {
+      // We don't have quality on comps from GIS, but we can note it
+      return false; // Can't easily check comp quality without PRC data in scoring
+    });
+    // If subject is custom quality and comps are selling for much less,
+    // that's expected — don't rate it as "strong" appeal case
+    if (rating === 'strong' && avgSimilarity < 60) {
+      message += " Your property is rated as custom quality, which may justify a higher value than standard-quality comparables.";
+      score = Math.max(score - 10, 20);
+      rating = 'moderate';
+    }
+  }
+  
   return {
     rating, // "strong", "moderate", "weak", "insufficient"
     score,  // 0-100
