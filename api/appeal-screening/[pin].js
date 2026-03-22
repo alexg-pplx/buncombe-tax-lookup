@@ -169,13 +169,16 @@ function analyzeAppealStrength(subject, comps) {
   
   // Use top 5 comps
   const topComps = comps.slice(0, 5);
+  const avgSimilarity = topComps.reduce((s, c) => s + c.similarityScore, 0) / topComps.length;
+  const isLandHeavy = subject.landPctOfTotal > 40;
   
   // Assessment-to-sale ratios
   const ratios = topComps.map(c => c.assessedValue / c.salePrice);
   const avgRatio = ratios.reduce((s, r) => s + r, 0) / ratios.length;
   
-  // Per-sqft comparison
+  // Per-sqft comparison (building value focus)
   const subjectPerSqft = subject.sqft > 0 ? subject.totalValue / subject.sqft : 0;
+  const subjectBldgPerSqft = subject.sqft > 0 ? subject.buildingValue / subject.sqft : 0;
   const compPerSqft = topComps
     .filter(c => c.sqft > 0)
     .map(c => c.salePrice / c.sqft);
@@ -204,22 +207,62 @@ function analyzeAppealStrength(subject, comps) {
   const medianSalePrice = topComps.map(c => c.salePrice).sort((a, b) => a - b)[Math.floor(topComps.length / 2)];
   const assessmentVsMedianSale = subject.totalValue / medianSalePrice;
   
-  if (assessmentVsMedianSale > 1.15 && subjectPerSqft > medianCompPerSqft * 1.1) {
-    // Assessment is significantly above comp sales
+  // For land-heavy properties: compare assessment-to-assessed of comps (equity test)
+  // rather than assessment-to-sale (market value test), since total $/sqft is misleading
+  const medianCompAssessed = topComps.map(c => c.assessedValue).sort((a, b) => a - b)[Math.floor(topComps.length / 2)];
+  const assessmentVsMedianAssessed = subject.totalValue / medianCompAssessed;
+  
+  // Use the right comparison basis depending on property type
+  // For land-heavy properties, high total value vs comps is expected (they have more land)
+  // So we need to check building value separately from land value
+  let effectiveRatio = assessmentVsMedianSale;
+  let comparisonBasis = 'sale';
+  
+  if (isLandHeavy && subject.acreage > 3) {
+    // Land-heavy: check if the LAND assessment per acre is high compared to comps
+    // AND check building value per sqft vs comps
+    const landOvervalued = medianCompLandPerAcre > 0 && subjectLandPerAcre > medianCompLandPerAcre * 1.15;
+    const bldgOvervalued = medianCompPerSqft > 0 && subjectBldgPerSqft > medianCompPerSqft * 1.1;
+    
+    if (landOvervalued || bldgOvervalued) {
+      // There's a legitimate land or building overvaluation argument
+      effectiveRatio = landOvervalued 
+        ? subjectLandPerAcre / medianCompLandPerAcre 
+        : subjectPerSqft / medianCompPerSqft;
+      comparisonBasis = landOvervalued ? 'land' : 'building';
+    } else {
+      // Comps are smaller properties — the total value difference is just acreage, not overassessment
+      effectiveRatio = 1.0; // Neutral — can't conclude overassessment
+      comparisonBasis = 'land-adjusted';
+    }
+  }
+  
+  if (effectiveRatio > 1.15 && (comparisonBasis !== 'sale' || subjectPerSqft > medianCompPerSqft * 1.1)) {
     rating = "strong";
     score = 85;
     suggestedValue = suggestedByComps;
-    message = `Your assessed value of $${subject.totalValue.toLocaleString()} appears to be above market value based on ${topComps.length} comparable sales. Similar properties have sold for a median of $${medianSalePrice.toLocaleString()}.`;
-  } else if (assessmentVsMedianSale > 1.05) {
+    if (comparisonBasis === 'land') {
+      message = `Your land is assessed at $${subjectLandPerAcre.toLocaleString()}/acre for ${subject.acreage.toFixed(1)} acres, while comparable properties average $${medianCompLandPerAcre.toLocaleString()}/acre. This suggests your land may be over-assessed.`;
+    } else {
+      message = `Your assessed value of $${subject.totalValue.toLocaleString()} appears to be above market value based on ${topComps.length} comparable sales. Similar properties have sold for a median of $${medianSalePrice.toLocaleString()}.`;
+    }
+  } else if (effectiveRatio > 1.05) {
     rating = "moderate";
     score = 60;
     suggestedValue = suggestedByComps;
     message = `Your assessed value may be slightly above market value. Comparable sales suggest a median value around $${medianSalePrice.toLocaleString()}, but the difference is modest.`;
-  } else if (assessmentVsMedianSale < 0.95) {
-    rating = "weak";
-    score = 20;
-    riskWarning = "Based on comparable sales, your assessed value appears to be at or below market value. Filing an appeal could result in your value staying the same or INCREASING. We do not recommend proceeding.";
-    message = `Similar properties have sold for a median of $${medianSalePrice.toLocaleString()}, which is above your assessed value of $${subject.totalValue.toLocaleString()}.`;
+  } else if (effectiveRatio < 0.95 || (comparisonBasis === 'land-adjusted' && assessmentVsMedianSale > 1.0)) {
+    // For land-adjusted: if total is higher but land/bldg rates are fair, it's weak
+    if (comparisonBasis === 'land-adjusted') {
+      rating = "weak";
+      score = 30;
+      message = `Your property is valued higher than nearby sales, but this appears to be because of your larger lot (${subject.acreage.toFixed(1)} acres vs. comps averaging ${(topComps.reduce((s,c)=>s+c.acreage,0)/topComps.length).toFixed(1)} acres). The per-acre and per-sqft rates appear reasonable.`;
+    } else {
+      rating = "weak";
+      score = 20;
+      riskWarning = "Based on comparable sales, your assessed value appears to be at or below market value. Filing an appeal could result in your value staying the same or INCREASING. We do not recommend proceeding.";
+      message = `Similar properties have sold for a median of $${medianSalePrice.toLocaleString()}, which is above your assessed value of $${subject.totalValue.toLocaleString()}.`;
+    }
   } else {
     rating = "weak";
     score = 35;
@@ -228,16 +271,21 @@ function analyzeAppealStrength(subject, comps) {
   
   // Check for insufficient/poor comp quality
   if (topComps.length < 3) {
-    rating = "insufficient";
-    score = Math.min(score, 30);
-    message = `Only ${topComps.length} comparable sale(s) found. The county typically wants 3+ comps within similar criteria. ${message}`;
+    if (rating === 'strong') rating = 'moderate';
+    score = Math.min(score, 50);
+    message = `Only ${topComps.length} comparable sale(s) found — the county typically wants 3+ comps. ${message}`;
   }
   
-  // Check for high similarity score variance (comps aren't very similar)
-  const avgSimilarity = topComps.reduce((s, c) => s + c.similarityScore, 0) / topComps.length;
-  if (avgSimilarity < 50) {
-    message += " Note: Available comps differ significantly from your property in size, age, or acreage, which weakens the comparison.";
-    score = Math.max(score - 15, 0);
+  // Check comp similarity quality
+  if (avgSimilarity < 35) {
+    message += " Note: Available comps differ significantly from your property in size, age, or acreage, which substantially weakens any comparison.";
+    score = Math.max(score - 35, 10);
+    if (rating === 'strong') rating = 'moderate';
+    if (rating === 'moderate') rating = 'weak';
+  } else if (avgSimilarity < 50) {
+    message += " Note: Available comps differ from your property in size, age, or acreage, which weakens the comparison.";
+    score = Math.max(score - 20, 15);
+    if (rating === 'strong') rating = 'moderate';
   }
   
   return {

@@ -67,11 +67,11 @@ module.exports = async function handler(req, res) {
     const residentialClasses = "('100','101','121')";
     const compWhere = `Class IN ${residentialClasses} AND NeighborhoodCode = '${prop.NeighborhoodCode}' AND PIN <> '${pin}'`;
     const compFields = "PIN,HouseNumber,StreetPrefix,StreetName,StreetType,Acreage,TotalMarketValue,LandValue,BuildingValue,SalePrice,DeedDate";
-    const compResults = await queryArcGIS(CURRENT_LAYER, compWhere, compFields, 30);
+    const compResults = await queryArcGIS(CURRENT_LAYER, compWhere, compFields, 50);
     
     // Fetch PRC for qualified sales
     const comps = [];
-    for (const r of compResults.slice(0, 15)) {
+    for (const r of compResults.slice(0, 30)) {
       try {
         const prcRes = await fetch(`${PRC_BASE}/${r.PIN}`);
         if (!prcRes.ok) continue;
@@ -204,8 +204,14 @@ function generateAppealText(data) {
     text += `\n\nAdditionally, the land portion of my assessment ($${landValue.toLocaleString()} for ${acreage.toFixed(2)} acres, or $${Math.round(landValue/acreage).toLocaleString()} per acre) appears to be inconsistent with comparable land values in the area. `;
   }
   
-  if (sqft > 0) {
-    text += `My assessment of $${Math.round(totalValue/sqft).toLocaleString()} per square foot is above the median comparable sale price of $${Math.round(medianSalePrice/1).toLocaleString()} per square foot based on recent sales. `;
+  if (sqft > 0 && medianSalePrice) {
+    const compSqftPrices = comps.filter(c => c.sqft > 0).map(c => c.salePrice / c.sqft);
+    const medCompPerSqft = compSqftPrices.length > 0 
+      ? compSqftPrices.sort((a,b) => a-b)[Math.floor(compSqftPrices.length / 2)] 
+      : 0;
+    if (medCompPerSqft > 0) {
+      text += `My assessment equates to $${Math.round(totalValue/sqft).toLocaleString()} per square foot, compared to a median of $${Math.round(medCompPerSqft).toLocaleString()} per square foot among comparable sales. `;
+    }
   }
   
   if (hasConditionIssues) {
