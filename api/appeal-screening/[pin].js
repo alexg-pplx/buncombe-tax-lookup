@@ -230,6 +230,12 @@ function analyzeAppealStrength(subject, comps) {
         ? subjectLandPerAcre / medianCompLandPerAcre 
         : subjectPerSqft / medianCompPerSqft;
       comparisonBasis = landOvervalued ? 'land' : 'building';
+    } else if (assessmentVsMedianSale > 1.5) {
+      // Even though per-unit rates seem reasonable, the total assessment is
+      // dramatically above comparable sales. There may still be a case,
+      // especially if the increase percentage was very high.
+      effectiveRatio = 1.10; // Moderate signal — enough for moderate rating
+      comparisonBasis = 'land-adjusted-high';
     } else {
       // Comps are smaller properties — the total value difference is just acreage, not overassessment
       effectiveRatio = 1.0; // Neutral — can't conclude overassessment
@@ -253,10 +259,11 @@ function analyzeAppealStrength(subject, comps) {
     message = `Your assessed value may be slightly above market value. Comparable sales suggest a median value around $${medianSalePrice.toLocaleString()}, but the difference is modest.`;
   } else if (effectiveRatio < 0.95 || (comparisonBasis === 'land-adjusted' && assessmentVsMedianSale > 1.0)) {
     // For land-adjusted: if total is higher but land/bldg rates are fair, it's weak
-    if (comparisonBasis === 'land-adjusted') {
-      rating = "weak";
-      score = 30;
-      message = `Your property is valued higher than nearby sales, but this appears to be because of your larger lot (${subject.acreage.toFixed(1)} acres vs. comps averaging ${(topComps.reduce((s,c)=>s+c.acreage,0)/topComps.length).toFixed(1)} acres). The per-acre and per-sqft rates appear reasonable.`;
+    if (comparisonBasis === 'land-adjusted' || comparisonBasis === 'land-adjusted-high') {
+      rating = comparisonBasis === 'land-adjusted-high' ? "moderate" : "weak";
+      score = comparisonBasis === 'land-adjusted-high' ? 50 : 30;
+      const avgCompAcres = (topComps.reduce((s,c)=>s+c.acreage,0)/topComps.length).toFixed(1);
+      message = `Your property (${subject.acreage.toFixed(1)} acres) is assessed at $${subject.totalValue.toLocaleString()}, significantly above comparable sales (median $${medianSalePrice.toLocaleString()}). The difference is partly explained by your larger lot (comps avg. ${avgCompAcres} acres), but the gap is large enough that the land or building valuation may warrant review.`;
     } else {
       rating = "weak";
       score = 20;
