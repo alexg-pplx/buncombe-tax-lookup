@@ -67,20 +67,42 @@
           </div>
     `;
 
-    // Risk warning
-    if (screening.riskWarning) {
+    html += `</div>`; // Close header
+
+    // For weak/insufficient: show constructive guidance instead of just "don't appeal"
+    if (screening.rating === 'weak' || screening.rating === 'insufficient') {
+      const a = screening.analysis || {};
       html += `
-          <div style="margin-top: 12px; padding: 10px 14px; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px;">
-            <p style="font-size: 12px; color: #991b1b; margin: 0; font-weight: 600;">⚠️ ${screening.riskWarning}</p>
+        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 14px;">
+            <div style="text-align: center;">
+              <div style="font-size: 10px; color: #999; text-transform: uppercase;">Your Assessment</div>
+              <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${fmt(subject.totalValue)}</div>
+            </div>
+            ${a.medianSalePrice ? `<div style="text-align: center;">
+              <div style="font-size: 10px; color: #999; text-transform: uppercase;">Median Comp Sale</div>
+              <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${fmt(a.medianSalePrice)}</div>
+            </div>` : ''}
+            <div style="text-align: center;">
+              <div style="font-size: 10px; color: #999; text-transform: uppercase;">Comps Found</div>
+              <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${a.compCount || 0}</div>
+            </div>
           </div>
+          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0; line-height: 1.6;">This analysis is based on comparable sales data only. Other factors could change the picture:</p>
+          <ul style="font-size: 12px; color: #555; margin: 0; padding-left: 18px; line-height: 1.8;">
+            <li>Property condition issues or needed repairs</li>
+            <li>Damage from Tropical Storm Helene</li>
+            <li>Errors in your property record (square footage, bedroom count, etc.)</li>
+            <li>Eligibility for tax relief programs (senior exemption, agricultural use, etc.)</li>
+          </ul>
+          <p style="font-size: 12px; color: #666; margin: 10px 0 0 0; line-height: 1.6;">If any of these apply, we recommend attending a <strong>free appeal clinic</strong> to discuss your situation. Visit buncombetaxlookup.com for dates and locations, or call <strong>(828) 250-4940</strong>.</p>
+        </div>
       `;
     }
 
-    html += `</div>`; // Close header
-
-    // Analysis details
-    if (screening.analysis && screening.analysis.compCount > 0) {
-      const a = screening.analysis;
+    // For strong/moderate: show detailed analysis + CTA
+    if (screening.rating === 'strong' || screening.rating === 'moderate') {
+      const a = screening.analysis || {};
       html += `
         <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;">
@@ -106,7 +128,7 @@
     }
 
     // CTA section — only show for strong/moderate cases
-    if (screening.rating === 'strong' || screening.rating === 'moderate' || isAdmin) {
+    if (screening.rating === 'strong' || screening.rating === 'moderate') {
       html += `
         <div style="padding: 20px;" id="appeal-packet-cta">
           <div style="text-align: center; margin-bottom: 16px;">
