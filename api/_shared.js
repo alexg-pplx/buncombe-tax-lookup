@@ -134,7 +134,7 @@ const path = require("path");
 const fs = require("fs");
 let NEIGHBORHOOD_STATS = {};
 try {
-  const raw = fs.readFileSync(path.join(__dirname, "neighborhood-stats.json"), "utf-8");
+  const raw = fs.readFileSync(path.join(__dirname, "data", "neighborhood-stats.json"), "utf-8");
   NEIGHBORHOOD_STATS = JSON.parse(raw);
 } catch (e) {
   console.warn("neighborhood-stats.json not found", e.message);
@@ -142,7 +142,7 @@ try {
 
 let NEIGHBORHOOD_LABELS = {};
 try {
-  const raw = fs.readFileSync(path.join(__dirname, "neighborhood-labels.json"), "utf-8");
+  const raw = fs.readFileSync(path.join(__dirname, "data", "neighborhood-labels.json"), "utf-8");
   NEIGHBORHOOD_LABELS = JSON.parse(raw);
 } catch (e) {
   console.warn("neighborhood-labels.json not found", e.message);
