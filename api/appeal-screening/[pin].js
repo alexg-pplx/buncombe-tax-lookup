@@ -243,7 +243,18 @@ function analyzeAppealStrength(subject, comps) {
     }
   }
   
-  if (effectiveRatio > 1.15 && (comparisonBasis !== 'sale' || subjectPerSqft > medianCompPerSqft * 1.1)) {
+  // Handle land-adjusted cases first (land-heavy properties with acreage mismatch)
+  if (comparisonBasis === 'land-adjusted') {
+    rating = "weak";
+    score = 30;
+    const avgCompAcres = (topComps.reduce((s,c)=>s+c.acreage,0)/topComps.length).toFixed(1);
+    message = `Your property is valued higher than nearby sales, but this appears to be because of your larger lot (${subject.acreage.toFixed(1)} acres vs. comps avg. ${avgCompAcres} acres). The per-acre and per-sqft rates appear reasonable.`;
+  } else if (comparisonBasis === 'land-adjusted-high') {
+    rating = "moderate";
+    score = 55;
+    const avgCompAcres = (topComps.reduce((s,c)=>s+c.acreage,0)/topComps.length).toFixed(1);
+    message = `Your property (${subject.acreage.toFixed(1)} acres) is assessed at $${subject.totalValue.toLocaleString()}, significantly above comparable sales (median $${medianSalePrice.toLocaleString()}). The difference is partly explained by your larger lot (comps avg. ${avgCompAcres} acres), but the gap is large enough that the land or building valuation may warrant review.`;
+  } else if (effectiveRatio > 1.15 && (comparisonBasis !== 'sale' || subjectPerSqft > medianCompPerSqft * 1.1)) {
     rating = "strong";
     score = 85;
     suggestedValue = suggestedByComps;
@@ -257,19 +268,11 @@ function analyzeAppealStrength(subject, comps) {
     score = 60;
     suggestedValue = suggestedByComps;
     message = `Your assessed value may be slightly above market value. Comparable sales suggest a median value around $${medianSalePrice.toLocaleString()}, but the difference is modest.`;
-  } else if (effectiveRatio < 0.95 || (comparisonBasis === 'land-adjusted' && assessmentVsMedianSale > 1.0)) {
-    // For land-adjusted: if total is higher but land/bldg rates are fair, it's weak
-    if (comparisonBasis === 'land-adjusted' || comparisonBasis === 'land-adjusted-high') {
-      rating = comparisonBasis === 'land-adjusted-high' ? "moderate" : "weak";
-      score = comparisonBasis === 'land-adjusted-high' ? 50 : 30;
-      const avgCompAcres = (topComps.reduce((s,c)=>s+c.acreage,0)/topComps.length).toFixed(1);
-      message = `Your property (${subject.acreage.toFixed(1)} acres) is assessed at $${subject.totalValue.toLocaleString()}, significantly above comparable sales (median $${medianSalePrice.toLocaleString()}). The difference is partly explained by your larger lot (comps avg. ${avgCompAcres} acres), but the gap is large enough that the land or building valuation may warrant review.`;
-    } else {
-      rating = "weak";
-      score = 20;
-      riskWarning = "Based on comparable sales, your assessed value appears to be at or below market value. Filing an appeal could result in your value staying the same or INCREASING. We do not recommend proceeding.";
-      message = `Similar properties have sold for a median of $${medianSalePrice.toLocaleString()}, which is above your assessed value of $${subject.totalValue.toLocaleString()}.`;
-    }
+  } else if (effectiveRatio < 0.95) {
+    rating = "weak";
+    score = 20;
+    riskWarning = "Based on comparable sales, your assessed value appears to be at or below market value. Filing an appeal could result in your value staying the same or INCREASING. We do not recommend proceeding.";
+    message = `Similar properties have sold for a median of $${medianSalePrice.toLocaleString()}, which is above your assessed value of $${subject.totalValue.toLocaleString()}.`;
   } else {
     rating = "weak";
     score = 35;
@@ -284,14 +287,20 @@ function analyzeAppealStrength(subject, comps) {
   }
   
   // Check comp similarity quality
+  // For land-adjusted properties, we already factor in the mismatch, so be less aggressive
+  const isLandAdjusted = comparisonBasis === 'land-adjusted' || comparisonBasis === 'land-adjusted-high';
   if (avgSimilarity < 35) {
-    message += " Note: Available comps differ significantly from your property in size, age, or acreage, which substantially weakens any comparison.";
-    score = Math.max(score - 35, 10);
+    if (!isLandAdjusted) {
+      message += " Note: Available comps differ significantly from your property in size, age, or acreage, which substantially weakens any comparison.";
+    }
+    score = Math.max(score - (isLandAdjusted ? 15 : 35), 10);
     if (rating === 'strong') rating = 'moderate';
-    if (rating === 'moderate') rating = 'weak';
+    if (rating === 'moderate' && !isLandAdjusted) rating = 'weak';
   } else if (avgSimilarity < 50) {
-    message += " Note: Available comps differ from your property in size, age, or acreage, which weakens the comparison.";
-    score = Math.max(score - 20, 15);
+    if (!isLandAdjusted) {
+      message += " Note: Available comps differ from your property in size, age, or acreage, which weakens the comparison.";
+    }
+    score = Math.max(score - (isLandAdjusted ? 10 : 20), 15);
     if (rating === 'strong') rating = 'moderate';
   }
   
