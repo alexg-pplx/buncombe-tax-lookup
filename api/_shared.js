@@ -88,10 +88,31 @@ function buildWhereClause(searchType, query) {
       return words.map(w => `UPPER(Owner) LIKE '%${w}%'`).join(" AND ");
     }
     case "address": {
+      const STREET_TYPES = new Set(["ST", "RD", "AVE", "DR", "LN", "CT", "CIR", "WAY", "PL", "BLVD",
+        "TRL", "LOOP", "RUN", "PKWY", "HWY", "EXT", "XING", "TER", "TERR", "PATH", "PASS", "COVE"]);
+      const PREFIXES = new Set(["N", "S", "E", "W", "NE", "NW", "SE", "SW"]);
       const parts = sqlSafe.split(/\s+/);
       const isNumeric = /^\d+$/.test(parts[0]);
+      let houseNum = "";
+      let streetWords = [];
       if (isNumeric && parts.length > 1) {
-        return `HouseNumber = '${parts[0]}' AND UPPER(StreetName) LIKE '%${parts.slice(1).join(" ")}%'`;
+        houseNum = parts[0];
+        streetWords = parts.slice(1);
+      } else {
+        streetWords = parts;
+      }
+      if (streetWords.length > 1 && STREET_TYPES.has(streetWords[streetWords.length - 1])) {
+        streetWords = streetWords.slice(0, -1);
+      }
+      if (streetWords.length > 1 && PREFIXES.has(streetWords[0])) {
+        streetWords = streetWords.slice(1);
+      }
+      const streetName = streetWords.join(" ");
+      if (houseNum && streetName) {
+        return `HouseNumber = '${houseNum}' AND UPPER(StreetName) LIKE '%${streetName}%'`;
+      }
+      if (streetName) {
+        return `UPPER(StreetName) LIKE '%${streetName}%'`;
       }
       return `UPPER(StreetName) LIKE '%${sqlSafe}%'`;
     }
