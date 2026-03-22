@@ -85,23 +85,56 @@
       return el;
     }
 
-    // Build summary insight
+    // Build summary insight — check if comps are actually similar before making claims
     let insightHtml = "";
     const sv = summary.subjectVsComps;
-    if (sv) {
-      const dir = sv.percentDifference > 5 ? "above" : sv.percentDifference < -5 ? "below" : "in line with";
-      const absPct = Math.abs(sv.percentDifference);
-      if (dir === "in line with") {
-        insightHtml = `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#15803d;">
-          <strong>Your assessed value (${formatCurrency(sv.subjectAssessed)}) is in line with recent comparable sales</strong> (median sale price: ${formatCurrency(sv.medianSalePrice)}).
-        </div>`;
-      } else if (dir === "above") {
-        insightHtml = `<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#9a3412;">
-          <strong>Your assessed value (${formatCurrency(sv.subjectAssessed)}) is ${absPct}% above the median recent sale price</strong> of similar properties (${formatCurrency(sv.medianSalePrice)}). This could support an appeal if you believe the county over-valued your property.
-        </div>`;
+    const subjectBldg = subject.building || {};
+    if (sv && comparables.length > 0) {
+      // Check how similar the comps actually are to the subject
+      const subjectSqft = subjectBldg.sqft || 0;
+      const subjectYear = subjectBldg.yearBuilt || 0;
+      const subjectAcres = subject.acreage || 0;
+      
+      let similarCount = 0;
+      for (const comp of comparables) {
+        let isSimilar = true;
+        if (subjectSqft > 0 && comp.sqft > 0) {
+          const sqftDiff = Math.abs(subjectSqft - comp.sqft) / subjectSqft;
+          if (sqftDiff > 0.4) isSimilar = false;
+        }
+        if (subjectYear > 0 && comp.yearBuilt > 0) {
+          if (Math.abs(subjectYear - comp.yearBuilt) > 20) isSimilar = false;
+        }
+        if (subjectAcres > 0 && comp.acreage > 0) {
+          const acDiff = Math.abs(subjectAcres - comp.acreage) / Math.max(subjectAcres, 0.1);
+          if (acDiff > 1.0) isSimilar = false;
+        }
+        if (isSimilar) similarCount++;
+      }
+      
+      const compsAreSimilar = similarCount >= 3;
+      
+      if (compsAreSimilar) {
+        // Comps are genuinely similar — safe to make a comparison
+        const dir = sv.percentDifference > 5 ? "above" : sv.percentDifference < -5 ? "below" : "in line with";
+        const absPct = Math.abs(sv.percentDifference);
+        if (dir === "in line with") {
+          insightHtml = `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#15803d;">
+            <strong>Your assessed value (${formatCurrency(sv.subjectAssessed)}) is in line with recent comparable sales</strong> (median sale price: ${formatCurrency(sv.medianSalePrice)}).
+          </div>`;
+        } else if (dir === "above") {
+          insightHtml = `<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#9a3412;">
+            <strong>Your assessed value (${formatCurrency(sv.subjectAssessed)}) is ${absPct}% above the median recent sale price</strong> of similar properties (${formatCurrency(sv.medianSalePrice)}). This could support an appeal if you believe the county over-valued your property.
+          </div>`;
+        } else {
+          insightHtml = `<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#1e40af;">
+            <strong>Your assessed value (${formatCurrency(sv.subjectAssessed)}) is ${absPct}% below the median recent sale price</strong> of similar properties (${formatCurrency(sv.medianSalePrice)}).
+          </div>`;
+        }
       } else {
-        insightHtml = `<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#1e40af;">
-          <strong>Your assessed value (${formatCurrency(sv.subjectAssessed)}) is ${absPct}% below the median recent sale price</strong> of similar properties (${formatCurrency(sv.medianSalePrice)}).
+        // Comps aren't good matches — show data without making a judgment
+        insightHtml = `<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#475569;">
+          Showing recent sales in your neighborhood. These properties differ from yours in size, age, or acreage, so a direct value comparison may not be appropriate.
         </div>`;
       }
     }
