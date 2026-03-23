@@ -138,7 +138,16 @@
                   <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
                   <span style="margin-left: 16px;">182 College Street, Asheville, NC 28801</span></span><br>
                   <span style="font-size: 11px; color: #888;">We recommend certified mail or tracking for proof of delivery. Drop-off hours: Mon–Fri, 8 AM – 5 PM.</span></p>
-                <p style="margin: 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring your printed letter and revaluation notice.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring your printed letter and revaluation notice.</p>
+              </div>
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
+                <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with supporting evidence:</p>
+                <ul style="font-size: 12px; color: #555; margin: 0; padding-left: 18px; line-height: 1.8;">
+                  <li>Photos of property condition issues or storm damage</li>
+                  <li>Contractor estimates for needed repairs</li>
+                  <li>A recent appraisal if you have one</li>
+                  <li>Any documentation that supports your case</li>
+                </ul>
               </div>
             </div>
           </div>
