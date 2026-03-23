@@ -93,10 +93,19 @@ module.exports = async function handler(req, res) {
     const subjectBuilding = await getRecordCard(subjectPinnum);
 
     // Step 3: Find comparable sales from GIS
-    // Query recent sales in same neighborhood + same property class
+    // Group residential classes together (100, 101, 121) so a 101 property gets 100 and 121 comps too
+    // Manufactured homes (170) search their own class
+    const residentialClasses = ['100', '101', '121'];
+    const isManufactured = propertyClass === '170';
+    const classFilter = isManufactured
+      ? `Class = '170'`
+      : (residentialClasses.includes(propertyClass)
+        ? `Class IN ('100','101','121')`
+        : `Class = '${propertyClass}'`);
+    
     const salesWhere = [
       `NeighborhoodCode = '${neighborhoodCode}'`,
-      `Class = '${propertyClass}'`,
+      classFilter,
       `SalePrice > 50000`,
       `DeedDate >= '20240101'`,
       `pin <> '${subjectPin10}'`,
@@ -115,7 +124,7 @@ module.exports = async function handler(req, res) {
       if (area) {
         const widerWhere = [
           `NeighborhoodCode LIKE '${area}-%'`,
-          `Class = '${propertyClass}'`,
+          classFilter,
           `SalePrice > 50000`,
           `DeedDate >= '20240101'`,
           `pin <> '${subjectPin10}'`,
