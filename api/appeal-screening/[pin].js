@@ -753,9 +753,9 @@ module.exports = async function handler(req, res) {
     // Run all three searches IN PARALLEL to stay within Vercel timeout
     const isLandHeavy = (subject.landPctOfTotal > 40 && subject.acreage > 1) || (subject.landPctOfTotal > 30 && subject.acreage > 3);
     const [rawComps, landSales, equityComps] = await Promise.all([
-      findComparableSales(subject),
-      isLandHeavy ? findVacantLandSales(subject) : Promise.resolve([]),
-      findEquityComps(subject),
+      findComparableSales(subject).catch(e => { console.error('Comp search error:', e.message); return []; }),
+      isLandHeavy ? findVacantLandSales(subject).catch(e => { console.error('Land search error:', e.message); return []; }) : Promise.resolve([]),
+      findEquityComps(subject).catch(e => { console.error('Equity search error:', e.message); return []; }),
     ]);
     const scoredComps = scoreComps(subject, rawComps);
 
