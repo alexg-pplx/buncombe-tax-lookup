@@ -131,7 +131,7 @@
             <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Edit the letter above as needed, then print or copy.</p>
 
             <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
-              <p style="font-size: 13px; font-weight: 600; color: #333; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
+              <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
               <div style="font-size: 12px; color: #555; line-height: 1.7;">
                 <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to tax.buncombenc.gov, search your PIN, click "Tax Appeal Request", and upload this letter as a PDF.</p>
                 <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign this letter, then mail or deliver to:<br>
@@ -140,7 +140,7 @@
                   <span style="font-size: 11px; color: #888;">We recommend certified mail or tracking for proof of delivery. Drop-off hours: Mon–Fri, 8 AM – 5 PM.</span></p>
                 <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring your printed letter and revaluation notice.</p>
               </div>
-              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
+              <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
                 <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with supporting evidence:</p>
                 <ul style="font-size: 12px; color: #555; margin: 0; padding-left: 18px; line-height: 1.8;">
                   <li>Photos of property condition issues or storm damage</li>

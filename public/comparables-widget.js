@@ -133,7 +133,7 @@
         }
       } else {
         // Comps aren't good matches — show data without making a judgment
-        insightHtml = `<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#475569;">
+        insightHtml = `<div style="background:#FFF8E6;border:1px solid #E8D5A0;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.875rem;color:#6B5A1E;">
           Showing recent sales in your neighborhood. These properties differ from yours in size, age, or acreage, so a direct value comparison may not be appropriate.
         </div>`;
       }
