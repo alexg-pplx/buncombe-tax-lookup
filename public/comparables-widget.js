@@ -1,6 +1,6 @@
 /**
  * Comparable Sales Widget
- * Injects a "Similar Properties That Recently Sold" section into the property detail page.
+ * Injects a "Recent Sales in Your Neighborhood" section into the property detail page.
  * Placed between the Tax Bill Estimator and the Appeals Guide.
  * Self-contained — does not modify any existing React code.
  */
@@ -79,8 +79,8 @@
 
     if (!comparables || comparables.length === 0) {
       el.innerHTML = buildCard(
-        "Similar Properties That Recently Sold",
-        '<p style="color:#6b7280;font-size:0.875rem;padding:1rem 0;">No comparable recent sales found in this neighborhood. This may mean few properties have sold recently, or this property type is uncommon in the area.</p>'
+        "Recent Sales in Your Neighborhood",
+        '<p style="color:#6b7280;font-size:0.875rem;padding:1rem 0;">No recent sales found in this neighborhood. This may mean few properties have sold recently in your area.</p>'
       );
       return el;
     }
@@ -220,7 +220,7 @@
 
     const bodyHtml = insightHtml + subjectDetailHtml + tableHtml + noteHtml;
 
-    el.innerHTML = buildCard("Similar Properties That Recently Sold", bodyHtml);
+    el.innerHTML = buildCard("Recent Sales in Your Neighborhood", bodyHtml);
     return el;
   }
 
@@ -234,7 +234,7 @@
             ${title}
           </h3>
           <p style="font-size:0.75rem;color:#6b7280;margin-top:0.25rem;">
-            How does your assessed value compare to what similar properties actually sold for?
+            Recent property sales in your neighborhood and surrounding area.
           </p>
         </div>
         <div style="padding:0 1.5rem 1.25rem;">
@@ -248,10 +248,10 @@
     el.id = "comparables-widget";
     el.style.cssText = "margin-bottom:1.5rem;";
     el.innerHTML = buildCard(
-      "Similar Properties That Recently Sold",
+      "Recent Sales in Your Neighborhood",
       `<div style="padding:1.5rem 0;text-align:center;">
         <div style="display:inline-block;width:1.25rem;height:1.25rem;border:2px solid #e2e8f0;border-top-color:#0ea5e9;border-radius:50%;animation:comp-spin 0.8s linear infinite;"></div>
-        <p style="color:#6b7280;font-size:0.8125rem;margin-top:0.5rem;">Finding comparable sales in your area...</p>
+        <p style="color:#6b7280;font-size:0.8125rem;margin-top:0.5rem;">Finding recent sales in your area...</p>
       </div>
       <style>@keyframes comp-spin{to{transform:rotate(360deg)}}</style>`
     );
