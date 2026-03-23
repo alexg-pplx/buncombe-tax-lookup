@@ -98,7 +98,7 @@ module.exports = async function handler(req, res) {
       `NeighborhoodCode = '${neighborhoodCode}'`,
       `Class = '${propertyClass}'`,
       `SalePrice > 50000`,
-      `DeedDate >= '20230101'`,
+      `DeedDate >= '20240101'`,
       `pin <> '${subjectPin10}'`,
     ].join(" AND ");
 
@@ -117,7 +117,7 @@ module.exports = async function handler(req, res) {
           `NeighborhoodCode LIKE '${area}-%'`,
           `Class = '${propertyClass}'`,
           `SalePrice > 50000`,
-          `DeedDate >= '20230101'`,
+          `DeedDate >= '20240101'`,
           `pin <> '${subjectPin10}'`,
         ].join(" AND ");
         const widerSales = await queryArcGIS(
