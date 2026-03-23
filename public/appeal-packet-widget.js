@@ -249,7 +249,7 @@
             background: #1B2A4A; color: white; font-size: 15px; font-weight: 700; cursor: pointer;
             transition: background 0.2s;
           " onmouseover="this.style.background='#2d4470'" onmouseout="this.style.background='#1B2A4A'">
-            ${isAdmin ? 'Generate Packet (Admin)' : `Get Appeal Packet — $${pricing.amount}`}
+            Generate Appeal Packet — Free
           </button>
 
           <p style="font-size: 11px; color: #999; text-align: center; margin: 10px 0 0 0;">
