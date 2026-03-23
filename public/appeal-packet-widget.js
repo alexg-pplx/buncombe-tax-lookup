@@ -69,7 +69,7 @@
 
     html += `</div>`; // Close header
 
-    // For weak/insufficient: show constructive guidance instead of just "don't appeal"
+    // For weak/insufficient: constructive guidance with integrated form helper
     if (screening.rating === 'weak' || screening.rating === 'insufficient') {
       const a = screening.analysis || {};
       html += `
@@ -88,70 +88,71 @@
               <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${a.compCount || 0}</div>
             </div>
           </div>
-          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0; line-height: 1.6;">Comparable sales are only one factor. You may still have grounds to appeal if:</p>
-          <ul style="font-size: 12px; color: #555; margin: 0; padding-left: 18px; line-height: 1.8;">
-            <li>Your property has condition issues or needs major repairs</li>
-            <li>Your property was damaged by Tropical Storm Helene</li>
-            <li>The county has incorrect information on file (square footage, bedrooms, etc.)</li>
-            <li>You may qualify for tax relief (senior exemption, agricultural/forestry use, etc.)</li>
-          </ul>
-          <p style="font-size: 13px; color: #333; margin: 14px 0 8px 0; line-height: 1.6; font-weight: 600;">What to do next:</p>
-          <p style="font-size: 12px; color: #555; margin: 0 0 6px 0; line-height: 1.6;">Call the Tax Assessor's Office at <strong>(828) 250-4940</strong> to speak with an appraiser about your property, or attend a free appeal clinic:</p>
-          <div style="font-size: 12px; color: #555; margin: 6px 0 0 0; line-height: 1.8;">
-            ${(function() {
-              const clinics = [
-                { d: new Date(2026,2,25), t: 'March 25, 3:30\u20136 PM', l: 'Enka-Candler Library, 1404 Sand Hill Rd' },
-                { d: new Date(2026,2,26), t: 'March 26, 6\u20138 PM', l: 'Southside Community Center, 285 Livingston St' },
-                { d: new Date(2026,3,1), t: 'April 1, 4\u20136:30 PM', l: 'Skyland/South Buncombe Library, 260 Overlook Rd' },
-                { d: new Date(2026,3,9), t: 'April 9, 4:30\u20136:30 PM', l: 'Weaverville Community Center, 60 Lakeshore Dr' },
-                { d: new Date(2026,3,16), t: 'April 16, 6\u20138:30 PM', l: 'Leicester Community Center, 2979 New Leicester Hwy' },
-              ];
-              const now = new Date();
-              const future = clinics.filter(c => c.d >= now);
-              if (future.length === 0) return '<em>Visit buncombetaxlookup.com for updated clinic information.</em>';
-              return future.map(c => '\u2022 ' + c.t + ' \u2014 ' + c.l).join('<br>');
-            })()}
+
+          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0; line-height: 1.6;">Comparable sales are only one factor. You may still have grounds to appeal if any of the following apply.</p>
+
+          <p style="font-size: 13px; color: #1B2A4A; margin: 0 0 8px 0; line-height: 1.6; font-weight: 600;">Check any that apply and we'll draft a free appeal letter for you:</p>
+
+          <div style="display: grid; gap: 8px; margin-bottom: 14px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+              <input type="checkbox" id="fa-condition" style="width: 16px; height: 16px;"
+                onchange="window.__freeAppealCheckboxChanged()"> My property has condition issues or needs major repairs
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+              <input type="checkbox" id="fa-helene" style="width: 16px; height: 16px;"
+                onchange="window.__freeAppealCheckboxChanged()"> My property was damaged by Tropical Storm Helene
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+              <input type="checkbox" id="fa-errors" style="width: 16px; height: 16px;"
+                onchange="window.__freeAppealCheckboxChanged()"> The county has incorrect information on my property record
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+              <input type="checkbox" id="fa-relief" style="width: 16px; height: 16px;"
+                onchange="window.__freeAppealCheckboxChanged()"> I may qualify for tax relief programs
+            </label>
           </div>
-        </div>
-        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
-          <a href="javascript:void(0)" id="free-appeal-toggle" style="font-size: 13px; color: #1B2A4A; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;"
-            onclick="(function(){ var s=document.getElementById('free-appeal-form'); var a=document.getElementById('free-appeal-arrow'); if(s.style.display==='none'){s.style.display='block';a.textContent='▾'}else{s.style.display='none';a.textContent='▸'} })()">
-            <span id="free-appeal-arrow" style="font-size: 11px;">▸</span> Need help getting started? We can generate a free appeal letter.
-          </a>
 
-          <div id="free-appeal-form" style="display: none; margin-top: 14px;">
-            <p style="font-size: 12px; font-weight: 600; color: #666; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px;">Step 1: What applies to your property?</p>
-            <div style="display: grid; gap: 8px; margin-bottom: 14px;">
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="checkbox" id="fa-condition" style="width: 16px; height: 16px;"
-                  onchange="window.__freeAppealCheckboxChanged()"> My property has condition issues or needs major repairs
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="checkbox" id="fa-helene" style="width: 16px; height: 16px;"
-                  onchange="window.__freeAppealCheckboxChanged()"> My property was damaged by Tropical Storm Helene
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="checkbox" id="fa-errors" style="width: 16px; height: 16px;"
-                  onchange="window.__freeAppealCheckboxChanged()"> The county has incorrect information on my property record
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="checkbox" id="fa-relief" style="width: 16px; height: 16px;"
-                  onchange="window.__freeAppealCheckboxChanged()"> I qualify for or want to learn about tax relief programs
-              </label>
+          <!-- Conditional fields container -->
+          <div id="fa-conditional-fields"></div>
+
+          <!-- Generated letter preview (shown after clicking generate) -->
+          <div id="fa-letter-preview" style="display: none; margin-bottom: 14px;">
+            <p style="font-size: 12px; font-weight: 600; color: #333; margin: 0 0 8px 0;">Your appeal letter (you can edit before printing):</p>
+            <textarea id="fa-letter-text" style="width: 100%; box-sizing: border-box; min-height: 300px; padding: 12px; border: 1px solid #d4d4d4; border-radius: 6px; font-size: 12px; font-family: 'Courier New', monospace; line-height: 1.6; resize: vertical; color: #333;"></textarea>
+            <div style="display: flex; gap: 8px; margin-top: 8px;">
+              <button onclick="window.__printFreeAppealLetter()" style="flex: 1; padding: 10px; border: none; border-radius: 6px; background: #1B2A4A; color: white; font-size: 13px; font-weight: 600; cursor: pointer;">Print This Letter</button>
+              <button onclick="navigator.clipboard.writeText(document.getElementById('fa-letter-text').value).then(function(){this.textContent='Copied!'}.bind(this))" style="flex: 1; padding: 10px; border: 1px solid #d4d4d4; border-radius: 6px; background: white; color: #555; font-size: 13px; font-weight: 600; cursor: pointer;">Copy to Clipboard</button>
             </div>
+            <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Edit the letter above as needed, then print or copy.</p>
+          </div>
 
-            <!-- Conditional fields container -->
-            <div id="fa-conditional-fields"></div>
+          <!-- Generate button (hidden after letter is generated) -->
+          <button id="fa-generate-btn" disabled onclick="window.__generateFreeAppealLetter()" style="
+            display: block; width: 100%; padding: 12px; border: 2px solid #1B2A4A; border-radius: 8px;
+            background: white; color: #1B2A4A; font-size: 14px; font-weight: 700; cursor: pointer;
+            opacity: 0.4; transition: all 0.2s;
+          ">Generate Free Appeal Letter</button>
+          <p id="fa-generate-note" style="font-size: 11px; color: #999; text-align: center; margin: 8px 0 0 0;">
+            Free — no payment required.
+          </p>
 
-            <!-- Generate button -->
-            <button id="fa-generate-btn" disabled onclick="window.__generateFreeAppealLetter()" style="
-              display: block; width: 100%; padding: 12px; border: 2px solid #1B2A4A; border-radius: 8px;
-              background: white; color: #1B2A4A; font-size: 14px; font-weight: 700; cursor: pointer;
-              opacity: 0.4; transition: all 0.2s;
-            ">Generate Free Appeal Letter</button>
-            <p style="font-size: 11px; color: #999; text-align: center; margin: 8px 0 0 0;">
-              Free — no payment required. This generates a simple appeal letter you can print and submit.
-            </p>
+          <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
+            <p style="font-size: 12px; color: #555; margin: 0 0 6px 0; line-height: 1.6;">You can also call the Tax Assessor's Office at <strong>(828) 250-4940</strong> to speak with an appraiser, or attend a free appeal clinic:</p>
+            <div style="font-size: 12px; color: #555; margin: 6px 0 0 0; line-height: 1.8;">
+              ${(function() {
+                const clinics = [
+                  { d: new Date(2026,2,25), t: 'March 25, 3:30\u20136 PM', l: 'Enka-Candler Library, 1404 Sand Hill Rd' },
+                  { d: new Date(2026,2,26), t: 'March 26, 6\u20138 PM', l: 'Southside Community Center, 285 Livingston St' },
+                  { d: new Date(2026,3,1), t: 'April 1, 4\u20136:30 PM', l: 'Skyland/South Buncombe Library, 260 Overlook Rd' },
+                  { d: new Date(2026,3,9), t: 'April 9, 4:30\u20136:30 PM', l: 'Weaverville Community Center, 60 Lakeshore Dr' },
+                  { d: new Date(2026,3,16), t: 'April 16, 6\u20138:30 PM', l: 'Leicester Community Center, 2979 New Leicester Hwy' },
+                ];
+                const now = new Date();
+                const future = clinics.filter(c => c.d >= now);
+                if (future.length === 0) return '<em>Visit buncombetaxlookup.com for updated clinic information.</em>';
+                return future.map(c => '\u2022 ' + c.t + ' \u2014 ' + c.l).join('<br>');
+              })()}
+            </div>
           </div>
         </div>
       `;
@@ -374,6 +375,24 @@
     container.innerHTML = html;
   };
 
+  // Format owner name from "LAST FIRST MIDDLE" to "First Last"
+  function formatOwnerName(raw) {
+    if (!raw) return '';
+    // Handle multiple owners separated by semicolons
+    var owners = raw.split(';').map(function(name) {
+      name = name.trim();
+      var parts = name.split(/\s+/);
+      if (parts.length < 2) return name;
+      // First part is last name, rest is first/middle
+      var last = parts[0];
+      var firstMiddle = parts.slice(1).join(' ');
+      // Title case
+      function titleCase(s) { return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(); }
+      return firstMiddle.split(/\s+/).map(titleCase).join(' ') + ' ' + titleCase(last);
+    });
+    return owners.join(' & ');
+  }
+
   window.__generateFreeAppealLetter = function() {
     var d = window.__freeAppealData;
     if (!d) { alert('Property data not loaded. Please reload the page.'); return; }
@@ -436,9 +455,9 @@
     }
 
     if (hasErrors && corrections.length > 0) {
-      var para3 = 'I have identified the following errors in the property record on file:\n';
+      var para3 = 'I have identified the following errors in the property record on file:';
       for (var j = 0; j < corrections.length; j++) {
-        para3 += '\n  \u2022 ' + corrections[j].label + ': On file as ' + corrections[j].onFile + ', should be ' + corrections[j].corrected;
+        para3 += '\n  - ' + corrections[j].label + ': On file as ' + corrections[j].onFile + ', should be ' + corrections[j].corrected;
       }
       para3 += '\n\nI request that these corrections be made and the assessed value recalculated accordingly.';
       bodyParagraphs.push(para3);
@@ -452,49 +471,67 @@
 
     var dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     var fmtValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(sub.totalValue);
+    var ownerName = formatOwnerName(sub.owner);
 
-    // Open print window
+    // Build plain text letter for the textarea
+    var letter = dateStr + '\n\n';
+    letter += 'Buncombe County Tax Assessor\'s Office\n';
+    letter += '182 College Street\n';
+    letter += 'Asheville, NC 28801\n\n';
+    letter += 'Re: Appeal of 2026 Property Tax Assessment\n';
+    letter += 'Property: ' + (sub.address || '') + '\n';
+    letter += 'PIN: ' + sub.pin + '\n\n';
+    letter += 'Dear Tax Assessor:\n\n';
+    letter += 'I am writing to appeal the 2026 assessed value of ' + fmtValue + ' for my property at ' + (sub.address || sub.pin) + '.\n\n';
+    letter += bodyParagraphs.join('\n\n') + '\n\n';
+    letter += 'I am available to discuss this further or to schedule a property inspection at your convenience.\n\n';
+    letter += 'Respectfully,\n\n\n\n';
+    letter += '______________________________\n';
+    letter += ownerName + '\n';
+    letter += 'Property Owner\n';
+    letter += dateStr + '\n\n';
+    letter += 'Phone: ___________________\n';
+    letter += 'Email: ___________________';
+
+    // Show the letter in the textarea
+    var preview = document.getElementById('fa-letter-preview');
+    var textarea = document.getElementById('fa-letter-text');
+    var genBtn = document.getElementById('fa-generate-btn');
+    var genNote = document.getElementById('fa-generate-note');
+    if (preview && textarea) {
+      textarea.value = letter;
+      preview.style.display = 'block';
+      if (genBtn) genBtn.style.display = 'none';
+      if (genNote) genNote.style.display = 'none';
+      // Scroll to the preview
+      preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Print the letter from the textarea in a clean window
+  window.__printFreeAppealLetter = function() {
+    var textarea = document.getElementById('fa-letter-text');
+    if (!textarea) return;
+    var text = textarea.value;
+
     var printWindow = window.open('', '_blank');
     if (!printWindow) {
-      alert('Please allow popups to generate your appeal letter.');
+      alert('Please allow popups to print your appeal letter.');
       return;
     }
 
-    var letterBodyHtml = bodyParagraphs.map(function(p) {
-      return '<p style="margin: 0 0 16px 0; white-space: pre-wrap;">' + p.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>';
-    }).join('');
-
-    var html = '<!DOCTYPE html>\n<html>\n<head>\n'
-      + '<title>Appeal Letter \u2014 ' + (sub.address || sub.pin) + '</title>\n'
-      + '<style>\n'
-      + '@media print { body { margin: 0; } .no-print { display: none !important; } }\n'
-      + 'body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; color: #1a1a1a; line-height: 1.7; max-width: 700px; margin: 0 auto; padding: 20px; font-size: 14px; }\n'
-      + '</style>\n'
-      + '</head>\n<body>\n'
-
-      // Save/Print button
-      + '<div class="no-print" style="background: #1B2A4A; color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center;">\n'
-      + '<p style="margin: 0 0 8px 0; font-weight: 700;">Your Appeal Letter is Ready</p>\n'
-      + '<p style="margin: 0 0 12px 0; font-size: 12px; opacity: 0.8;">Press Ctrl+P (or Cmd+P on Mac) to save as PDF or print.</p>\n'
-      + '<button onclick="window.print()" style="padding: 10px 24px; background: white; color: #1B2A4A; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px;">Save as PDF / Print</button>\n'
-      + '</div>\n'
-
-      // Letter
-      + '<p>' + dateStr + '</p>\n'
-      + '<p style="margin: 24px 0;">Buncombe County Tax Assessor\u2019s Office<br>182 College Street<br>Asheville, NC 28801</p>\n'
-      + '<p style="margin: 24px 0;"><strong>Re: Request for Review of 2026 Property Tax Assessment</strong><br>'
-      + 'Property: ' + (sub.address || '') + '<br>'
-      + 'PIN: ' + sub.pin + '</p>\n'
-      + '<p>Dear Tax Assessor:</p>\n'
-      + '<p>I am writing to request a review of the 2026 assessed value of ' + fmtValue + ' for my property at ' + (sub.address || sub.pin) + '.</p>\n'
-      + letterBodyHtml
-      + '<p>I am available to discuss this further or to schedule a property inspection at your convenience.</p>\n'
-      + '<p style="margin-top: 32px;">Respectfully,</p>\n'
-      + '<p style="margin-top: 40px; border-bottom: 1px solid #333; display: inline-block; min-width: 300px;">&nbsp;</p><br>\n'
-      + '<p style="margin-top: 4px;">' + (sub.owner || '').split(';')[0] + '<br>Property Owner<br>' + dateStr + '</p>\n'
-      + '<p style="margin-top: 24px;">Phone: _________________________<br>Email: _________________________</p>\n'
-
-      + '</body>\n</html>';
+    var html = '<!DOCTYPE html><html><head>'
+      + '<title>Appeal Letter</title>'
+      + '<style>'
+      + 'body { font-family: "Times New Roman", Georgia, serif; font-size: 12pt; line-height: 1.6; max-width: 7in; margin: 0.75in auto; padding: 0; color: #000; white-space: pre-wrap; }'
+      + '@media print { body { margin: 0.75in; } .no-print { display: none !important; } }'
+      + '</style>'
+      + '</head><body>'
+      + '<div class="no-print" style="background: #1B2A4A; color: white; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-family: sans-serif;">'
+      + '<button onclick="window.print()" style="padding: 8px 20px; background: white; color: #1B2A4A; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px;">Print / Save as PDF</button>'
+      + '</div>'
+      + text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      + '</body></html>';
 
     printWindow.document.write(html);
     printWindow.document.close();
