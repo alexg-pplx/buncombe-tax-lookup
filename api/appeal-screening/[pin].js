@@ -735,16 +735,14 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // Find comparable residential sales
-    const rawComps = await findComparableSales(subject);
-    const scoredComps = scoreComps(subject, rawComps);
-
-    // Find vacant land sales if property is land-heavy
+    // Run all three searches IN PARALLEL to stay within Vercel timeout
     const isLandHeavy = (subject.landPctOfTotal > 40 && subject.acreage > 1) || (subject.landPctOfTotal > 30 && subject.acreage > 3);
-    const landSales = isLandHeavy ? await findVacantLandSales(subject) : [];
-
-    // Find equity comps (similar properties by assessed value)
-    const equityComps = await findEquityComps(subject);
+    const [rawComps, landSales, equityComps] = await Promise.all([
+      findComparableSales(subject),
+      isLandHeavy ? findVacantLandSales(subject) : Promise.resolve([]),
+      findEquityComps(subject),
+    ]);
+    const scoredComps = scoreComps(subject, rawComps);
 
     // Run analysis
     const screening = analyzeAppealStrength(subject, scoredComps, landSales, equityComps);
