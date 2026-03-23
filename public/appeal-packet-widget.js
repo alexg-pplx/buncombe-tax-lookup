@@ -300,7 +300,7 @@
               </label>
             </div>
             <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 8px 12px;">
-              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;"><strong>Important:</strong> If you request a specific value, the county cannot reduce your assessment below that number — even if their own analysis determines a lower value would be fair. If you're unsure, letting the county recalculate gives them the flexibility to reduce it as much as the evidence supports.</p>
+              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;"><strong>Note:</strong> The county will determine the final value based on the evidence, regardless of what you request. Including a specific value shows confidence in your case. If you're unsure, letting the county recalculate is a safe option. Either way, your value could decrease, stay the same, or increase as a result of the appeal.</p>
             </div>
           </div>
 
