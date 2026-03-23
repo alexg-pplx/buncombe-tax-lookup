@@ -288,6 +288,22 @@
             </div>
           </div>
 
+          <!-- Value choice -->
+          <div style="margin-bottom: 14px; padding: 12px 14px; border: 1px solid #e5e5e5; border-radius: 8px; background: #fafafa;">
+            <p style="font-size: 13px; font-weight: 600; color: #333; margin: 0 0 8px 0;">What value do you want to request?</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 10px;">
+              <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+                <input type="radio" name="value-choice" id="vc-county" value="county" checked style="margin-top: 3px;"> <span>Let the county recalculate based on the evidence <span style="font-size: 11px; color: #888;">(recommended if you're unsure)</span></span>
+              </label>
+              <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+                <input type="radio" name="value-choice" id="vc-specific" value="specific" style="margin-top: 3px;" onchange="document.getElementById('vc-amount').focus()"> <span>I want to request a specific value: <input type="text" id="vc-amount" placeholder="e.g. 750000" style="width: 110px; padding: 4px 8px; border: 1px solid #d4d4d4; border-radius: 4px; font-size: 13px;" onfocus="document.getElementById('vc-specific').checked=true"></span>
+              </label>
+            </div>
+            <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 8px 12px;">
+              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;"><strong>Important:</strong> If you request a specific value, the county cannot reduce your assessment below that number — even if their own analysis determines a lower value would be fair. If you're unsure, letting the county recalculate gives them the flexibility to reduce it as much as the evidence supports.</p>
+            </div>
+          </div>
+
           <!-- Generate button -->
           <button id="strong-generate-btn" onclick="window.__generateStrongAppealLetter()" style="
             display: block; width: 100%; padding: 14px; border: none; border-radius: 8px;
@@ -297,7 +313,7 @@
             Generate Appeal Letter — Free
           </button>
           <p id="strong-generate-note" style="font-size: 11px; color: #999; text-align: center; margin: 8px 0 0 0;">
-            Free — includes appeal letter with comparable sales evidence and suggested value.
+            Free — includes appeal letter with comparable sales evidence.
           </p>
         </div>
       `;
@@ -762,9 +778,22 @@
       letter += '\nI request that these corrections be made and the assessed value recalculated accordingly.\n\n';
     }
 
-    // Closing
-    letter += 'Based on the above evidence, I respectfully request that the assessed value be adjusted to $_________ or recalculated based on current market data.\n\n';
-    letter += '(Note: If you include a specific dollar amount, the county cannot reduce your assessment below that number. If you are unsure, you may leave this as "recalculated based on current market data" and the county will determine the value.)\n\n';
+    // Closing — based on user's value choice
+    var vcCounty = document.getElementById('vc-county');
+    var vcSpecific = document.getElementById('vc-specific');
+    var vcAmount = document.getElementById('vc-amount');
+    var useSpecific = vcSpecific && vcSpecific.checked && vcAmount && vcAmount.value.trim();
+    
+    if (useSpecific) {
+      var requestedVal = parseInt(vcAmount.value.trim().replace(/[$,]/g, '')) || 0;
+      if (requestedVal > 0) {
+        letter += 'Based on the above evidence, I respectfully request that the assessed value be adjusted to ' + fmtVal(requestedVal) + '.\n\n';
+      } else {
+        letter += 'Based on the above evidence, I respectfully request that the assessed value be recalculated based on current market data.\n\n';
+      }
+    } else {
+      letter += 'Based on the above evidence, I respectfully request that the assessed value be recalculated based on current market data.\n\n';
+    }
 
     letter += 'I am available to discuss this further or to schedule a property inspection at your convenience.\n\n';
     letter += 'Respectfully,\n\n\n\n';
