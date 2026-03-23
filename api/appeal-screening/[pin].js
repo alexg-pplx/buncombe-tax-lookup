@@ -611,12 +611,24 @@ function analyzeAppealStrength(subject, scoredComps, landSales, equityComps) {
   // Check if we have ANY applicable arguments
   const anyApplicable = marketArg.applicable || landArg.applicable || (equityArg.applicable && equityArg.strength !== 'none');
   
-  if (!anyApplicable && !hasStrong && !hasModerate && !hasWeak) {
+  // Even if market/land/equity arguments are all "none" (not applicable or no case),
+  // the equity analysis may have found enough similar properties to confirm the assessment is fair.
+  // That's a useful result — "your assessment is in line with similar properties."
+  const equityConfirmsFair = !equityArg.applicable && equityArg.equityComps >= 3;
+  
+  if (!anyApplicable && !hasStrong && !hasModerate && !hasWeak && !equityConfirmsFair) {
     rating = "insufficient";
     score = 0;
     message = "Not enough comparable data to evaluate your assessment. The properties that have sold recently in your area differ too much from yours to draw a reliable conclusion.";
     suggestedValue = null;
     riskWarning = null;
+  } else if (!anyApplicable && !hasStrong && !hasModerate && !hasWeak && equityConfirmsFair) {
+    // Equity found similar properties and assessment is in line — that's a definitive "fair" result
+    rating = "weak";
+    score = 15;
+    message = `Your assessment appears to be in line with ${equityArg.equityComps} similar properties in your area (median assessment: $${equityArg.medianEquityAssessment?.toLocaleString() || 'N/A'}). Based on this, we do not recommend filing an appeal based on comparable sales.`;
+    riskWarning = "Your assessment is consistent with similar properties in your area. Filing an appeal risks your value staying the same or increasing.";
+    suggestedValue = null;
   } else if (hasStrong) {
     rating = "strong";
     score = 85;
