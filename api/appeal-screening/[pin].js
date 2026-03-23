@@ -268,9 +268,10 @@ async function findEquityComps(subject) {
   const candidates = results.slice(0, 10);
   const equityComps = [];
 
+  console.log(`[equity] ${candidates.length} candidates from GIS for ${subject.pin}`);
   for (const r of candidates) {
     const compPinnum = r.PIN;
-    if (!compPinnum) continue;
+    if (!compPinnum) { console.log('[equity] skipping: no PIN'); continue; }
 
     let bldg = {};
     try {
@@ -286,17 +287,18 @@ async function findEquityComps(subject) {
 
     const sqft = parseInt(bldg.TotalFinishedArea) || 0;
     const yearBuilt = parseInt(bldg.YearBuilt) || 0;
+    console.log(`[equity] PIN ${compPinnum}: sqft=${sqft}, yr=${yearBuilt}, bldgKeys=${Object.keys(bldg).slice(0,5)}`);
 
-    // Filter: within 25% sqft and 15 years age
+    // Filter: within 30% sqft and 15 years age (slightly looser than comps for broader equity check)
     if (subject.sqft > 0 && sqft > 0) {
       const sqftDiff = Math.abs(subject.sqft - sqft) / subject.sqft;
-      if (sqftDiff > 0.25) { await sleep(200); continue; }
+      if (sqftDiff > 0.30) { console.log(`[equity] filtered out: sqft diff ${(sqftDiff*100).toFixed(0)}%`); await sleep(150); continue; }
     }
     if (subject.yearBuilt > 0 && yearBuilt > 0) {
-      if (Math.abs(subject.yearBuilt - yearBuilt) > 15) { await sleep(200); continue; }
+      if (Math.abs(subject.yearBuilt - yearBuilt) > 15) { console.log(`[equity] filtered out: yr diff ${Math.abs(subject.yearBuilt - yearBuilt)}`); await sleep(150); continue; }
     }
     // Skip if we have no building data at all (can't confirm similarity)
-    if (sqft === 0 && yearBuilt === 0) { await sleep(200); continue; }
+    if (sqft === 0 && yearBuilt === 0) { console.log('[equity] filtered out: no bldg data'); await sleep(150); continue; }
 
     equityComps.push({
       pin: compPinnum,
@@ -759,6 +761,7 @@ module.exports = async function handler(req, res) {
       comps: scoredComps.slice(0, 8),
       landSales: landSales.slice(0, 10),
       equityComps: equityComps.slice(0, 10),
+      _debug: { rawComps: rawComps.length, equityGISResults: equityComps.length, scoredComps: scoredComps.length },
       pricing: {
         amount: priceTier,
         tier: subject.totalValue < 200000 ? "under200k" : subject.totalValue > 500000 ? "over500k" : "200to500k",
