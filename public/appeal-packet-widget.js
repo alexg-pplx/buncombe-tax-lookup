@@ -217,43 +217,76 @@
       `;
     }
 
-    // CTA section — only show for strong/moderate cases
+    // CTA section — for strong/moderate cases, same editable letter flow as weak cases
     if (screening.rating === 'strong' || screening.rating === 'moderate') {
       html += `
-        <div style="padding: 20px;" id="appeal-packet-cta">
-          <div style="text-align: center; margin-bottom: 16px;">
-            <p style="font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 0 0 6px 0;">Get Your Appeal Packet</p>
-            <p style="font-size: 13px; color: #666; margin: 0;">A ready-to-submit evidence package with comparable sales, assessment analysis, and a pre-written appeal letter.</p>
+        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
+          <p style="font-size: 13px; color: #1B2A4A; margin: 0 0 8px 0; line-height: 1.6; font-weight: 600;">We can generate a free appeal letter with supporting evidence. Check any additional factors that apply:</p>
+
+          <div style="display: grid; gap: 8px; margin-bottom: 14px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+              <input type="checkbox" id="fa-condition" style="width: 16px; height: 16px;"
+                onchange="window.__strongAppealCheckboxChanged()"> My property has condition issues or needs major repairs
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+              <input type="checkbox" id="fa-helene" style="width: 16px; height: 16px;"
+                onchange="window.__strongAppealCheckboxChanged()"> My property was damaged by Tropical Storm Helene
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+              <input type="checkbox" id="fa-errors" style="width: 16px; height: 16px;"
+                onchange="window.__strongAppealCheckboxChanged()"> The county has incorrect information on my property record
+            </label>
           </div>
 
-          <div id="appeal-questionnaire" style="margin-bottom: 16px;">
-            <p style="font-size: 12px; font-weight: 600; color: #666; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px;">Quick questions to strengthen your case:</p>
-            <div style="display: grid; gap: 8px;">
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="checkbox" id="aq-condition" style="width: 16px; height: 16px;"> Does your property need major repairs?
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="checkbox" id="aq-storm" style="width: 16px; height: 16px;"> Was your property affected by Tropical Storm Helene?
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="checkbox" id="aq-errors" style="width: 16px; height: 16px;"> Is any information on your property record incorrect?
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="checkbox" id="aq-other" style="width: 16px; height: 16px;"> Are there other factors affecting your property's value?
-              </label>
+          <!-- Conditional fields container -->
+          <div id="fa-conditional-fields"></div>
+
+          <!-- Generated letter preview -->
+          <div id="strong-letter-preview" style="display: none; margin-bottom: 14px;">
+            <p style="font-size: 12px; font-weight: 600; color: #333; margin: 0 0 8px 0;">Your appeal letter (you can edit before printing):</p>
+            <textarea id="strong-letter-text" style="width: 100%; box-sizing: border-box; min-height: 400px; padding: 12px; border: 1px solid #d4d4d4; border-radius: 6px; font-size: 12px; font-family: 'Courier New', monospace; line-height: 1.6; resize: vertical; color: #333;"></textarea>
+            <div style="display: flex; gap: 8px; margin-top: 8px;">
+              <button onclick="window.__printStrongAppealLetter()" style="flex: 1; padding: 10px; border: none; border-radius: 6px; background: #1B2A4A; color: white; font-size: 13px; font-weight: 600; cursor: pointer;">Print This Letter</button>
+              <button onclick="navigator.clipboard.writeText(document.getElementById('strong-letter-text').value).then(function(){this.textContent='Copied!'}.bind(this))" style="flex: 1; padding: 10px; border: 1px solid #d4d4d4; border-radius: 6px; background: white; color: #555; font-size: 13px; font-weight: 600; cursor: pointer;">Copy to Clipboard</button>
+            </div>
+            <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Edit the letter above as needed, then print or copy.</p>
+            <div style="text-align: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e5e5;">
+              <p style="font-size: 12px; color: #666; margin: 0 0 8px 0;">This tool is free. If it helped you, consider supporting it.</p>
+              <a href="https://buymeacoffee.com/buncombetaxlookup" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 8px 20px; background: #FFDD00; color: #000; font-size: 13px; font-weight: 600; border-radius: 6px; text-decoration: none;">Buy Me a Coffee ☕</a>
+            </div>
+
+            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
+              <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
+              <div style="font-size: 12px; color: #555; line-height: 1.7;">
+                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to tax.buncombenc.gov, search your PIN, click "Tax Appeal Request", and upload this letter as a PDF.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign this letter, then mail or deliver to:<br>
+                  <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
+                  <span style="margin-left: 16px;">182 College Street, Asheville, NC 28801</span></span><br>
+                  <span style="font-size: 11px; color: #888;">We recommend certified mail or tracking for proof of delivery. Drop-off hours: Mon–Fri, 8 AM – 5 PM.</span></p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring your printed letter and revaluation notice.</p>
+              </div>
+              <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
+                <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with supporting evidence:</p>
+                <ul style="font-size: 12px; color: #555; margin: 0; padding-left: 18px; line-height: 1.8;">
+                  <li>Photos of property condition issues or storm damage</li>
+                  <li>Contractor estimates for needed repairs</li>
+                  <li>A recent appraisal if you have one</li>
+                  <li>Any documentation that supports your case</li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          <button id="appeal-packet-buy" onclick="window.__generateAppealPacket('${subject.pin}')" style="
+          <!-- Generate button -->
+          <button id="strong-generate-btn" onclick="window.__generateStrongAppealLetter()" style="
             display: block; width: 100%; padding: 14px; border: none; border-radius: 8px;
             background: #1B2A4A; color: white; font-size: 15px; font-weight: 700; cursor: pointer;
             transition: background 0.2s;
           " onmouseover="this.style.background='#2d4470'" onmouseout="this.style.background='#1B2A4A'">
-            Generate Appeal Packet — Free
+            Generate Appeal Letter — Free
           </button>
-
-          <p style="font-size: 11px; color: #999; text-align: center; margin: 10px 0 0 0;">
-            Includes cover letter, comparable sales analysis, assessment review, and step-by-step filing instructions.
+          <p id="strong-generate-note" style="font-size: 11px; color: #999; text-align: center; margin: 8px 0 0 0;">
+            Free — includes appeal letter with comparable sales evidence and suggested value.
           </p>
         </div>
       `;
@@ -569,6 +602,205 @@
     printWindow.document.close();
   };
 
+  // --- Strong/Moderate case letter generation ---
+  window.__strongAppealData = null;
+
+  window.__strongAppealCheckboxChanged = function() {
+    // Show/hide conditional fields (reuse same IDs as weak case)
+    var condition = document.getElementById('fa-condition');
+    var helene = document.getElementById('fa-helene');
+    var errors = document.getElementById('fa-errors');
+    var container = document.getElementById('fa-conditional-fields');
+    if (!container) return;
+    var html = '';
+    if (condition && condition.checked) {
+      html += '<div style="margin-bottom: 10px;">'
+        + '<label style="display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px;">Briefly describe the condition issues:</label>'
+        + '<textarea id="fa-condition-text" rows="2" placeholder="e.g., roof needs replacement, foundation issues" style="width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1px solid #d4d4d4; border-radius: 6px; font-size: 13px; font-family: inherit; resize: vertical;"></textarea>'
+        + '</div>';
+    }
+    if (helene && helene.checked) {
+      html += '<div style="margin-bottom: 10px;">'
+        + '<label style="display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px;">Briefly describe the storm damage:</label>'
+        + '<textarea id="fa-helene-text" rows="2" placeholder="e.g., flooding, roof damage, fallen trees" style="width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1px solid #d4d4d4; border-radius: 6px; font-size: 13px; font-family: inherit; resize: vertical;"></textarea>'
+        + '<p style="font-size: 11px; color: #888; margin: 4px 0 0 0;">Include photos with your submission.</p>'
+        + '</div>';
+    }
+    if (errors && errors.checked) {
+      var d = window.__strongAppealData;
+      if (d && d.subject) {
+        var sub = d.subject;
+        html += '<div style="margin-bottom: 10px;">'
+          + '<p style="font-size: 12px; font-weight: 600; color: #555; margin-bottom: 6px;">Correct any errors below:</p>'
+          + '<table style="width: 100%; border-collapse: collapse; font-size: 12px;">'
+          + '<tr style="border-bottom: 1px solid #e5e5e5;"><th style="text-align: left; padding: 4px 6px; color: #888;">Field</th><th style="text-align: left; padding: 4px 6px; color: #888;">On File</th><th style="text-align: left; padding: 4px 6px; color: #888;">Correct Value</th></tr>';
+        var fields = [
+          {key:'sqft',label:'Sq Ft',val:sub.sqft||'N/A'},{key:'yearBuilt',label:'Year Built',val:sub.yearBuilt||'N/A'},
+          {key:'bedrooms',label:'Bedrooms',val:sub.bedrooms||'N/A'},{key:'fullBaths',label:'Full Baths',val:sub.fullBaths||'N/A'},
+          {key:'halfBaths',label:'Half Baths',val:sub.halfBaths||'N/A'},{key:'acreage',label:'Acreage',val:sub.acreage?sub.acreage.toFixed(2):'N/A'},
+          {key:'condition',label:'Condition',val:sub.condition||'N/A'}
+        ];
+        for (var i=0;i<fields.length;i++) {
+          html += '<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 4px 6px;">' + fields[i].label + '</td><td style="padding: 4px 6px;">' + fields[i].val + '</td><td style="padding: 4px 6px;"><input id="fa-err-' + fields[i].key + '" type="text" placeholder="if different" style="width: 100%; box-sizing: border-box; padding: 4px 6px; border: 1px solid #d4d4d4; border-radius: 4px; font-size: 12px;"></td></tr>';
+        }
+        html += '</table></div>';
+      }
+    }
+    container.innerHTML = html;
+  };
+
+  window.__generateStrongAppealLetter = function() {
+    var d = window.__strongAppealData;
+    if (!d) { alert('Property data not loaded. Please reload the page.'); return; }
+
+    var sub = d.subject;
+    var screening = d.screening;
+    var args = screening.arguments || {};
+    var comps = d.comps || [];
+    var landSales = d.landSales || [];
+
+    var conditionEl = document.getElementById('fa-condition');
+    var heleneEl = document.getElementById('fa-helene');
+    var errorsEl = document.getElementById('fa-errors');
+    var hasCondition = conditionEl && conditionEl.checked;
+    var hasHelene = heleneEl && heleneEl.checked;
+    var hasErrors = errorsEl && errorsEl.checked;
+    var conditionText = hasCondition ? (document.getElementById('fa-condition-text') || {}).value || '' : '';
+    var heleneText = hasHelene ? (document.getElementById('fa-helene-text') || {}).value || '' : '';
+
+    // Collect record corrections
+    var corrections = [];
+    if (hasErrors) {
+      var errFields = [{key:'sqft',label:'Total Finished Area',val:sub.sqft||'N/A'},{key:'yearBuilt',label:'Year Built',val:sub.yearBuilt||'N/A'},{key:'bedrooms',label:'Bedrooms',val:sub.bedrooms||'N/A'},{key:'fullBaths',label:'Full Baths',val:sub.fullBaths||'N/A'},{key:'halfBaths',label:'Half Baths',val:sub.halfBaths||'N/A'},{key:'acreage',label:'Acreage',val:sub.acreage?sub.acreage.toFixed(2):'N/A'},{key:'condition',label:'Condition',val:sub.condition||'N/A'}];
+      for (var i=0;i<errFields.length;i++) {
+        var el = document.getElementById('fa-err-' + errFields[i].key);
+        var corrected = el ? el.value.trim() : '';
+        if (corrected && corrected !== '' + errFields[i].val) {
+          corrections.push({label:errFields[i].label, onFile:''+errFields[i].val, corrected:corrected});
+        }
+      }
+    }
+
+    var dateStr = new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
+    var fmtVal = function(n) { return '$' + Number(n).toLocaleString('en-US'); };
+    var ownerName = formatOwnerName(sub.owner);
+    var suggestedValue = screening.suggestedValue;
+
+    // Build the letter
+    var letter = dateStr + '\n\n';
+    letter += 'Buncombe County Tax Assessor\'s Office\n';
+    letter += '182 College Street\n';
+    letter += 'Asheville, NC 28801\n\n';
+    letter += 'Re: Appeal of 2026 Property Tax Assessment\n';
+    letter += 'Property: ' + (sub.address || '') + '\n';
+    letter += 'PIN: ' + sub.pin + '\n\n';
+    letter += 'Dear Tax Assessor:\n\n';
+    letter += 'I am writing to appeal the 2026 assessed value of ' + fmtVal(sub.totalValue) + ' for my property at ' + (sub.address || '') + '.';
+    if (suggestedValue) {
+      letter += ' Based on comparable market data, I believe the fair market value is approximately ' + fmtVal(suggestedValue) + '.';
+    }
+    letter += '\n\n';
+
+    // Land value argument
+    var landArg = args.landValue || {};
+    if (landArg.applicable && landArg.strength !== 'none') {
+      letter += 'The land portion of my assessment (' + fmtVal(sub.landValue) + ' for ' + sub.acreage.toFixed(2) + ' acres, or ' + fmtVal(Math.round(sub.landValue / sub.acreage)) + ' per acre) appears to exceed market rates for comparable land in the area.';
+      if (landSales.length > 0) {
+        var landPrices = landSales.map(function(s){return s.pricePerAcre || (s.salePrice / s.acreage);}).filter(function(p){return p > 0;});
+        if (landPrices.length > 0) {
+          landPrices.sort(function(a,b){return a-b;});
+          var medianLandRate = landPrices[Math.floor(landPrices.length/2)];
+          letter += ' Recent vacant land sales in the area show a median price of ' + fmtVal(Math.round(medianLandRate)) + ' per acre, based on ' + landSales.length + ' sales.';
+        }
+      }
+      letter += '\n\n';
+    }
+
+    // Market value argument with comp evidence
+    var marketArg = args.marketValue || {};
+    if (marketArg.applicable && marketArg.strength !== 'none' && comps.length > 0) {
+      var goodComps = comps.filter(function(c){return c.similarityScore > 50;});
+      if (goodComps.length >= 3) {
+        letter += 'The following comparable properties have sold recently in my neighborhood:\n\n';
+        for (var j=0; j < Math.min(goodComps.length, 5); j++) {
+          var c = goodComps[j];
+          letter += '  - ' + c.address + ': sold for ' + fmtVal(c.salePrice) + ' on ' + c.saleDate;
+          if (c.sqft) letter += ' (' + c.sqft.toLocaleString() + ' sq ft';
+          if (c.yearBuilt) letter += ', built ' + c.yearBuilt;
+          if (c.sqft || c.yearBuilt) letter += ')';
+          letter += '\n';
+        }
+        letter += '\n';
+      }
+    }
+
+    // Condition/damage/errors
+    if (hasCondition) {
+      letter += 'The property has significant condition issues that affect its market value';
+      if (conditionText.trim()) letter += ': ' + conditionText.trim();
+      letter += '. I request that an appraiser inspect the property to verify its current condition.\n\n';
+    }
+    if (hasHelene) {
+      letter += 'The property was damaged by Tropical Storm Helene';
+      if (heleneText.trim()) letter += ': ' + heleneText.trim();
+      letter += '. Photos documenting the damage are attached.\n\n';
+    }
+    if (hasErrors && corrections.length > 0) {
+      letter += 'I have identified the following errors in the property record on file:\n';
+      for (var k=0;k<corrections.length;k++) {
+        letter += '  - ' + corrections[k].label + ': On file as ' + corrections[k].onFile + ', should be ' + corrections[k].corrected + '\n';
+      }
+      letter += '\nI request that these corrections be made and the assessed value recalculated accordingly.\n\n';
+    }
+
+    // Closing
+    if (suggestedValue) {
+      letter += 'Based on the above evidence, I respectfully request that the assessed value be adjusted to ' + fmtVal(suggestedValue) + '.\n\n';
+    } else {
+      letter += 'I respectfully request that the assessed value be reviewed and adjusted to reflect the fair market value of this property.\n\n';
+    }
+
+    letter += 'I am available to discuss this further or to schedule a property inspection at your convenience.\n\n';
+    letter += 'Respectfully,\n\n\n\n';
+    letter += '______________________________\n';
+    letter += ownerName + '\n';
+    letter += 'Property Owner\n';
+    letter += dateStr + '\n\n';
+    letter += 'Phone: ___________________\n';
+    letter += 'Email: ___________________';
+
+    // Show in textarea
+    var preview = document.getElementById('strong-letter-preview');
+    var textarea = document.getElementById('strong-letter-text');
+    var genBtn = document.getElementById('strong-generate-btn');
+    var genNote = document.getElementById('strong-generate-note');
+    if (preview && textarea) {
+      textarea.value = letter;
+      preview.style.display = 'block';
+      if (genBtn) genBtn.style.display = 'none';
+      if (genNote) genNote.style.display = 'none';
+      preview.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  };
+
+  window.__printStrongAppealLetter = function() {
+    var textarea = document.getElementById('strong-letter-text');
+    if (!textarea) return;
+    var text = textarea.value;
+    var printWindow = window.open('', '_blank');
+    if (!printWindow) { alert('Please allow popups to print your appeal letter.'); return; }
+    var html = '<!DOCTYPE html><html><head><title>Appeal Letter</title><style>'
+      + 'body { font-family: "Times New Roman", Georgia, serif; font-size: 12pt; line-height: 1.6; max-width: 7in; margin: 0.75in auto; padding: 0; color: #000; white-space: pre-wrap; }'
+      + '@media print { body { margin: 0.75in; } .no-print { display: none !important; } }'
+      + '</style></head><body>'
+      + '<div class="no-print" style="background: #1B2A4A; color: white; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-family: sans-serif;">'
+      + '<button onclick="window.print()" style="padding: 8px 20px; background: white; color: #1B2A4A; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px;">Print / Save as PDF</button></div>'
+      + text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      + '</body></html>';
+    printWindow.document.write(html);
+    printWindow.document.close();
+  };
+
   function generatePDF(data) {
     const { property: p, comps, analysis: a, questionnaire: q, appealText } = data;
 
@@ -828,8 +1060,9 @@ ${a.medianSalePrice ? `
       if (!res.ok) throw new Error('Screening failed');
       const data = await res.json();
 
-      // Store data for free appeal letter generator
+      // Store data for letter generators
       window.__freeAppealData = data;
+      window.__strongAppealData = data;
 
       const card = createScreeningCard(data);
       loading.replaceWith(card);
