@@ -117,6 +117,11 @@
 
           <!-- Generated letter preview (shown after clicking generate) -->
           <div id="fa-letter-preview" style="display: none; margin-bottom: 14px;">
+
+            <div style="background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px;">
+              <p style="font-size: 12px; color: #991b1b; margin: 0; font-weight: 600;">Important: Filing an appeal does not guarantee a reduction. The county may keep your value the same or increase it. Only proceed if you believe you have a legitimate reason, such as property damage, condition issues, or errors in your record.</p>
+            </div>
+
             <p style="font-size: 12px; font-weight: 600; color: #333; margin: 0 0 8px 0;">Your appeal letter (you can edit before printing):</p>
             <textarea id="fa-letter-text" style="width: 100%; box-sizing: border-box; min-height: 300px; padding: 12px; border: 1px solid #d4d4d4; border-radius: 6px; font-size: 12px; font-family: 'Courier New', monospace; line-height: 1.6; resize: vertical; color: #333;"></textarea>
             <div style="display: flex; gap: 8px; margin-top: 8px;">
@@ -124,6 +129,18 @@
               <button onclick="navigator.clipboard.writeText(document.getElementById('fa-letter-text').value).then(function(){this.textContent='Copied!'}.bind(this))" style="flex: 1; padding: 10px; border: 1px solid #d4d4d4; border-radius: 6px; background: white; color: #555; font-size: 13px; font-weight: 600; cursor: pointer;">Copy to Clipboard</button>
             </div>
             <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Edit the letter above as needed, then print or copy.</p>
+
+            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
+              <p style="font-size: 13px; font-weight: 600; color: #333; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
+              <div style="font-size: 12px; color: #555; line-height: 1.7;">
+                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to tax.buncombenc.gov, search your PIN, click "Tax Appeal Request", and upload this letter as a PDF.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign this letter, then mail or deliver to:<br>
+                  <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
+                  <span style="margin-left: 16px;">182 College Street, Asheville, NC 28801</span></span><br>
+                  <span style="font-size: 11px; color: #888;">We recommend certified mail or tracking for proof of delivery. Drop-off hours: Mon–Fri, 8 AM – 5 PM.</span></p>
+                <p style="margin: 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring your printed letter and revaluation notice.</p>
+              </div>
+            </div>
           </div>
 
           <!-- Generate button (hidden after letter is generated) -->
