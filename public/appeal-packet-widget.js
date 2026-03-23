@@ -200,10 +200,7 @@
               <div style="font-size: 10px; color: #999; text-transform: uppercase;">Your Assessment</div>
               <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${fmt(subject.totalValue)}</div>
             </div>
-            ${screening.suggestedValue ? `<div style="text-align: center;">
-              <div style="font-size: 10px; color: #999; text-transform: uppercase;">Suggested Value</div>
-              <div style="font-size: 16px; font-weight: 700; font-family: monospace; color: #166534;">${fmt(screening.suggestedValue)}</div>
-            </div>` : ''}
+
             <div style="text-align: center;">
               <div style="font-size: 10px; color: #999; text-transform: uppercase;">Median Comp Sale</div>
               <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${fmt(a.medianSalePrice || 0)}</div>
@@ -696,9 +693,7 @@
     letter += 'PIN: ' + sub.pin + '\n\n';
     letter += 'Dear Tax Assessor:\n\n';
     letter += 'I am writing to appeal the 2026 assessed value of ' + fmtVal(sub.totalValue) + ' for my property at ' + (sub.address || '') + '.';
-    if (suggestedValue) {
-      letter += ' Based on comparable market data, I believe the fair market value is approximately ' + fmtVal(suggestedValue) + '.';
-    }
+    // Don't state a specific value in the opening — let the closing handle it
     letter += '\n\n';
 
     // Land value argument
@@ -754,11 +749,8 @@
     }
 
     // Closing
-    if (suggestedValue) {
-      letter += 'Based on the above evidence, I respectfully request that the assessed value be adjusted to ' + fmtVal(suggestedValue) + '.\n\n';
-    } else {
-      letter += 'I respectfully request that the assessed value be reviewed and adjusted to reflect the fair market value of this property.\n\n';
-    }
+    letter += 'Based on the above evidence, I respectfully request that the assessed value be adjusted to $_________ or recalculated based on current market data.\n\n';
+    letter += '(Note: If you include a specific dollar amount, the county cannot reduce your assessment below that number. If you are unsure, you may leave this as "recalculated based on current market data" and the county will determine the value.)\n\n';
 
     letter += 'I am available to discuss this further or to schedule a property inspection at your convenience.\n\n';
     letter += 'Respectfully,\n\n\n\n';
