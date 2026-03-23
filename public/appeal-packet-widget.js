@@ -300,7 +300,7 @@
               </label>
             </div>
             <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 8px 12px;">
-              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;"><strong>Note:</strong> The county will determine the final value based on the evidence, regardless of what you request. Including a specific value shows confidence in your case. If you're unsure, letting the county recalculate is a safe option. Either way, your value could decrease, stay the same, or increase as a result of the appeal.</p>
+              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;">If you're unsure which option is better for your situation, call <strong>(828) 250-4940</strong> or attend a free appeal clinic to discuss with an appraiser before submitting.</p>
             </div>
           </div>
 
