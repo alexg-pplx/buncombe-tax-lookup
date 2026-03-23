@@ -59,9 +59,11 @@
                 <span style="display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; color: white; background: ${rc.badge};">${rc.label}</span>
               </div>
               <p style="font-size: 13px; color: ${rc.text}; margin: 0; max-width: 500px;">
-                ${screening.rating === 'weak' || screening.rating === 'insufficient' 
-                  ? 'Based on comparable sales data, your assessment appears to be at or near market value. Other factors like property condition, storm damage, or record errors could change this — see below.'
-                  : screening.message}
+                ${screening.rating === 'insufficient'
+                  ? 'Based on comparable sales and similar property assessments in your area, there is not enough data to evaluate your assessment. Other factors like property condition, storm damage, or record errors could still support an appeal — see below.'
+                  : (screening.rating === 'weak'
+                    ? 'Based on comparable sales and similar property assessments, your assessment appears to be at or near market value. Other factors like property condition, storm damage, or record errors could change this — see below.'
+                    : screening.message)}
               </p>
             </div>
           </div>
