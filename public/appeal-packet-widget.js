@@ -138,21 +138,28 @@
 
             <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
               <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
+              <div style="background: #fef2f2; border: 1px solid #fca5a5; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px;">
+                <p style="font-size: 12px; color: #991b1b; margin: 0; font-weight: 600;">Important: Appeals submitted without supporting documentation will be denied. Print ALL pages, not just the letter.</p>
+              </div>
               <div style="font-size: 12px; color: #555; line-height: 1.7;">
-                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to tax.buncombenc.gov, search your PIN, click "Tax Appeal Request", and upload this letter as a PDF.</p>
-                <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign this letter, then mail or deliver to:<br>
+                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to <strong>taxappeal.buncombenc.gov</strong>, search your PIN, click "Tax Appeal Request", and upload all pages as a PDF.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign all pages, then mail or deliver to:<br>
                   <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
                   <span style="margin-left: 16px;">182 College Street, Asheville, NC 28801</span></span><br>
                   <span style="font-size: 11px; color: #888;">We recommend certified mail or tracking for proof of delivery. Drop-off hours: Mon–Fri, 8 AM – 5 PM.</span></p>
-                <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring your printed letter and revaluation notice.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring all printed pages and your revaluation notice.</p>
+              </div>
+              <div style="font-size: 11px; color: #666; line-height: 1.6; margin-top: 8px;">
+                <p style="margin: 0 0 4px 0;"><strong>Deadline:</strong> 30 days from the date on your revaluation notice. If you haven't received your notice, you have 30 days from when you receive it.</p>
+                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940, email realestate.questions@buncombenc.gov, or request an appointment with an appraiser online.</p>
               </div>
               <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
-                <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with supporting evidence:</p>
+                <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with additional evidence:</p>
                 <ul style="font-size: 12px; color: #555; margin: 0; padding-left: 18px; line-height: 1.8;">
                   <li>Photos of property condition issues or storm damage</li>
                   <li>Contractor estimates for needed repairs</li>
                   <li>A recent appraisal if you have one</li>
-                  <li>Any documentation that supports your case</li>
+                  <li>Any other documentation that supports your case</li>
                 </ul>
               </div>
             </div>
@@ -169,7 +176,7 @@
           </p>
 
           <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
-            <p style="font-size: 12px; color: #555; margin: 0 0 6px 0; line-height: 1.6;">You can also call the Tax Assessor's Office at <strong>(828) 250-4940</strong> to speak with an appraiser, or attend a free appeal clinic:</p>
+            <p style="font-size: 12px; color: #555; margin: 0 0 6px 0; line-height: 1.6;">You can also call <strong>(828) 250-4940</strong>, email <strong>realestate.questions@buncombenc.gov</strong>, or request an appointment with an appraiser. Free appeal clinics:</p>
             <div style="font-size: 12px; color: #555; margin: 6px 0 0 0; line-height: 1.8;">
               ${(function() {
                 const clinics = [
@@ -254,21 +261,28 @@
 
             <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
               <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
+              <div style="background: #fef2f2; border: 1px solid #fca5a5; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px;">
+                <p style="font-size: 12px; color: #991b1b; margin: 0; font-weight: 600;">Important: Appeals submitted without supporting documentation will be denied. Print ALL pages, not just the letter.</p>
+              </div>
               <div style="font-size: 12px; color: #555; line-height: 1.7;">
-                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to tax.buncombenc.gov, search your PIN, click "Tax Appeal Request", and upload this letter as a PDF.</p>
-                <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign this letter, then mail or deliver to:<br>
+                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to <strong>taxappeal.buncombenc.gov</strong>, search your PIN, click "Tax Appeal Request", and upload all pages as a PDF.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign all pages, then mail or deliver to:<br>
                   <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
                   <span style="margin-left: 16px;">182 College Street, Asheville, NC 28801</span></span><br>
                   <span style="font-size: 11px; color: #888;">We recommend certified mail or tracking for proof of delivery. Drop-off hours: Mon–Fri, 8 AM – 5 PM.</span></p>
-                <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring your printed letter and revaluation notice.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring all printed pages and your revaluation notice.</p>
+              </div>
+              <div style="font-size: 11px; color: #666; line-height: 1.6; margin-top: 8px;">
+                <p style="margin: 0 0 4px 0;"><strong>Deadline:</strong> 30 days from the date on your revaluation notice. If you haven't received your notice, you have 30 days from when you receive it.</p>
+                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940, email realestate.questions@buncombenc.gov, or request an appointment with an appraiser online.</p>
               </div>
               <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
-                <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with supporting evidence:</p>
+                <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with additional evidence:</p>
                 <ul style="font-size: 12px; color: #555; margin: 0; padding-left: 18px; line-height: 1.8;">
                   <li>Photos of property condition issues or storm damage</li>
                   <li>Contractor estimates for needed repairs</li>
                   <li>A recent appraisal if you have one</li>
-                  <li>Any documentation that supports your case</li>
+                  <li>Any other documentation that supports your case</li>
                 </ul>
               </div>
             </div>
@@ -942,7 +956,7 @@
 
 <h3>Option 1: Submit Online (Recommended)</h3>
 <ol>
-  <li>Go to <strong>tax.buncombenc.gov</strong></li>
+  <li>Go to <strong>taxappeal.buncombenc.gov</strong></li>
   <li>Search for your property using PIN: <strong>${p.pin}</strong></li>
   <li>Click "Tax Appeal Request"</li>
   <li>Review your property record — check that all details are correct</li>
@@ -958,7 +972,7 @@
 <h3>Option 2: Mail or Drop Off</h3>
 <ol>
   <li>Print this entire packet</li>
-  <li>Download the paper appeal form from tax.buncombenc.gov (or use the form mailed with your notice)</li>
+  <li>Download the paper appeal form from taxappeal.buncombenc.gov (or use the form mailed with your notice)</li>
   <li>Fill in the "Reason for Appeal" using the text on Page 2</li>
   <li>Write your opinion of value: <strong>${suggestedValueDisplay}</strong></li>
   <li>Sign and date the form</li>
