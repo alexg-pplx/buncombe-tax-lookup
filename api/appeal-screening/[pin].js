@@ -224,6 +224,100 @@ async function findVacantLandSales(subject) {
   return landSales.sort((a, b) => b.salePrice - a.salePrice);
 }
 
+// --- Equity Comparables (assessed value comparison, no sale required) ---
+
+async function findEquityComps(subject) {
+  const isManufactured = subject.propertyClass === '170';
+  const residentialClasses = isManufactured
+    ? "('170')"
+    : "('100','101','121')";
+
+  // Acreage range: within 50% for small lots, within 100% for large
+  const acLow = subject.acreage > 3
+    ? Math.max(subject.acreage * 0.25, 0.1)
+    : Math.max(subject.acreage * 0.5, 0.1);
+  const acHigh = subject.acreage > 3
+    ? subject.acreage * 2.0
+    : subject.acreage * 1.5;
+
+  const nbhd = subject.neighborhood;
+  let where = [
+    `Class IN ${residentialClasses}`,
+    `NeighborhoodCode = '${nbhd}'`,
+    `pinnum <> '${subject.pin}'`,
+    `Acreage >= ${acLow.toFixed(2)}`,
+    `Acreage <= ${acHigh.toFixed(2)}`,
+  ].join(' AND ');
+
+  const fields = "pinnum,TotalMarketValue,LandValue,BuildingValue,Acreage,Class,NeighborhoodCode,HouseNumber,streetname,StreetType";
+  let results = await queryArcGIS(COMP_LAYER, where, fields, 30);
+
+  // If not enough in exact neighborhood, widen to area prefix
+  if (results.length < 10 && nbhd.length >= 2) {
+    const dashIdx = nbhd.indexOf('-');
+    const prefix = dashIdx > 0 ? nbhd.substring(0, dashIdx) : nbhd.substring(0, 2);
+    where = [
+      `Class IN ${residentialClasses}`,
+      `NeighborhoodCode LIKE '${prefix}%'`,
+      `pinnum <> '${subject.pin}'`,
+      `Acreage >= ${acLow.toFixed(2)}`,
+      `Acreage <= ${acHigh.toFixed(2)}`,
+    ].join(' AND ');
+    results = await queryArcGIS(COMP_LAYER, where, fields, 30);
+  }
+
+  // Enrich top 20 with PRC building data, then filter by sqft/yearBuilt
+  const candidates = results.slice(0, 20);
+  const equityComps = [];
+
+  for (const r of candidates) {
+    const compPinnum = r.pinnum;
+    if (!compPinnum) continue;
+
+    let bldg = {};
+    try {
+      const prcRes = await fetch(`${PRC_BASE}/${compPinnum}`);
+      if (prcRes.ok) {
+        const prc = await prcRes.json();
+        const sections = prc?.parcel?.sections || [];
+        if (sections[2] && typeof sections[2] === 'object' && sections[2]['1'] && sections[2]['1'][0]) {
+          bldg = sections[2]['1'][0];
+        }
+      }
+    } catch (e) {}
+
+    const sqft = parseInt(bldg.TotalFinishedArea) || 0;
+    const yearBuilt = parseInt(bldg.YearBuilt) || 0;
+
+    // Filter: within 25% sqft and 15 years age
+    if (subject.sqft > 0 && sqft > 0) {
+      const sqftDiff = Math.abs(subject.sqft - sqft) / subject.sqft;
+      if (sqftDiff > 0.25) { await sleep(200); continue; }
+    }
+    if (subject.yearBuilt > 0 && yearBuilt > 0) {
+      if (Math.abs(subject.yearBuilt - yearBuilt) > 15) { await sleep(200); continue; }
+    }
+    // Skip if we have no building data at all (can't confirm similarity)
+    if (sqft === 0 && yearBuilt === 0) { await sleep(200); continue; }
+
+    equityComps.push({
+      pin: compPinnum,
+      address: [r.HouseNumber, r.streetname, r.StreetType].filter(Boolean).join(" "),
+      assessedValue: parseValue(r.TotalMarketValue),
+      landValue: parseValue(r.LandValue),
+      buildingValue: parseValue(r.BuildingValue),
+      acreage: parseFloat(r.Acreage) || 0,
+      sqft,
+      yearBuilt,
+      quality: bldg.Quality || "",
+    });
+
+    await sleep(200);
+  }
+
+  return equityComps;
+}
+
 // --- Comp Scoring ---
 
 function scoreComps(subject, comps) {
@@ -365,50 +459,72 @@ function analyzeLandValueArgument(subject, landSales) {
   return { applicable: strength !== "none", strength, details, suggestedValue, medianPricePerAcre, saleCount: landSales.length };
 }
 
-function analyzeEquityArgument(subject, topComps) {
-  if (topComps.length < 2) {
-    return { applicable: false, strength: "none", details: "Not enough comps to evaluate equity." };
+function analyzeEquityArgument(subject, equityComps) {
+  if (equityComps.length < 2) {
+    return {
+      applicable: false, strength: "none",
+      details: `Only ${equityComps.length} similar propert${equityComps.length === 1 ? 'y' : 'ies'} found in your neighborhood — not enough to evaluate equity.`,
+      equityComps: equityComps.length, medianEquityAssessment: null, subjectVsEquityMedian: null,
+    };
   }
 
-  // Comp assessment-to-sale ratios
-  const compRatios = topComps.map(c => ({
-    pin: c.pin,
-    ratio: c.assessedValue / c.salePrice,
-  }));
-  const medianCompRatio = median(compRatios.map(r => r.ratio));
-
-  // Subject's implied ratio — if subject had sold at median comp price, what would its ratio be?
-  const medianCompPrice = median(topComps.map(c => c.salePrice));
-  const subjectImpliedRatio = medianCompPrice > 0 ? subject.totalValue / medianCompPrice : 0;
-
-  // If comps are assessed at ~95-105% of sale price but subject appears assessed at 120%+, inequitable
-  const inequityGap = subjectImpliedRatio - medianCompRatio;
+  const medianAssessment = median(equityComps.map(c => c.assessedValue));
+  const ratio = medianAssessment > 0 ? subject.totalValue / medianAssessment : 0;
+  const pctAbove = Math.round((ratio - 1) * 100);
 
   let strength = "none";
   let details = "";
 
-  if (medianCompRatio > 0 && medianCompRatio <= 1.05 && subjectImpliedRatio > 1.20) {
-    strength = inequityGap > 0.25 ? "strong" : "moderate";
-    details = `Comparable properties are assessed at ${Math.round(medianCompRatio * 100)}% of their sale prices on average, while your property appears to be assessed at ${Math.round(subjectImpliedRatio * 100)}% of comparable market value — a ${Math.round(inequityGap * 100)} percentage point gap suggesting inequitable treatment.`;
-  } else if (medianCompRatio > 0 && subjectImpliedRatio > medianCompRatio + 0.10) {
-    strength = "weak";
-    details = `Comparable properties are assessed at ${Math.round(medianCompRatio * 100)}% of sale prices, while your property appears assessed at ${Math.round(subjectImpliedRatio * 100)}% of comparable market value. The gap exists but may not be strong enough for an equity argument alone.`;
+  // Check how similar the equity comps are (quality mismatch weakens the argument)
+  const qualityMatches = equityComps.filter(c => c.quality === subject.quality).length;
+  const qualityMatchRate = qualityMatches / equityComps.length;
+  const weakQuality = qualityMatchRate < 0.3 && equityComps.length < 5;
+
+  if (ratio > 1.20) {
+    strength = equityComps.length >= 3 ? "strong" : "moderate";
+    details = `Your property is assessed at $${subject.totalValue.toLocaleString()} while ${equityComps.length} similar properties (same neighborhood, similar size and age) are assessed at a median of $${medianAssessment.toLocaleString()} — ${pctAbove}% higher than comparable assessments. This suggests inequitable treatment.`;
+  } else if (ratio > 1.10) {
+    strength = equityComps.length >= 3 ? "moderate" : "weak";
+    details = `Your property is assessed at $${subject.totalValue.toLocaleString()} while ${equityComps.length} similar properties are assessed at a median of $${medianAssessment.toLocaleString()} — ${pctAbove}% above. A modest equity gap.`;
+  } else if (ratio < 0.95) {
+    strength = "none";
+    details = `Your property ($${subject.totalValue.toLocaleString()}) is assessed BELOW the median of ${equityComps.length} similar properties ($${medianAssessment.toLocaleString()}). No equity issue — an appeal risks an increase.`;
   } else {
-    details = `Assessment-to-sale ratios appear consistent between your property and comparables (comps: ${Math.round(medianCompRatio * 100)}%, subject implied: ${Math.round(subjectImpliedRatio * 100)}%).`;
+    details = `Your assessment ($${subject.totalValue.toLocaleString()}) is in line with ${equityComps.length} similar properties (median $${medianAssessment.toLocaleString()}). No equity issue found.`;
+  }
+
+  // Downgrade if equity comps don't match quality well
+  if (weakQuality && (strength === "strong" || strength === "moderate")) {
+    details += ` Available comps differ significantly from your property, weakening this comparison.`;
+    if (strength === "strong") strength = "moderate";
+    else if (strength === "moderate") strength = "weak";
+  }
+
+  // Downgrade for land-heavy properties — total assessment gap may be driven by land
+  // acreage differences, not building overassessment
+  const isLandHeavy = subject.landPctOfTotal > 30 && subject.acreage > 3;
+  if (isLandHeavy && (strength === "strong" || strength === "moderate")) {
+    const medianCompAcreage = median(equityComps.map(c => c.acreage));
+    if (subject.acreage > medianCompAcreage * 1.5) {
+      details += ` Your property has significantly more acreage (${subject.acreage.toFixed(1)} vs median ${medianCompAcreage.toFixed(1)}), which may account for much of the assessment difference.`;
+      if (strength === "strong") strength = "moderate";
+      else if (strength === "moderate") strength = "weak";
+    }
   }
 
   return {
     applicable: strength !== "none",
     strength,
     details,
-    medianCompRatio: Math.round(medianCompRatio * 100),
-    subjectImpliedRatio: Math.round(subjectImpliedRatio * 100),
+    equityComps: equityComps.length,
+    medianEquityAssessment: medianAssessment,
+    subjectVsEquityMedian: Math.round(ratio * 100),
   };
 }
 
 // --- Main Analysis ---
 
-function analyzeAppealStrength(subject, scoredComps, landSales) {
+function analyzeAppealStrength(subject, scoredComps, landSales, equityComps) {
   const topComps = scoredComps.slice(0, 5);
   const avgSimilarity = topComps.length > 0
     ? topComps.reduce((s, c) => s + c.similarityScore, 0) / topComps.length
@@ -418,7 +534,7 @@ function analyzeAppealStrength(subject, scoredComps, landSales) {
   const marketArg = analyzeMarketValueArgument(subject, topComps);
   const isLandHeavy = (subject.landPctOfTotal > 40 && subject.acreage > 1) || (subject.landPctOfTotal > 30 && subject.acreage > 3);
   const landArg = isLandHeavy ? analyzeLandValueArgument(subject, landSales || []) : { applicable: false, strength: "none", details: "Property is not land-heavy; land argument not evaluated.", suggestedValue: null };
-  const equityArg = analyzeEquityArgument(subject, topComps);
+  const equityArg = analyzeEquityArgument(subject, equityComps || []);
 
   // --- Apply downgrades ---
   let isSignificantlyNewer = false;
@@ -471,6 +587,26 @@ function analyzeAppealStrength(subject, scoredComps, landSales) {
   if (topComps.length < 3) {
     if (marketArg.strength === "strong") marketArg.strength = "moderate";
     if (equityArg.strength === "strong") equityArg.strength = "moderate";
+  }
+
+  // 5. Equity override: if equity shows assessment is IN LINE with similar properties,
+  // downgrade market value argument — the "overassessment vs sales" is misleading
+  if (equityArg.subjectVsEquityMedian != null && equityArg.equityComps >= 3) {
+    const eqRatio = equityArg.subjectVsEquityMedian; // e.g. 102 means 2% above median
+    if (eqRatio <= 110 && (marketArg.strength === "strong" || marketArg.strength === "moderate")) {
+      // Subject is within 10% of similar property assessments — market argument is misleading
+      const overrideNote = ` However, equity analysis shows your assessment is consistent with ${equityArg.equityComps} similar properties in your neighborhood (within ${eqRatio <= 100 ? 'below' : (eqRatio - 100) + '% of'} their median assessment of $${(equityArg.medianEquityAssessment || 0).toLocaleString()}). The comparable sales may not reflect your property type.`;
+      marketArg.details += overrideNote;
+      marketArg.strength = "weak";
+    }
+  }
+
+  // 6. Custom quality with insufficient equity data — can't validate market argument,
+  // so cap market at weak (conservative: don't tell custom homeowners to appeal
+  // based solely on comps that don't match their build quality)
+  if (isCustomQuality && equityArg.equityComps < 3 && marketArg.strength === "moderate") {
+    marketArg.details += " Insufficient similar properties found to validate this comparison for your custom-quality home.";
+    marketArg.strength = "weak";
   }
 
   // --- Determine overall rating ---
@@ -572,6 +708,9 @@ function analyzeAppealStrength(subject, scoredComps, landSales) {
       landPctOfTotal: Math.round(subject.landPctOfTotal),
       landSaleCount: landSales ? landSales.length : 0,
       isLandHeavy,
+      equityCompCount: equityComps ? equityComps.length : 0,
+      medianEquityAssessment: equityArg.medianEquityAssessment,
+      subjectVsEquityMedian: equityArg.subjectVsEquityMedian,
     },
   };
 }
@@ -619,8 +758,11 @@ module.exports = async function handler(req, res) {
     const isLandHeavy = (subject.landPctOfTotal > 40 && subject.acreage > 1) || (subject.landPctOfTotal > 30 && subject.acreage > 3);
     const landSales = isLandHeavy ? await findVacantLandSales(subject) : [];
 
+    // Find equity comps (similar properties by assessed value)
+    const equityComps = await findEquityComps(subject);
+
     // Run analysis
-    const screening = analyzeAppealStrength(subject, scoredComps, landSales);
+    const screening = analyzeAppealStrength(subject, scoredComps, landSales, equityComps);
 
     // Pricing tier
     let priceTier = 15;
@@ -632,6 +774,7 @@ module.exports = async function handler(req, res) {
       screening,
       comps: scoredComps.slice(0, 8),
       landSales: landSales.slice(0, 10),
+      equityComps: equityComps.slice(0, 10),
       pricing: {
         amount: priceTier,
         tier: subject.totalValue < 200000 ? "under200k" : subject.totalValue > 500000 ? "over500k" : "200to500k",
