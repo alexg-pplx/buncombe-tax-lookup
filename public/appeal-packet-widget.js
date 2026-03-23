@@ -131,6 +131,10 @@
               <button onclick="navigator.clipboard.writeText(document.getElementById('fa-letter-text').value).then(function(){this.textContent='Copied!'}.bind(this))" style="flex: 1; padding: 10px; border: 1px solid #d4d4d4; border-radius: 6px; background: white; color: #555; font-size: 13px; font-weight: 600; cursor: pointer;">Copy to Clipboard</button>
             </div>
             <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Edit the letter above as needed, then print or copy.</p>
+            <div style="text-align: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e5e5;">
+              <p style="font-size: 12px; color: #666; margin: 0 0 8px 0;">This tool is free. If it helped you, consider supporting it.</p>
+              <a href="https://buymeacoffee.com/buncombetaxlookup" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 8px 20px; background: #FFDD00; color: #000; font-size: 13px; font-weight: 600; border-radius: 6px; text-decoration: none;">Buy Me a Coffee ☕</a>
+            </div>
 
             <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
               <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
@@ -773,11 +777,7 @@ ${a.medianSalePrice ? `
 
   // Main: inject the screening card into the property page
   async function init() {
-    // Admin-only gate: only show widget when ?admin=kendra2026 is in the URL
-    const searchAdmin = new URLSearchParams(window.location.search).get('admin');
-    const hashParams = window.location.hash.includes('?') ? new URLSearchParams(window.location.hash.split('?')[1]) : null;
-    const isAdminPreview = searchAdmin === ADMIN_KEY || (hashParams && hashParams.get('admin') === ADMIN_KEY);
-    if (!isAdminPreview) return;
+    // Widget is now public — no admin gate
 
     const pin = getPin();
     if (!pin) return;
