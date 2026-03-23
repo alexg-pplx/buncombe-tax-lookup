@@ -588,7 +588,7 @@
     var html = '<!DOCTYPE html><html><head>'
       + '<title>Appeal Letter</title>'
       + '<style>'
-      + 'body { font-family: "Times New Roman", Georgia, serif; font-size: 12pt; line-height: 1.6; max-width: 7in; margin: 0.75in auto; padding: 0; color: #000; white-space: pre-wrap; }'
+      + 'body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; font-size: 11pt; line-height: 1.6; max-width: 7in; margin: 0.75in auto; padding: 0; color: #000; white-space: pre-wrap; }'
       + '@media print { body { margin: 0.75in; } .no-print { display: none !important; } }'
       + '</style>'
       + '</head><body>'
@@ -787,16 +787,106 @@
     var textarea = document.getElementById('strong-letter-text');
     if (!textarea) return;
     var text = textarea.value;
+    var d = window.__strongAppealData;
+    if (!d) return;
+    var sub = d.subject;
+    var comps = (d.comps || []).filter(function(c){return c.similarityScore > 50;}).slice(0,5);
+    var landSales = d.landSales || [];
+    var fmtVal = function(n) { return '$' + Number(n).toLocaleString('en-US'); };
+
     var printWindow = window.open('', '_blank');
     if (!printWindow) { alert('Please allow popups to print your appeal letter.'); return; }
-    var html = '<!DOCTYPE html><html><head><title>Appeal Letter</title><style>'
-      + 'body { font-family: "Times New Roman", Georgia, serif; font-size: 12pt; line-height: 1.6; max-width: 7in; margin: 0.75in auto; padding: 0; color: #000; white-space: pre-wrap; }'
-      + '@media print { body { margin: 0.75in; } .no-print { display: none !important; } }'
-      + '</style></head><body>'
-      + '<div class="no-print" style="background: #1B2A4A; color: white; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-family: sans-serif;">'
-      + '<button onclick="window.print()" style="padding: 8px 20px; background: white; color: #1B2A4A; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px;">Print / Save as PDF</button></div>'
+
+    var html = '<!DOCTYPE html><html><head><title>Appeal Packet</title><style>'
+      + 'body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; font-size: 11pt; line-height: 1.5; max-width: 7.5in; margin: 0 auto; padding: 0.5in; color: #000; }'
+      + '.letter-text { white-space: pre-wrap; font-size: 11pt; line-height: 1.6; }'
+      + '.page-break { page-break-before: always; }'
+      + 'table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 12px 0; }'
+      + 'th { background: #1B2A4A; color: white; padding: 6px 8px; text-align: left; font-size: 9pt; text-transform: uppercase; }'
+      + 'td { padding: 6px 8px; border-bottom: 1px solid #ddd; }'
+      + 'tr:nth-child(even) { background: #f9f9f9; }'
+      + 'h2 { font-size: 14pt; color: #1B2A4A; border-bottom: 2px solid #1B2A4A; padding-bottom: 4px; margin-top: 0; }'
+      + '.source { font-size: 8pt; color: #999; margin-top: 20px; }'
+      + '.record-table td:first-child { font-weight: 500; color: #555; width: 40%; }'
+      + '@media print { body { margin: 0.75in; padding: 0; } .no-print { display: none !important; } }'
+      + '</style></head><body>';
+
+    // Print/Save button
+    html += '<div class="no-print" style="background: #1B2A4A; color: white; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; text-align: center;">'
+      + '<button onclick="window.print()" style="padding: 8px 20px; background: white; color: #1B2A4A; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px;">Print / Save as PDF</button></div>';
+
+    // PAGE 1: Letter
+    html += '<div class="letter-text">'
       + text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      + '</body></html>';
+      + '</div>';
+
+    // PAGE 2: Comparable Sales Evidence (if we have good comps or land sales)
+    if (comps.length > 0 || landSales.length > 0) {
+      html += '<div class="page-break"></div>';
+      html += '<h2>Comparable Sales Analysis</h2>';
+
+      // Subject summary
+      html += '<div style="border: 1px solid #ddd; border-radius: 6px; padding: 10px 14px; margin-bottom: 16px; font-size: 10pt;">'
+        + '<strong>' + (sub.address || '') + '</strong><br>'
+        + (sub.sqft ? sub.sqft.toLocaleString() + ' sq ft' : '') 
+        + (sub.acreage ? ' &middot; ' + sub.acreage.toFixed(2) + ' acres' : '')
+        + (sub.yearBuilt ? ' &middot; Built ' + sub.yearBuilt : '')
+        + '<br>Current Assessment: ' + fmtVal(sub.totalValue) + ' (Land: ' + fmtVal(sub.landValue) + ' | Building: ' + fmtVal(sub.buildingValue) + ')'
+        + '</div>';
+
+      // Comp sales table
+      if (comps.length > 0) {
+        html += '<table><thead><tr><th>Address</th><th>Sale Price</th><th>Sale Date</th><th>Sq Ft</th><th>Acres</th><th>Year Built</th></tr></thead><tbody>';
+        for (var i=0; i<comps.length; i++) {
+          var c = comps[i];
+          html += '<tr><td>' + (c.address||'') + '</td><td>' + fmtVal(c.salePrice) + '</td><td>' + (c.saleDate||'') + '</td><td>' + (c.sqft ? c.sqft.toLocaleString() : '') + '</td><td>' + (c.acreage ? c.acreage.toFixed(2) : '') + '</td><td>' + (c.yearBuilt||'') + '</td></tr>';
+        }
+        html += '</tbody></table>';
+      }
+
+      // Land sales table
+      if (landSales.length > 0) {
+        html += '<h3 style="font-size: 12pt; color: #333; margin-top: 20px;">Vacant Land Sales</h3>';
+        html += '<table><thead><tr><th>Location</th><th>Sale Price</th><th>Acreage</th><th>Price/Acre</th><th>Sale Date</th></tr></thead><tbody>';
+        for (var j=0; j<Math.min(landSales.length,8); j++) {
+          var ls = landSales[j];
+          var ppa = ls.acreage > 0 ? fmtVal(Math.round(ls.salePrice / ls.acreage)) : '';
+          html += '<tr><td>' + (ls.address||ls.pin||'') + '</td><td>' + fmtVal(ls.salePrice) + '</td><td>' + (ls.acreage ? ls.acreage.toFixed(2) : '') + '</td><td>' + ppa + '</td><td>' + (ls.saleDate||'') + '</td></tr>';
+        }
+        html += '</tbody></table>';
+        html += '<p style="font-size: 9pt; color: #555;">Subject land assessed at ' + fmtVal(Math.round(sub.landValue/sub.acreage)) + '/acre for ' + sub.acreage.toFixed(2) + ' acres.</p>';
+      }
+
+      html += '<p style="font-size: 8pt; color: #888; margin-top: 16px;">Sales selected based on: same property type, same assessment neighborhood, similar size, qualified sales within 24 months of January 1, 2026.</p>';
+      html += '<p class="source">Source: Buncombe County public records</p>';
+    }
+
+    // PAGE 3: Property Record
+    html += '<div class="page-break"></div>';
+    html += '<h2>Property Record &mdash; On File with Buncombe County</h2>';
+    html += '<p style="font-size: 10pt; color: #555;">' + (sub.address||'') + ' &middot; PIN: ' + sub.pin + '</p>';
+    html += '<table class="record-table"><tbody>';
+    var records = [
+      ['Year Built', sub.yearBuilt||'N/A'],
+      ['Total Finished Area', sub.sqft ? sub.sqft.toLocaleString() + ' sq ft' : 'N/A'],
+      ['Bedrooms', sub.bedrooms||'N/A'],
+      ['Full Baths', sub.fullBaths||'N/A'],
+      ['Half Baths', sub.halfBaths||'N/A'],
+      ['Building Type', sub.buildingType||'N/A'],
+      ['Quality', sub.quality||'N/A'],
+      ['Condition', sub.condition||'N/A'],
+      ['Acreage', sub.acreage ? sub.acreage.toFixed(2) : 'N/A'],
+      ['Land Value', fmtVal(sub.landValue) + ' (' + Math.round(sub.landPctOfTotal) + '% of total)'],
+      ['Building Value', fmtVal(sub.buildingValue)],
+      ['Total Assessed Value', fmtVal(sub.totalValue)],
+    ];
+    for (var r=0; r<records.length; r++) {
+      html += '<tr><td>' + records[r][0] + '</td><td>' + records[r][1] + '</td></tr>';
+    }
+    html += '</tbody></table>';
+    html += '<p class="source">Source: Buncombe County public records</p>';
+
+    html += '</body></html>';
     printWindow.document.write(html);
     printWindow.document.close();
   };
