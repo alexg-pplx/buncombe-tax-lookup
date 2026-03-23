@@ -241,12 +241,12 @@ async function findEquityComps(subject) {
   let where = [
     `Class IN ${residentialClasses}`,
     `NeighborhoodCode = '${nbhd}'`,
-    `pinnum <> '${subject.pin}'`,
+    `PIN <> '${subject.pin}'`,
     `Acreage >= ${acLow.toFixed(2)}`,
     `Acreage <= ${acHigh.toFixed(2)}`,
   ].join(' AND ');
 
-  const fields = "pinnum,TotalMarketValue,LandValue,BuildingValue,Acreage,Class,NeighborhoodCode,HouseNumber,streetname,StreetType";
+  const fields = "PIN,TotalMarketValue,LandValue,BuildingValue,Acreage,Class,NeighborhoodCode,HouseNumber,StreetPrefix,StreetName,StreetType";
   let results = await queryArcGIS(COMP_LAYER, where, fields, 30);
 
   // If not enough in exact neighborhood, widen to area prefix
@@ -256,7 +256,7 @@ async function findEquityComps(subject) {
     where = [
       `Class IN ${residentialClasses}`,
       `NeighborhoodCode LIKE '${prefix}%'`,
-      `pinnum <> '${subject.pin}'`,
+      `PIN <> '${subject.pin}'`,
       `Acreage >= ${acLow.toFixed(2)}`,
       `Acreage <= ${acHigh.toFixed(2)}`,
     ].join(' AND ');
@@ -268,7 +268,7 @@ async function findEquityComps(subject) {
   const equityComps = [];
 
   for (const r of candidates) {
-    const compPinnum = r.pinnum;
+    const compPinnum = r.PIN;
     if (!compPinnum) continue;
 
     let bldg = {};
@@ -299,7 +299,7 @@ async function findEquityComps(subject) {
 
     equityComps.push({
       pin: compPinnum,
-      address: [r.HouseNumber, r.streetname, r.StreetType].filter(Boolean).join(" "),
+      address: [r.HouseNumber, r.StreetPrefix, r.StreetName, r.StreetType].filter(Boolean).join(" "),
       assessedValue: parseValue(r.TotalMarketValue),
       landValue: parseValue(r.LandValue),
       buildingValue: parseValue(r.BuildingValue),
