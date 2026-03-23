@@ -113,6 +113,47 @@
             })()}
           </div>
         </div>
+        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
+          <a href="javascript:void(0)" id="free-appeal-toggle" style="font-size: 13px; color: #1B2A4A; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;"
+            onclick="(function(){ var s=document.getElementById('free-appeal-form'); var a=document.getElementById('free-appeal-arrow'); if(s.style.display==='none'){s.style.display='block';a.textContent='▾'}else{s.style.display='none';a.textContent='▸'} })()">
+            <span id="free-appeal-arrow" style="font-size: 11px;">▸</span> Need help getting started? We can generate a free appeal letter.
+          </a>
+
+          <div id="free-appeal-form" style="display: none; margin-top: 14px;">
+            <p style="font-size: 12px; font-weight: 600; color: #666; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px;">Step 1: What applies to your property?</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 14px;">
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+                <input type="checkbox" id="fa-condition" style="width: 16px; height: 16px;"
+                  onchange="window.__freeAppealCheckboxChanged()"> My property has condition issues or needs major repairs
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+                <input type="checkbox" id="fa-helene" style="width: 16px; height: 16px;"
+                  onchange="window.__freeAppealCheckboxChanged()"> My property was damaged by Tropical Storm Helene
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+                <input type="checkbox" id="fa-errors" style="width: 16px; height: 16px;"
+                  onchange="window.__freeAppealCheckboxChanged()"> The county has incorrect information on my property record
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+                <input type="checkbox" id="fa-relief" style="width: 16px; height: 16px;"
+                  onchange="window.__freeAppealCheckboxChanged()"> I qualify for or want to learn about tax relief programs
+              </label>
+            </div>
+
+            <!-- Conditional fields container -->
+            <div id="fa-conditional-fields"></div>
+
+            <!-- Generate button -->
+            <button id="fa-generate-btn" disabled onclick="window.__generateFreeAppealLetter()" style="
+              display: block; width: 100%; padding: 12px; border: 2px solid #1B2A4A; border-radius: 8px;
+              background: white; color: #1B2A4A; font-size: 14px; font-weight: 700; cursor: pointer;
+              opacity: 0.4; transition: all 0.2s;
+            ">Generate Free Appeal Letter</button>
+            <p style="font-size: 11px; color: #999; text-align: center; margin: 8px 0 0 0;">
+              Free — no payment required. This generates a simple appeal letter you can print and submit.
+            </p>
+          </div>
+        </div>
       `;
     }
 
@@ -249,6 +290,214 @@
         btn.disabled = false;
       }, 3000);
     }
+  };
+
+  // --- Free Appeal Letter Helper (for weak/insufficient cases) ---
+
+  // Store screening data globally so the free letter generator can access it
+  window.__freeAppealData = null;
+
+  window.__freeAppealCheckboxChanged = function() {
+    var condition = document.getElementById('fa-condition');
+    var helene = document.getElementById('fa-helene');
+    var errors = document.getElementById('fa-errors');
+    var relief = document.getElementById('fa-relief');
+    var btn = document.getElementById('fa-generate-btn');
+    var container = document.getElementById('fa-conditional-fields');
+    if (!condition || !helene || !errors || !relief || !btn || !container) return;
+
+    var anyChecked = condition.checked || helene.checked || errors.checked || relief.checked;
+    btn.disabled = !anyChecked;
+    btn.style.opacity = anyChecked ? '1' : '0.4';
+    btn.style.cursor = anyChecked ? 'pointer' : 'default';
+
+    // Build conditional fields
+    var html = '';
+
+    if (condition.checked) {
+      html += '<div style="margin-bottom: 14px;">'
+        + '<label style="display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px;">Briefly describe the condition issues:</label>'
+        + '<textarea id="fa-condition-text" rows="3" placeholder="e.g., roof needs replacement, foundation problems, water damage" style="width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1px solid #d4d4d4; border-radius: 6px; font-size: 13px; font-family: inherit; resize: vertical;"></textarea>'
+        + '</div>';
+    }
+
+    if (helene.checked) {
+      html += '<div style="margin-bottom: 14px;">'
+        + '<label style="display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px;">Briefly describe the storm damage:</label>'
+        + '<textarea id="fa-helene-text" rows="3" placeholder="e.g., flooding in basement, roof damage, fallen trees on property" style="width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1px solid #d4d4d4; border-radius: 6px; font-size: 13px; font-family: inherit; resize: vertical;"></textarea>'
+        + '<p style="font-size: 11px; color: #ca8a04; margin: 6px 0 0 0; line-height: 1.4;">Include photos with your submission — photos significantly strengthen your case.</p>'
+        + '</div>';
+    }
+
+    if (errors.checked) {
+      var d = window.__freeAppealData;
+      var sub = d ? d.subject : {};
+      html += '<div style="margin-bottom: 14px;">'
+        + '<p style="font-size: 12px; font-weight: 600; color: #555; margin: 0 0 8px 0;">Review and correct your property record:</p>'
+        + '<table style="width: 100%; border-collapse: collapse; font-size: 12px;">'
+        + '<thead><tr>'
+        + '<th style="padding: 6px 8px; text-align: left; background: #f5f5f5; border-bottom: 1px solid #d4d4d4; font-size: 11px;">Field</th>'
+        + '<th style="padding: 6px 8px; text-align: left; background: #f5f5f5; border-bottom: 1px solid #d4d4d4; font-size: 11px;">On File</th>'
+        + '<th style="padding: 6px 8px; text-align: left; background: #f5f5f5; border-bottom: 1px solid #d4d4d4; font-size: 11px;">Correct Value (if different)</th>'
+        + '</tr></thead><tbody>';
+
+      var fields = [
+        { key: 'sqft', label: 'Total Finished Area (sq ft)', val: sub.sqft || 'N/A' },
+        { key: 'yearBuilt', label: 'Year Built', val: sub.yearBuilt || 'N/A' },
+        { key: 'bedrooms', label: 'Bedrooms', val: sub.bedrooms || 'N/A' },
+        { key: 'fullBaths', label: 'Full Baths', val: sub.fullBaths || 'N/A' },
+        { key: 'halfBaths', label: 'Half Baths', val: sub.halfBaths || 'N/A' },
+        { key: 'acreage', label: 'Acreage', val: sub.acreage ? sub.acreage.toFixed(2) : 'N/A' },
+        { key: 'buildingType', label: 'Building Type', val: sub.buildingType || 'N/A' },
+        { key: 'condition', label: 'Condition', val: sub.condition || 'N/A' },
+      ];
+
+      for (var i = 0; i < fields.length; i++) {
+        var f = fields[i];
+        html += '<tr>'
+          + '<td style="padding: 6px 8px; border-bottom: 1px solid #e5e5e5;">' + f.label + '</td>'
+          + '<td style="padding: 6px 8px; border-bottom: 1px solid #e5e5e5; font-family: monospace;">' + f.val + '</td>'
+          + '<td style="padding: 6px 8px; border-bottom: 1px solid #e5e5e5;">'
+          + '<input type="text" id="fa-err-' + f.key + '" placeholder="—" style="width: 100%; box-sizing: border-box; padding: 4px 6px; border: 1px solid #d4d4d4; border-radius: 4px; font-size: 12px; font-family: inherit;">'
+          + '</td></tr>';
+      }
+
+      html += '</tbody></table></div>';
+    }
+
+    if (relief.checked) {
+      html += '<div style="margin-bottom: 14px; padding: 10px 12px; background: #f0f9ff; border: 1px solid #93c5fd; border-radius: 6px;">'
+        + '<p style="font-size: 12px; color: #1e40af; margin: 0; line-height: 1.6;">Call <strong>(828) 250-4940</strong> to ask about eligibility for senior/disabled homeowner exclusions, agricultural present-use value, or other programs. These can significantly reduce your tax bill.</p>'
+        + '</div>';
+    }
+
+    container.innerHTML = html;
+  };
+
+  window.__generateFreeAppealLetter = function() {
+    var d = window.__freeAppealData;
+    if (!d) { alert('Property data not loaded. Please reload the page.'); return; }
+
+    var sub = d.subject;
+    var condition = document.getElementById('fa-condition');
+    var helene = document.getElementById('fa-helene');
+    var errors = document.getElementById('fa-errors');
+    var relief = document.getElementById('fa-relief');
+
+    var hasCondition = condition && condition.checked;
+    var hasHelene = helene && helene.checked;
+    var hasErrors = errors && errors.checked;
+    var hasRelief = relief && relief.checked;
+
+    var conditionText = hasCondition ? (document.getElementById('fa-condition-text') || {}).value || '' : '';
+    var heleneText = hasHelene ? (document.getElementById('fa-helene-text') || {}).value || '' : '';
+
+    // Collect record corrections
+    var corrections = [];
+    if (hasErrors) {
+      var errFields = [
+        { key: 'sqft', label: 'Total Finished Area (sq ft)', val: sub.sqft || 'N/A' },
+        { key: 'yearBuilt', label: 'Year Built', val: sub.yearBuilt || 'N/A' },
+        { key: 'bedrooms', label: 'Bedrooms', val: sub.bedrooms || 'N/A' },
+        { key: 'fullBaths', label: 'Full Baths', val: sub.fullBaths || 'N/A' },
+        { key: 'halfBaths', label: 'Half Baths', val: sub.halfBaths || 'N/A' },
+        { key: 'acreage', label: 'Acreage', val: sub.acreage ? sub.acreage.toFixed(2) : 'N/A' },
+        { key: 'buildingType', label: 'Building Type', val: sub.buildingType || 'N/A' },
+        { key: 'condition', label: 'Condition', val: sub.condition || 'N/A' },
+      ];
+      for (var i = 0; i < errFields.length; i++) {
+        var el = document.getElementById('fa-err-' + errFields[i].key);
+        var corrected = el ? el.value.trim() : '';
+        if (corrected && corrected !== '' + errFields[i].val) {
+          corrections.push({ label: errFields[i].label, onFile: '' + errFields[i].val, corrected: corrected });
+        }
+      }
+    }
+
+    // Build letter body paragraphs
+    var bodyParagraphs = [];
+
+    if (hasCondition) {
+      var para = 'The property has significant condition issues that affect its market value';
+      if (conditionText.trim()) {
+        para += ': ' + conditionText.trim();
+      }
+      para += '. I request that an appraiser inspect the property to verify its current condition.';
+      bodyParagraphs.push(para);
+    }
+
+    if (hasHelene) {
+      var para2 = 'The property was damaged by Tropical Storm Helene';
+      if (heleneText.trim()) {
+        para2 += ': ' + heleneText.trim();
+      }
+      para2 += '. Photos documenting the damage are attached. I request that the assessed value be adjusted to reflect the property\'s post-storm condition.';
+      bodyParagraphs.push(para2);
+    }
+
+    if (hasErrors && corrections.length > 0) {
+      var para3 = 'I have identified the following errors in the property record on file:\n';
+      for (var j = 0; j < corrections.length; j++) {
+        para3 += '\n  \u2022 ' + corrections[j].label + ': On file as ' + corrections[j].onFile + ', should be ' + corrections[j].corrected;
+      }
+      para3 += '\n\nI request that these corrections be made and the assessed value recalculated accordingly.';
+      bodyParagraphs.push(para3);
+    } else if (hasErrors) {
+      bodyParagraphs.push('I believe there are errors in the property record on file. I request that an appraiser review the property record for accuracy and that the assessed value be recalculated accordingly.');
+    }
+
+    if (hasRelief) {
+      bodyParagraphs.push('I would also like information about tax relief programs I may be eligible for.');
+    }
+
+    var dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    var fmtValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(sub.totalValue);
+
+    // Open print window
+    var printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alert('Please allow popups to generate your appeal letter.');
+      return;
+    }
+
+    var letterBodyHtml = bodyParagraphs.map(function(p) {
+      return '<p style="margin: 0 0 16px 0; white-space: pre-wrap;">' + p.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>';
+    }).join('');
+
+    var html = '<!DOCTYPE html>\n<html>\n<head>\n'
+      + '<title>Appeal Letter \u2014 ' + (sub.address || sub.pin) + '</title>\n'
+      + '<style>\n'
+      + '@media print { body { margin: 0; } .no-print { display: none !important; } }\n'
+      + 'body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; color: #1a1a1a; line-height: 1.7; max-width: 700px; margin: 0 auto; padding: 20px; font-size: 14px; }\n'
+      + '</style>\n'
+      + '</head>\n<body>\n'
+
+      // Save/Print button
+      + '<div class="no-print" style="background: #1B2A4A; color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center;">\n'
+      + '<p style="margin: 0 0 8px 0; font-weight: 700;">Your Appeal Letter is Ready</p>\n'
+      + '<p style="margin: 0 0 12px 0; font-size: 12px; opacity: 0.8;">Press Ctrl+P (or Cmd+P on Mac) to save as PDF or print.</p>\n'
+      + '<button onclick="window.print()" style="padding: 10px 24px; background: white; color: #1B2A4A; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px;">Save as PDF / Print</button>\n'
+      + '</div>\n'
+
+      // Letter
+      + '<p>' + dateStr + '</p>\n'
+      + '<p style="margin: 24px 0;">Buncombe County Tax Assessor\u2019s Office<br>182 College Street<br>Asheville, NC 28801</p>\n'
+      + '<p style="margin: 24px 0;"><strong>Re: Request for Review of 2026 Property Tax Assessment</strong><br>'
+      + 'Property: ' + (sub.address || '') + '<br>'
+      + 'PIN: ' + sub.pin + '</p>\n'
+      + '<p>Dear Tax Assessor:</p>\n'
+      + '<p>I am writing to request a review of the 2026 assessed value of ' + fmtValue + ' for my property at ' + (sub.address || sub.pin) + '.</p>\n'
+      + letterBodyHtml
+      + '<p>I am available to discuss this further or to schedule a property inspection at your convenience.</p>\n'
+      + '<p style="margin-top: 32px;">Respectfully,</p>\n'
+      + '<p style="margin-top: 40px; border-bottom: 1px solid #333; display: inline-block; min-width: 300px;">&nbsp;</p><br>\n'
+      + '<p style="margin-top: 4px;">' + (sub.owner || '').split(';')[0] + '<br>Property Owner<br>' + dateStr + '</p>\n'
+      + '<p style="margin-top: 24px;">Phone: _________________________<br>Email: _________________________</p>\n'
+
+      + '</body>\n</html>';
+
+    printWindow.document.write(html);
+    printWindow.document.close();
   };
 
   function generatePDF(data) {
@@ -509,6 +758,9 @@ ${a.medianSalePrice ? `
       const res = await fetch(`/api/appeal-screening/${pin}`);
       if (!res.ok) throw new Error('Screening failed');
       const data = await res.json();
+
+      // Store data for free appeal letter generator
+      window.__freeAppealData = data;
 
       const card = createScreeningCard(data);
       loading.replaceWith(card);
