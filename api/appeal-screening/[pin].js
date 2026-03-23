@@ -353,34 +353,18 @@ function analyzeMarketValueArgument(subject, topComps) {
     return { applicable: false, strength: "none", details: "No comparable sales found.", suggestedValue: null };
   }
 
-  // Only use comps with similarity > 50
+  // Only use comps with similarity > 50 — if fewer than 3, we don't have enough
+  // truly comparable data to make any market value claim
   const goodComps = topComps.filter(c => c.similarityScore > 50);
   if (goodComps.length < 3) {
-    // Use all comps but note thin data
-    const useComps = topComps.slice(0, 5);
-    const medianPrice = median(useComps.map(c => c.salePrice));
-    const ratio = subject.totalValue / medianPrice;
-
-    if (useComps.length < 2) {
-      return { applicable: false, strength: "none", details: "Not enough comparable sales to evaluate market value.", suggestedValue: null };
-    }
-
-    let strength = "none";
-    let details = "";
-    let suggestedValue = null;
-
-    if (ratio > 1.15) {
-      strength = "moderate"; // Cap at moderate with thin data
-      suggestedValue = roundTo5k(capReduction(subject.totalValue, medianPrice));
-      details = `Assessment ($${subject.totalValue.toLocaleString()}) is ${Math.round((ratio - 1) * 100)}% above median comp sale price ($${medianPrice.toLocaleString()}), but only ${useComps.length} comparable sale(s) found (3+ preferred).`;
-    } else if (ratio > 1.05) {
-      strength = "weak";
-      details = `Assessment is ${Math.round((ratio - 1) * 100)}% above median comp sale price ($${medianPrice.toLocaleString()}), with limited comparable data.`;
-    } else {
-      details = `Assessment ($${subject.totalValue.toLocaleString()}) is near or below median comp sale price ($${medianPrice.toLocaleString()}).`;
-    }
-
-    return { applicable: strength !== "none", strength, details, suggestedValue, medianSalePrice: medianPrice, compCount: useComps.length };
+    return {
+      applicable: false,
+      strength: "none",
+      details: `Not enough comparable sales found. Only ${goodComps.length} of ${topComps.length} recent sales were similar enough to your property to draw a meaningful comparison.`,
+      suggestedValue: null,
+      medianSalePrice: null,
+      compCount: goodComps.length,
+    };
   }
 
   // 3+ good comps
@@ -621,11 +605,15 @@ function analyzeAppealStrength(subject, scoredComps, landSales, equityComps) {
     suggestedValue = roundTo5k(suggestedValue);
   }
 
-  if (topComps.length === 0 && (!landSales || landSales.length === 0)) {
+  // Check if we have ANY applicable arguments
+  const anyApplicable = marketArg.applicable || landArg.applicable || (equityArg.applicable && equityArg.strength !== 'none');
+  
+  if (!anyApplicable && !hasStrong && !hasModerate && !hasWeak) {
     rating = "insufficient";
     score = 0;
-    message = "Not enough comparable sales data to evaluate your assessment. We recommend attending a free appeal clinic or getting a professional appraisal.";
+    message = "Not enough comparable data to evaluate your assessment. The properties that have sold recently in your area differ too much from yours to draw a reliable conclusion.";
     suggestedValue = null;
+    riskWarning = null;
   } else if (hasStrong) {
     rating = "strong";
     score = 85;
@@ -664,8 +652,8 @@ function analyzeAppealStrength(subject, scoredComps, landSales, equityComps) {
     message += " Note: No residential comparable sales found — evaluation is based on land data only.";
   }
 
-  // Build analysis summary
-  const medianSalePrice = topComps.length > 0 ? median(topComps.map(c => c.salePrice)) : null;
+  // Build analysis summary — only show median if we had enough good comps
+  const medianSalePrice = (rating !== 'insufficient' && marketArg.medianSalePrice) ? marketArg.medianSalePrice : null;
   const subjectPerSqft = subject.sqft > 0 ? subject.totalValue / subject.sqft : 0;
   const compPerSqftValues = topComps.filter(c => c.sqft > 0).map(c => c.salePrice / c.sqft);
   const medianCompPerSqft = compPerSqftValues.length > 0 ? median(compPerSqftValues) : 0;
