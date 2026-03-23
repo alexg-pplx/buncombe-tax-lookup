@@ -110,7 +110,7 @@ async function findComparableSales(subject) {
   const comps = [];
   const checked = new Set();
 
-  for (const r of results.slice(0, 30)) {
+  for (const r of results.slice(0, 15)) {
     const compPin = r.PIN;
     if (checked.has(compPin)) continue;
     checked.add(compPin);
@@ -263,8 +263,9 @@ async function findEquityComps(subject) {
     results = await queryArcGIS(COMP_LAYER, where, fields, 30);
   }
 
-  // Enrich top 20 with PRC building data, then filter by sqft/yearBuilt
-  const candidates = results.slice(0, 20);
+  // Enrich top 10 with PRC building data, then filter by sqft/yearBuilt
+  // (Keep this small to stay within Vercel timeout)
+  const candidates = results.slice(0, 10);
   const equityComps = [];
 
   for (const r of candidates) {
