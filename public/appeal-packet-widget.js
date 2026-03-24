@@ -858,9 +858,12 @@
     if (preview && textarea) {
       textarea.value = letter;
       preview.style.display = 'block';
-      if (genBtn) genBtn.style.display = 'none';
-      if (genNote) genNote.style.display = 'none';
-      // Scroll to the preview
+      if (genBtn) {
+        genBtn.textContent = 'Regenerate Letter';
+        genBtn.style.background = '#4b5563';
+        genBtn.disabled = false;
+      }
+      if (genNote) genNote.textContent = 'Changed your selections or corrections above? Click Regenerate to update the letter.';
       preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
@@ -1090,8 +1093,12 @@
     if (preview && textarea) {
       textarea.value = letter;
       preview.style.display = 'block';
-      if (genBtn) genBtn.style.display = 'none';
-      if (genNote) genNote.style.display = 'none';
+      // Change button to "Regenerate" instead of hiding it
+      if (genBtn) {
+        genBtn.textContent = 'Regenerate Letter';
+        genBtn.style.background = '#4b5563';
+      }
+      if (genNote) genNote.textContent = 'Changed your value choice or corrections above? Click Regenerate to update the letter.';
       preview.scrollIntoView({behavior:'smooth', block:'start'});
     }
   };
