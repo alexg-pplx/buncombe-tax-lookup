@@ -221,7 +221,83 @@
       `;
     }
 
-    // CTA section — for strong/moderate cases, same editable letter flow as weak cases
+    // Evidence section — show comps and land sales BEFORE value choice
+    if (screening.rating === 'strong' || screening.rating === 'moderate') {
+      // Comparable sales table
+      if (comps && comps.length > 0) {
+        html += `
+        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
+          <p style="font-size: 13px; font-weight: 700; color: #1B2A4A; margin: 0 0 10px 0;">Comparable Sales Used in This Analysis</p>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+              <thead>
+                <tr style="border-bottom: 2px solid #e5e5e5; text-align: left;">
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600;">Address</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Sale Price</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Sale Date</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Sq Ft</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Year Built</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Match</th>
+                </tr>
+              </thead>
+              <tbody>`;
+        comps.forEach((c, i) => {
+          const matchPct = c.similarityScore ? Math.round(c.similarityScore) + '%' : '—';
+          html += `
+                <tr style="border-bottom: 1px solid #f0f0f0;${i % 2 === 1 ? ' background: #fafafa;' : ''}">
+                  <td style="padding: 6px 8px;">${c.address || 'N/A'}</td>
+                  <td style="padding: 6px 8px; text-align: right; font-family: monospace; font-weight: 600;">${fmt(c.salePrice)}</td>
+                  <td style="padding: 6px 8px; text-align: right;">${c.saleDate || 'N/A'}</td>
+                  <td style="padding: 6px 8px; text-align: right;">${c.sqft ? c.sqft.toLocaleString() : '—'}</td>
+                  <td style="padding: 6px 8px; text-align: right;">${c.yearBuilt || '—'}</td>
+                  <td style="padding: 6px 8px; text-align: right;">${matchPct}</td>
+                </tr>`;
+        });
+        html += `
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">These are qualified sales within 24 months, ranked by similarity to your property. "Match" reflects how comparable each sale is based on location, size, age, and type.</p>
+        </div>`;
+      }
+
+      // Land sales table (for land-heavy properties)
+      if (data.landSales && data.landSales.length > 0 && screening.arguments && screening.arguments.landValue && screening.arguments.landValue.applicable) {
+        html += `
+        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
+          <p style="font-size: 13px; font-weight: 700; color: #1B2A4A; margin: 0 0 10px 0;">Vacant Land Sales (Supporting Land Value Argument)</p>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+              <thead>
+                <tr style="border-bottom: 2px solid #e5e5e5; text-align: left;">
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600;">Acres</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Sale Price</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">$/Acre</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Sale Date</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600;">Neighborhood</th>
+                </tr>
+              </thead>
+              <tbody>`;
+        data.landSales.forEach((ls, i) => {
+          html += `
+                <tr style="border-bottom: 1px solid #f0f0f0;${i % 2 === 1 ? ' background: #fafafa;' : ''}">
+                  <td style="padding: 6px 8px;">${ls.acreage ? ls.acreage.toFixed(2) : '—'}</td>
+                  <td style="padding: 6px 8px; text-align: right; font-family: monospace; font-weight: 600;">${fmt(ls.salePrice)}</td>
+                  <td style="padding: 6px 8px; text-align: right; font-family: monospace;">${fmt(Math.round(ls.pricePerAcre))}</td>
+                  <td style="padding: 6px 8px; text-align: right;">${ls.saleDate || 'N/A'}</td>
+                  <td style="padding: 6px 8px;">${ls.neighborhood || '—'}</td>
+                </tr>`;
+        });
+        html += `
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Vacant land sales in and around your neighborhood, used to evaluate whether your land assessment is reasonable.</p>
+        </div>`;
+      }
+    }
+
+    // CTA section — for strong/moderate cases
     if (screening.rating === 'strong' || screening.rating === 'moderate') {
       html += `
         <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
