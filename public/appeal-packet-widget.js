@@ -580,11 +580,11 @@
 
     // Disclaimer
     html += `
-      <div style="padding: 12px 20px; background: #fafafa; border-top: 1px solid #e5e5e5;">
-        <p style="font-size: 10px; color: #999; margin: 0; line-height: 1.5;">
-          This screening is based on publicly available county data and is for informational purposes only. 
+      <div style="padding: 14px 20px; background: #fef2f2; border-top: 2px solid #fca5a5;">
+        <p style="font-size: 13px; color: #991b1b; margin: 0; line-height: 1.6; font-weight: 500;">
+          <strong>Important:</strong> This screening is based on publicly available county data and is for informational purposes only. 
           It is not legal or tax advice. Filing an appeal does not guarantee a reduction — your value may stay the same, 
-          decrease, or increase. Not affiliated with Buncombe County government.
+          decrease, or increase. <strong>This tool is not affiliated with Buncombe County government.</strong>
         </p>
       </div>
     `;
