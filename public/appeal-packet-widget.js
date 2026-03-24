@@ -329,7 +329,8 @@
     // For strong/moderate: show detailed analysis + CTA
     if (screening.rating === 'strong' || screening.rating === 'moderate') {
       const a = screening.analysis || {};
-      const suggestedVal = screening.suggestedValue;
+      // Use screening suggested value, or fall back to median equity assessment for equity-only cases
+      const suggestedVal = screening.suggestedValue || (a.medianEquityAssessment && a.medianEquityAssessment < subject.totalValue ? a.medianEquityAssessment : null);
       html += `
         <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5; background: #f8fafc;">
           <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 10px 0;">Step 2: Review the Evidence</p>
@@ -428,6 +429,46 @@
             </table>
           </div>
           <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Vacant land sales in and around your neighborhood, used to evaluate whether your land assessment is reasonable.</p>
+        </div>`;
+      }
+
+      // Equity comps table (for equity-based arguments)
+      const equityComps = data.equityComps || [];
+      const equityArg = screening.arguments && screening.arguments.equity;
+      if (equityComps.length > 0 && equityArg && equityArg.applicable && equityArg.strength !== 'none') {
+        const medianEq = screening.analysis && screening.analysis.medianEquityAssessment ? screening.analysis.medianEquityAssessment : 0;
+        html += `
+        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
+          <p style="font-size: 13px; font-weight: 700; color: #1B2A4A; margin: 0 0 4px 0;">Similar Properties — Assessment Comparison</p>
+          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0; line-height: 1.5;">These are properties in your neighborhood with similar size and age. If your assessment is significantly higher than similar properties, that's an equity argument for your appeal.${medianEq ? ' The median assessment of these comparable properties is <strong>' + fmt(medianEq) + '</strong> vs. your <strong>' + fmt(subject.totalValue) + '</strong>.' : ''}</p>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+              <thead>
+                <tr style="border-bottom: 2px solid #e5e5e5; text-align: left;">
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600;">Address</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Assessed Value</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Sq Ft</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Year Built</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600;">Quality</th>
+                </tr>
+              </thead>
+              <tbody>`;
+        equityComps.forEach((ec, i) => {
+          const isHigher = ec.assessedValue > subject.totalValue * 0.9;
+          html += `
+                <tr style="border-bottom: 1px solid #f0f0f0;${i % 2 === 1 ? ' background: #fafafa;' : ''}">
+                  <td style="padding: 6px 8px;">${ec.address || 'N/A'}</td>
+                  <td style="padding: 6px 8px; text-align: right; font-family: monospace; font-weight: 600;${ec.assessedValue === 0 ? ' color: #999;' : ''}">${ec.assessedValue > 0 ? fmt(ec.assessedValue) : '$0 (pending)'}</td>
+                  <td style="padding: 6px 8px; text-align: right;">${ec.sqft ? ec.sqft.toLocaleString() : '—'}</td>
+                  <td style="padding: 6px 8px; text-align: right;">${ec.yearBuilt || '—'}</td>
+                  <td style="padding: 6px 8px;">${ec.quality || '—'}</td>
+                </tr>`;
+        });
+        html += `
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Properties in your neighborhood with similar square footage (±30%) and age (±15 years). An "equity" argument shows the county is assessing your property inconsistently compared to similar properties.</p>
         </div>`;
       }
     }
