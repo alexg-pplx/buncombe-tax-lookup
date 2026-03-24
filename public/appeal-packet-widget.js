@@ -436,7 +436,27 @@
     if (screening.rating === 'strong' || screening.rating === 'moderate') {
       html += `
         <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
-          <p style="font-size: 13px; color: #1B2A4A; margin: 0 0 8px 0; line-height: 1.6; font-weight: 600;">We can generate a free appeal letter with supporting evidence. Check any additional factors that apply:</p>
+
+          <!-- Step 3: Value choice (BEFORE generate) -->
+          <div style="margin-bottom: 14px; padding: 16px 14px; border: 1px solid #e5e5e5; border-radius: 8px; background: #f8fafc;">
+            <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 4px 0;">Step 3: Choose Your Requested Value</p>
+            <p style="font-size: 12px; color: #666; margin: 0 0 12px 0;">This is the value you'll ask the county to set your property at. ${screening.suggestedValue ? 'Based on the evidence above, we suggest <strong>' + fmt(screening.suggestedValue) + '</strong>.' : ''}</p>
+            <div style="display: grid; gap: 8px; margin-bottom: 10px;">
+              <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+                <input type="radio" name="value-choice" id="vc-county" value="county" style="margin-top: 3px;"> <span>Let the county recalculate based on the evidence <span style="font-size: 11px; color: #888;">(if you're unsure, this is safe)</span></span>
+              </label>
+              <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
+                <input type="radio" name="value-choice" id="vc-specific" value="specific" ${screening.suggestedValue ? 'checked' : ''} style="margin-top: 3px;" onchange="document.getElementById('vc-amount').focus()"> <span>Request a specific value: <input type="text" id="vc-amount" value="${screening.suggestedValue || ''}" placeholder="e.g. 750000" style="width: 120px; padding: 4px 8px; border: 1px solid #d4d4d4; border-radius: 4px; font-size: 13px; font-family: monospace;" onfocus="document.getElementById('vc-specific').checked=true"></span>
+              </label>
+            </div>
+            <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 8px 12px;">
+              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;">Not sure? Call <strong>(828) 250-4940</strong> or attend a free appeal clinic to discuss with an appraiser before submitting.</p>
+            </div>
+          </div>
+
+          <!-- Step 4: Additional factors + Generate -->
+          <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 4px 0;">Step 4: Generate Your Appeal Letter</p>
+          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0;">Check any additional factors that apply, then generate your letter.</p>
 
           <div style="display: grid; gap: 8px; margin-bottom: 14px;">
             <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
@@ -456,7 +476,18 @@
           <!-- Conditional fields container -->
           <div id="fa-conditional-fields"></div>
 
-          <!-- Generated letter preview -->
+          <button id="strong-generate-btn" onclick="window.__generateStrongAppealLetter()" style="
+            display: block; width: 100%; padding: 14px; border: none; border-radius: 8px;
+            background: #1B2A4A; color: white; font-size: 15px; font-weight: 700; cursor: pointer;
+            transition: background 0.2s; margin-bottom: 8px;
+          " onmouseover="this.style.background='#2d4470'" onmouseout="this.style.background='#1B2A4A'">
+            Generate Appeal Letter — Free
+          </button>
+          <p id="strong-generate-note" style="font-size: 11px; color: #999; text-align: center; margin: 0 0 14px 0;">
+            Free — includes appeal letter with comparable sales evidence.
+          </p>
+
+          <!-- Generated letter preview (appears AFTER clicking generate) -->
           <div id="strong-letter-preview" style="display: none; margin-bottom: 14px;">
             <p style="font-size: 12px; font-weight: 600; color: #333; margin: 0 0 8px 0;">Your appeal letter (you can edit before printing):</p>
             <textarea id="strong-letter-text" style="width: 100%; box-sizing: border-box; min-height: 400px; padding: 12px; border: 1px solid #d4d4d4; border-radius: 6px; font-size: 12px; font-family: 'Courier New', monospace; line-height: 1.6; resize: vertical; color: #333;"></textarea>
@@ -499,35 +530,6 @@
             </div>
           </div>
 
-          <!-- Step 3: Value choice -->
-          <div style="margin-bottom: 14px; padding: 16px 14px; border: 1px solid #e5e5e5; border-radius: 8px; background: #f8fafc;">
-            <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 4px 0;">Step 3: Choose Your Requested Value</p>
-            <p style="font-size: 12px; color: #666; margin: 0 0 12px 0;">This is the value you'll ask the county to set your property at. ${screening.suggestedValue ? 'Based on the evidence above, we suggest <strong>' + fmt(screening.suggestedValue) + '</strong>.' : ''}</p>
-            <div style="display: grid; gap: 8px; margin-bottom: 10px;">
-              <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="radio" name="value-choice" id="vc-county" value="county" style="margin-top: 3px;"> <span>Let the county recalculate based on the evidence <span style="font-size: 11px; color: #888;">(if you're unsure, this is safe)</span></span>
-              </label>
-              <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="radio" name="value-choice" id="vc-specific" value="specific" ${screening.suggestedValue ? 'checked' : ''} style="margin-top: 3px;" onchange="document.getElementById('vc-amount').focus()"> <span>Request a specific value: <input type="text" id="vc-amount" value="${screening.suggestedValue || ''}" placeholder="e.g. 750000" style="width: 120px; padding: 4px 8px; border: 1px solid #d4d4d4; border-radius: 4px; font-size: 13px; font-family: monospace;" onfocus="document.getElementById('vc-specific').checked=true"></span>
-              </label>
-            </div>
-            <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 8px 12px;">
-              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;">Not sure? Call <strong>(828) 250-4940</strong> or attend a free appeal clinic to discuss with an appraiser before submitting.</p>
-            </div>
-          </div>
-
-          <!-- Step 4: Generate -->
-          <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 10px 0;">Step 4: Generate Your Appeal Letter</p>
-          <button id="strong-generate-btn" onclick="window.__generateStrongAppealLetter()" style="
-            display: block; width: 100%; padding: 14px; border: none; border-radius: 8px;
-            background: #1B2A4A; color: white; font-size: 15px; font-weight: 700; cursor: pointer;
-            transition: background 0.2s;
-          " onmouseover="this.style.background='#2d4470'" onmouseout="this.style.background='#1B2A4A'">
-            Generate Appeal Letter — Free
-          </button>
-          <p id="strong-generate-note" style="font-size: 11px; color: #999; text-align: center; margin: 8px 0 0 0;">
-            Free — includes appeal letter with comparable sales evidence.
-          </p>
         </div>
       `;
     }
