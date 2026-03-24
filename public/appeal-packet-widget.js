@@ -329,28 +329,34 @@
     // For strong/moderate: show detailed analysis + CTA
     if (screening.rating === 'strong' || screening.rating === 'moderate') {
       const a = screening.analysis || {};
+      const suggestedVal = screening.suggestedValue;
       html += `
-        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
+        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5; background: #f8fafc;">
+          <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 10px 0;">Step 2: Review the Evidence</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;">
             <div style="text-align: center;">
               <div style="font-size: 10px; color: #999; text-transform: uppercase;">Your Assessment</div>
               <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${fmt(subject.totalValue)}</div>
             </div>
-
-            <div style="text-align: center;">
+            ${a.medianSalePrice ? `<div style="text-align: center;">
               <div style="font-size: 10px; color: #999; text-transform: uppercase;">Median Comp Sale</div>
-              <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${fmt(a.medianSalePrice || 0)}</div>
-            </div>
+              <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${fmt(a.medianSalePrice)}</div>
+            </div>` : ''}
+            ${suggestedVal ? `<div style="text-align: center;">
+              <div style="font-size: 10px; color: #999; text-transform: uppercase;">Suggested Value</div>
+              <div style="font-size: 16px; font-weight: 700; font-family: monospace; color: #16a34a;">${fmt(suggestedVal)}</div>
+            </div>` : ''}
             <div style="text-align: center;">
               <div style="font-size: 10px; color: #999; text-transform: uppercase;">Comps Found</div>
               <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${a.compCount}</div>
             </div>
           </div>
+          ${suggestedVal ? `<p style="font-size: 11px; color: #666; margin: 10px 0 0 0; line-height: 1.5;">The suggested value of <strong>${fmt(suggestedVal)}</strong> is based on comparable sales and land data in your area. You can use this as your requested value in Step 3, or choose a different amount.</p>` : ''}
         </div>
       `;
     }
 
-    // Evidence section — show comps and land sales BEFORE value choice
+    // Evidence section — show comps and land sales
     if (screening.rating === 'strong' || screening.rating === 'moderate') {
       // Comparable sales table
       if (comps && comps.length > 0) {
@@ -493,23 +499,25 @@
             </div>
           </div>
 
-          <!-- Value choice -->
-          <div style="margin-bottom: 14px; padding: 12px 14px; border: 1px solid #e5e5e5; border-radius: 8px; background: #fafafa;">
-            <p style="font-size: 13px; font-weight: 600; color: #333; margin: 0 0 8px 0;">What value do you want to request?</p>
+          <!-- Step 3: Value choice -->
+          <div style="margin-bottom: 14px; padding: 16px 14px; border: 1px solid #e5e5e5; border-radius: 8px; background: #f8fafc;">
+            <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 4px 0;">Step 3: Choose Your Requested Value</p>
+            <p style="font-size: 12px; color: #666; margin: 0 0 12px 0;">This is the value you'll ask the county to set your property at. ${screening.suggestedValue ? 'Based on the evidence above, we suggest <strong>' + fmt(screening.suggestedValue) + '</strong>.' : ''}</p>
             <div style="display: grid; gap: 8px; margin-bottom: 10px;">
               <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="radio" name="value-choice" id="vc-county" value="county" checked style="margin-top: 3px;"> <span>Let the county recalculate based on the evidence <span style="font-size: 11px; color: #888;">(recommended if you're unsure)</span></span>
+                <input type="radio" name="value-choice" id="vc-county" value="county" style="margin-top: 3px;"> <span>Let the county recalculate based on the evidence <span style="font-size: 11px; color: #888;">(if you're unsure, this is safe)</span></span>
               </label>
               <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="radio" name="value-choice" id="vc-specific" value="specific" style="margin-top: 3px;" onchange="document.getElementById('vc-amount').focus()"> <span>I want to request a specific value: <input type="text" id="vc-amount" placeholder="e.g. 750000" style="width: 110px; padding: 4px 8px; border: 1px solid #d4d4d4; border-radius: 4px; font-size: 13px;" onfocus="document.getElementById('vc-specific').checked=true"></span>
+                <input type="radio" name="value-choice" id="vc-specific" value="specific" ${screening.suggestedValue ? 'checked' : ''} style="margin-top: 3px;" onchange="document.getElementById('vc-amount').focus()"> <span>Request a specific value: <input type="text" id="vc-amount" value="${screening.suggestedValue || ''}" placeholder="e.g. 750000" style="width: 120px; padding: 4px 8px; border: 1px solid #d4d4d4; border-radius: 4px; font-size: 13px; font-family: monospace;" onfocus="document.getElementById('vc-specific').checked=true"></span>
               </label>
             </div>
             <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 8px 12px;">
-              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;">If you're unsure which option is better for your situation, call <strong>(828) 250-4940</strong> or attend a free appeal clinic to discuss with an appraiser before submitting.</p>
+              <p style="font-size: 11px; color: #6B5A1E; margin: 0; line-height: 1.6;">Not sure? Call <strong>(828) 250-4940</strong> or attend a free appeal clinic to discuss with an appraiser before submitting.</p>
             </div>
           </div>
 
-          <!-- Generate button -->
+          <!-- Step 4: Generate -->
+          <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 10px 0;">Step 4: Generate Your Appeal Letter</p>
           <button id="strong-generate-btn" onclick="window.__generateStrongAppealLetter()" style="
             display: block; width: 100%; padding: 14px; border: none; border-radius: 8px;
             background: #1B2A4A; color: white; font-size: 15px; font-weight: 700; cursor: pointer;
