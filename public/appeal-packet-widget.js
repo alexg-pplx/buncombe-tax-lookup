@@ -441,13 +441,14 @@
         html += `
         <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5;">
           <p style="font-size: 13px; font-weight: 700; color: #1B2A4A; margin: 0 0 4px 0;">Similar Properties — Assessment Comparison</p>
-          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0; line-height: 1.5;">These are properties in your neighborhood with similar size and age. If your assessment is significantly higher than similar properties, that's an equity argument for your appeal.${medianEq ? ' The median assessment of these comparable properties is <strong>' + fmt(medianEq) + '</strong> vs. your <strong>' + fmt(subject.totalValue) + '</strong>.' : ''}</p>
+          <p style="font-size: 12px; color: #666; margin: 0 0 10px 0; line-height: 1.5;">These are properties in your neighborhood with similar size and age. If your assessment is significantly higher than similar properties, that's an equity argument for your appeal.${medianEq ? ' The median assessment of these comparable properties is <strong>' + fmt(medianEq) + '</strong> vs. your <strong>' + fmt(subject.totalValue) + '</strong>.' : ''}${subject.sqft ? ' Your assessed value per square foot is <strong>$' + Math.round(subject.totalValue / subject.sqft).toLocaleString() + '/sq ft</strong>.' : ''}</p>
           <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
               <thead>
                 <tr style="border-bottom: 2px solid #e5e5e5; text-align: left;">
                   <th style="padding: 6px 8px; color: #888; font-weight: 600;">Address</th>
                   <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Assessed Value</th>
+                  <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">$/Sq Ft</th>
                   <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Sq Ft</th>
                   <th style="padding: 6px 8px; color: #888; font-weight: 600; text-align: right;">Year Built</th>
                   <th style="padding: 6px 8px; color: #888; font-weight: 600;">Quality</th>
@@ -460,6 +461,7 @@
                 <tr style="border-bottom: 1px solid #f0f0f0;${i % 2 === 1 ? ' background: #fafafa;' : ''}">
                   <td style="padding: 6px 8px;">${ec.address || 'N/A'}</td>
                   <td style="padding: 6px 8px; text-align: right; font-family: monospace; font-weight: 600;${ec.assessedValue === 0 ? ' color: #999;' : ''}">${ec.assessedValue > 0 ? fmt(ec.assessedValue) : '$0 (pending)'}</td>
+                  <td style="padding: 6px 8px; text-align: right; font-family: monospace;">${ec.assessedValue > 0 && ec.sqft ? '$' + Math.round(ec.assessedValue / ec.sqft).toLocaleString() : '—'}</td>
                   <td style="padding: 6px 8px; text-align: right;">${ec.sqft ? ec.sqft.toLocaleString() : '—'}</td>
                   <td style="padding: 6px 8px; text-align: right;">${ec.yearBuilt || '—'}</td>
                   <td style="padding: 6px 8px;">${ec.quality || '—'}</td>
