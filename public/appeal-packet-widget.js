@@ -272,15 +272,16 @@
               </div>
               <div style="font-size: 12px; color: #555; line-height: 1.7;">
                 <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to <strong>taxappeal.buncombenc.gov</strong>, search your PIN, click "Tax Appeal Request", and upload all pages as a PDF.</p>
-                <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign all pages, then mail or deliver to:<br>
+                <p style="margin: 0 0 8px 0;"><strong>Option 2: By Phone</strong> — Call <strong>(828) 250-4940</strong> to schedule a 20-minute call with a county appraiser to discuss your value.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 3: Mail or Drop Off</strong> — Print and sign all pages, then mail or deliver to:<br>
                   <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
                   <span style="margin-left: 16px;">182 College Street, Asheville, NC 28801</span></span><br>
                   <span style="font-size: 11px; color: #888;">We recommend certified mail or tracking for proof of delivery. Drop-off hours: Mon–Fri, 8 AM – 5 PM.</span></p>
-                <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring all printed pages and your revaluation notice.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 4: Attend a Free Clinic</strong> — Bring all printed pages and your revaluation notice.</p>
               </div>
               <div style="font-size: 11px; color: #666; line-height: 1.6; margin-top: 8px;">
-                <p style="margin: 0 0 4px 0;"><strong>Deadline:</strong> 30 days from the date on your revaluation notice. If you haven't received your notice, you have 30 days from when you receive it.</p>
-                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940, email realestate.questions@buncombenc.gov, or request an appointment with an appraiser online.</p>
+                <p style="margin: 0 0 4px 0;"><strong>Deadline:</strong> 30 days from the date you receive your notice of value, even after the deadline stated on the notice. The formal appeal deadline is May 5, 2026.</p>
+                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940 or email realestate.questions@buncombenc.gov.</p>
               </div>
               <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
                 <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with additional evidence:</p>
@@ -552,15 +553,16 @@
               </div>
               <div style="font-size: 12px; color: #555; line-height: 1.7;">
                 <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to <strong>taxappeal.buncombenc.gov</strong>, search your PIN, click "Tax Appeal Request", and upload all pages as a PDF.</p>
-                <p style="margin: 0 0 8px 0;"><strong>Option 2: Mail or Drop Off</strong> — Print and sign all pages, then mail or deliver to:<br>
+                <p style="margin: 0 0 8px 0;"><strong>Option 2: By Phone</strong> — Call <strong>(828) 250-4940</strong> to schedule a 20-minute call with a county appraiser to discuss your value.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 3: Mail or Drop Off</strong> — Print and sign all pages, then mail or deliver to:<br>
                   <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
                   <span style="margin-left: 16px;">182 College Street, Asheville, NC 28801</span></span><br>
                   <span style="font-size: 11px; color: #888;">We recommend certified mail or tracking for proof of delivery. Drop-off hours: Mon–Fri, 8 AM – 5 PM.</span></p>
-                <p style="margin: 0 0 8px 0;"><strong>Option 3: Attend a Free Clinic</strong> — Bring all printed pages and your revaluation notice.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 4: Attend a Free Clinic</strong> — Bring all printed pages and your revaluation notice.</p>
               </div>
               <div style="font-size: 11px; color: #666; line-height: 1.6; margin-top: 8px;">
-                <p style="margin: 0 0 4px 0;"><strong>Deadline:</strong> 30 days from the date on your revaluation notice. If you haven't received your notice, you have 30 days from when you receive it.</p>
-                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940, email realestate.questions@buncombenc.gov, or request an appointment with an appraiser online.</p>
+                <p style="margin: 0 0 4px 0;"><strong>Deadline:</strong> 30 days from the date you receive your notice of value, even after the deadline stated on the notice. The formal appeal deadline is May 5, 2026.</p>
+                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940 or email realestate.questions@buncombenc.gov.</p>
               </div>
               <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
                 <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with additional evidence:</p>
@@ -1340,13 +1342,15 @@
   <li>Mail or deliver to: <strong>Buncombe County Property Assessment, 182 College Street, Asheville, NC 28801</strong></li>
 </ol>
 
-<h3>Option 3: Attend an Appeal Clinic</h3>
+<h3>Option 3: Appeal by Phone</h3>
+<p>Call <strong>(828) 250-4940</strong> to schedule a 20-minute call with a county appraiser to discuss your value.</p>
+
+<h3>Option 4: Attend an Appeal Clinic</h3>
 <p>Bring this packet and your revaluation notice to a free appeal clinic. Visit buncombetaxlookup.com for clinic dates and locations.</p>
 
 <div class="info">
-  <strong>Important:</strong> File your appeal as soon as possible. The formal appeal deadline is May 5, 2026. 
-  Call (828) 250-4940 to confirm your specific deadline or if you have questions.
-  Allow at least 90 days for your appeal to be processed.
+  <strong>Important:</strong> File your appeal as soon as possible. You have 30 days from the date you receive your notice of value to appeal, even after the deadline stated on the notice. The formal appeal deadline is May 5, 2026. 
+  Call (828) 250-4940 with questions.
 </div>
 
 ${q.hasConditionIssues || q.hasStormDamage ? `
