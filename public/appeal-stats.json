@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-03-23",
-  "totalZeroNonExempt": 2672,
-  "confirmedAppeals": 1357,
-  "totalAppealValue": 1529151100,
-  "avgAppealValue": 1126861.5327929256,
-  "genuinelyZero": 1314,
+  "lastUpdated": "2026-03-24",
+  "totalZeroNonExempt": 2840,
+  "confirmedAppeals": 1257,
+  "totalAppealValue": 827043600,
+  "avgAppealValue": 657950.3579952267,
+  "genuinelyZero": 1582,
   "countyAnticipated": 10000,
-  "correctedTaxBase2026": 78179151100,
-  "correctedIncreasePct": 69.3,
+  "correctedTaxBase2026": 77477043600,
+  "correctedIncreasePct": 67.8,
   "source": "Buncombe County GIS + Property Record Card System",
   "wlosArticleUrl": "https://wlos.com/news/local/buncombe-county-appeals-property-value-assessment-homeowners-value-market-rent-community-commissioners-appraiser-tax-residents"
 }
