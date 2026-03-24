@@ -98,10 +98,10 @@
 
     // Hints: flag things that commonly deserve a second look
     const qualityHint = (subjectQuality.includes('CUST') || subjectQuality.includes('SUPR') || subjectQuality.includes('EXCEP'))
-      ? `<span style="display:block;font-size:11px;color:#b45309;margin-top:4px;">⚠ Your home is rated <strong>${subjectQuality}</strong> — a higher-than-average grade that significantly increases assessed value. Is this accurate?</span>`
+      ? `<span style="display:block;font-size:11px;color:#6b7280;margin-top:4px;">Quality reflects the original construction — how your home was built, not its current state. A custom-built home from the 1970s is still "custom quality." Age and wear should be reflected in the Condition rating below, not here.</span>`
       : '';
     const conditionHint = subjectCondition === 'NORMAL'
-      ? '<span style="display:block;font-size:11px;color:#b45309;margin-top:4px;">Almost every property in the county is listed as "Normal." If your home has real issues (roof, foundation, water damage, Helene damage), this may be wrong.</span>'
+      ? `<span style="display:block;font-size:11px;color:#b45309;margin-top:4px;">⚠ <strong>This is where most errors are.</strong> Almost every property in the county is listed as "Normal" — even homes with aging roofs, outdated systems, deferred maintenance, or Helene damage. If your home has real issues, change this. The county assessor has said condition corrections can quickly reduce your value.</span>`
       : '';
 
     // Build quality dropdown options
