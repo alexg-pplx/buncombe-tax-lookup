@@ -329,8 +329,9 @@
     // For strong/moderate: show detailed analysis + CTA
     if (screening.rating === 'strong' || screening.rating === 'moderate') {
       const a = screening.analysis || {};
-      // Use screening suggested value, or fall back to median equity assessment for equity-only cases
-      const suggestedVal = screening.suggestedValue || (a.medianEquityAssessment && a.medianEquityAssessment < subject.totalValue ? a.medianEquityAssessment : null);
+      // Only use the screening's suggested value (from market/land analysis). Don't suggest equity median — 
+      // equity is an inconsistency argument, not a specific value claim.
+      const suggestedVal = screening.suggestedValue || null;
       html += `
         <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5; background: #f8fafc;">
           <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 10px 0;">Step 2: Review the Evidence</p>
@@ -484,7 +485,7 @@
             <p style="font-size: 12px; color: #666; margin: 0 0 12px 0;">This is the value you'll ask the county to set your property at. ${screening.suggestedValue ? 'Based on the evidence above, we suggest <strong>' + fmt(screening.suggestedValue) + '</strong>.' : ''}</p>
             <div style="display: grid; gap: 8px; margin-bottom: 10px;">
               <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
-                <input type="radio" name="value-choice" id="vc-county" value="county" style="margin-top: 3px;"> <span>Let the county recalculate based on the evidence <span style="font-size: 11px; color: #888;">(if you're unsure, this is safe)</span></span>
+                <input type="radio" name="value-choice" id="vc-county" value="county" ${screening.suggestedValue ? '' : 'checked'} style="margin-top: 3px;"> <span>Let the county recalculate based on the evidence <span style="font-size: 11px; color: #888;">(if you're unsure, this is safe)</span></span>
               </label>
               <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: #333; cursor: pointer;">
                 <input type="radio" name="value-choice" id="vc-specific" value="specific" ${screening.suggestedValue ? 'checked' : ''} style="margin-top: 3px;" onchange="document.getElementById('vc-amount').focus()"> <span>Request a specific value: <input type="text" id="vc-amount" value="${screening.suggestedValue || ''}" placeholder="e.g. 750000" style="width: 120px; padding: 4px 8px; border: 1px solid #d4d4d4; border-radius: 4px; font-size: 13px; font-family: monospace;" onfocus="document.getElementById('vc-specific').checked=true"></span>
