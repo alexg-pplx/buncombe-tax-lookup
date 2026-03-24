@@ -71,6 +71,135 @@
 
     html += `</div>`; // Close header
 
+    // ============================================================
+    // PROPERTY RECORD REVIEW — shown for ALL ratings, before analysis
+    // ============================================================
+    const qualityLabels = {
+      'FAIR': 'Fair — Economy materials, minimal features',
+      'AVG': 'Average — Standard construction, meets building code',
+      'AVG +': 'Above Average — Better than standard, some upgrades',
+      'CUST -': 'Custom (Low) — Custom-built, modest finishes',
+      'CUST': 'Custom — Individually designed, higher-end materials',
+      'CUST +': 'Custom (High) — Top-tier custom construction',
+      'SUPR': 'Superior — Exceptionally high quality',
+      'EXCEP': 'Exceptional — Architect-designed, premium everything',
+    };
+    const conditionLabels = {
+      'POOR': 'Poor — Major structural or functional issues',
+      'BELOW NORMAL': 'Below Normal — Significant deferred maintenance',
+      'NORMAL': 'Normal — Average condition, typical wear and tear',
+      'GOOD': 'Good — Well-maintained, minimal issues',
+      'EXCELLENT': 'Excellent — Like-new condition',
+    };
+    const subjectQuality = (subject.quality || '').trim();
+    const subjectCondition = (subject.condition || 'NORMAL').trim();
+    const qualityDisplay = qualityLabels[subjectQuality] || subjectQuality || 'Not specified';
+    const conditionDisplay = conditionLabels[subjectCondition] || subjectCondition || 'Not specified';
+
+    // Hints: flag things that commonly deserve a second look
+    const qualityHint = (subjectQuality.includes('CUST') || subjectQuality.includes('SUPR') || subjectQuality.includes('EXCEP'))
+      ? `<span style="display:block;font-size:11px;color:#b45309;margin-top:4px;">⚠ Your home is rated <strong>${subjectQuality}</strong> — a higher-than-average grade that significantly increases assessed value. Is this accurate?</span>`
+      : '';
+    const conditionHint = subjectCondition === 'NORMAL'
+      ? '<span style="display:block;font-size:11px;color:#b45309;margin-top:4px;">Almost every property in the county is listed as "Normal." If your home has real issues (roof, foundation, water damage, Helene damage), this may be wrong.</span>'
+      : '';
+
+    // Build quality dropdown options
+    const qualityOptions = ['FAIR','AVG','AVG +','CUST -','CUST','CUST +','SUPR','EXCEP'].map(q => {
+      const lab = qualityLabels[q] || q;
+      const sel = q === subjectQuality ? ' selected' : '';
+      return `<option value="${q}"${sel}>${lab}</option>`;
+    }).join('');
+
+    const conditionOptions = ['POOR','BELOW NORMAL','NORMAL','GOOD','EXCELLENT'].map(c => {
+      const lab = conditionLabels[c] || c;
+      const sel = c === subjectCondition ? ' selected' : '';
+      return `<option value="${c}"${sel}>${lab}</option>`;
+    }).join('');
+
+    html += `
+      <div style="padding: 16px 20px; border-bottom: 1px solid #e5e5e5; background: #f8fafc;">
+        <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 4px 0;">Step 1: Review Your Property Record</p>
+        <p style="font-size: 12px; color: #666; margin: 0 0 12px 0; line-height: 1.5;">This is what the county has on file. Errors here directly affect your assessed value. If anything is wrong, correct it below — we'll include the corrections in your appeal letter.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+          <div>
+            <label style="display:block;font-size:11px;color:#888;text-transform:uppercase;margin-bottom:3px;">Heated Sq Ft</label>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:14px;font-weight:600;font-family:monospace;">${subject.sqft ? subject.sqft.toLocaleString() : 'N/A'}</span>
+              <input type="text" id="prc-sqft" placeholder="Correct value" style="width:90px;padding:4px 8px;border:1px solid #d4d4d4;border-radius:4px;font-size:12px;font-family:monospace;" oninput="window.__prcCorrectionChanged()">
+            </div>
+          </div>
+          <div>
+            <label style="display:block;font-size:11px;color:#888;text-transform:uppercase;margin-bottom:3px;">Bedrooms</label>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:14px;font-weight:600;font-family:monospace;">${subject.bedrooms || 'N/A'}</span>
+              <input type="text" id="prc-beds" placeholder="Correct" style="width:60px;padding:4px 8px;border:1px solid #d4d4d4;border-radius:4px;font-size:12px;" oninput="window.__prcCorrectionChanged()">
+            </div>
+          </div>
+          <div>
+            <label style="display:block;font-size:11px;color:#888;text-transform:uppercase;margin-bottom:3px;">Full Baths</label>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:14px;font-weight:600;font-family:monospace;">${subject.fullBaths || 'N/A'}</span>
+              <input type="text" id="prc-fullbaths" placeholder="Correct" style="width:60px;padding:4px 8px;border:1px solid #d4d4d4;border-radius:4px;font-size:12px;" oninput="window.__prcCorrectionChanged()">
+            </div>
+          </div>
+          <div>
+            <label style="display:block;font-size:11px;color:#888;text-transform:uppercase;margin-bottom:3px;">Half Baths</label>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:14px;font-weight:600;font-family:monospace;">${subject.halfBaths || 0}</span>
+              <input type="text" id="prc-halfbaths" placeholder="Correct" style="width:60px;padding:4px 8px;border:1px solid #d4d4d4;border-radius:4px;font-size:12px;" oninput="window.__prcCorrectionChanged()">
+            </div>
+          </div>
+          <div>
+            <label style="display:block;font-size:11px;color:#888;text-transform:uppercase;margin-bottom:3px;">Year Built</label>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:14px;font-weight:600;font-family:monospace;">${subject.yearBuilt || 'N/A'}</span>
+              <input type="text" id="prc-yearbuilt" placeholder="Correct" style="width:70px;padding:4px 8px;border:1px solid #d4d4d4;border-radius:4px;font-size:12px;" oninput="window.__prcCorrectionChanged()">
+            </div>
+          </div>
+          <div>
+            <label style="display:block;font-size:11px;color:#888;text-transform:uppercase;margin-bottom:3px;">Acreage</label>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:14px;font-weight:600;font-family:monospace;">${subject.acreage ? subject.acreage.toFixed(2) : 'N/A'}</span>
+              <input type="text" id="prc-acreage" placeholder="Correct" style="width:70px;padding:4px 8px;border:1px solid #d4d4d4;border-radius:4px;font-size:12px;" oninput="window.__prcCorrectionChanged()">
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+          <div>
+            <label style="display:block;font-size:11px;color:#888;text-transform:uppercase;margin-bottom:3px;">Quality Grade</label>
+            <div>
+              <span style="font-size:13px;font-weight:600;">${qualityDisplay}</span>
+              ${qualityHint}
+              <select id="prc-quality" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid #d4d4d4;border-radius:4px;font-size:12px;background:white;" onchange="window.__prcCorrectionChanged()">
+                <option value="">— No correction needed —</option>
+                ${qualityOptions}
+              </select>
+            </div>
+          </div>
+          <div>
+            <label style="display:block;font-size:11px;color:#888;text-transform:uppercase;margin-bottom:3px;">Condition</label>
+            <div>
+              <span style="font-size:13px;font-weight:600;">${conditionDisplay}</span>
+              ${conditionHint}
+              <select id="prc-condition" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid #d4d4d4;border-radius:4px;font-size:12px;background:white;" onchange="window.__prcCorrectionChanged()">
+                <option value="">— No correction needed —</option>
+                ${conditionOptions}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="prc-corrections-banner" style="display:none; background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 8px 12px; margin-top: 8px;">
+          <p style="font-size: 12px; color: #6B5A1E; margin: 0; font-weight: 600;">⚠ You've noted corrections. These will be included in your appeal letter. The screening analysis below is based on the county's current (uncorrected) data.</p>
+        </div>
+
+        <p style="font-size: 11px; color: #999; margin: 10px 0 0 0;">Compare against your <a href="https://prc-buncombe.spatialest.com/#/property/${subject.pin}" target="_blank" style="color: #2563eb;">full property record card</a> for complete details.</p>
+      </div>
+    `;
+
     // For weak/insufficient: constructive guidance with integrated form helper
     if (screening.rating === 'weak' || screening.rating === 'insufficient') {
       const a = screening.analysis || {};
@@ -466,6 +595,48 @@
   // Store screening data globally so the free letter generator can access it
   window.__freeAppealData = null;
 
+  // PRC Correction handler — shows/hides the corrections banner
+  window.__prcCorrectionChanged = function() {
+    var fields = ['prc-sqft','prc-beds','prc-fullbaths','prc-halfbaths','prc-yearbuilt','prc-acreage'];
+    var hasCorrection = false;
+    fields.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.value.trim()) hasCorrection = true;
+    });
+    var qualityEl = document.getElementById('prc-quality');
+    var conditionEl = document.getElementById('prc-condition');
+    if (qualityEl && qualityEl.value) hasCorrection = true;
+    if (conditionEl && conditionEl.value) hasCorrection = true;
+    var banner = document.getElementById('prc-corrections-banner');
+    if (banner) banner.style.display = hasCorrection ? 'block' : 'none';
+  };
+
+  // Collect PRC corrections as text lines for the appeal letter
+  window.__getPrcCorrections = function(subject) {
+    var lines = [];
+    var sqft = (document.getElementById('prc-sqft') || {}).value;
+    if (sqft && sqft.trim()) lines.push('The county records show ' + (subject.sqft || 'N/A') + ' heated square feet; the actual heated square footage is ' + sqft.trim() + '.');
+    var beds = (document.getElementById('prc-beds') || {}).value;
+    if (beds && beds.trim()) lines.push('The county records show ' + (subject.bedrooms || 'N/A') + ' bedrooms; the actual number is ' + beds.trim() + '.');
+    var fb = (document.getElementById('prc-fullbaths') || {}).value;
+    if (fb && fb.trim()) lines.push('The county records show ' + (subject.fullBaths || 'N/A') + ' full bathrooms; the actual number is ' + fb.trim() + '.');
+    var hb = (document.getElementById('prc-halfbaths') || {}).value;
+    if (hb && hb.trim()) lines.push('The county records show ' + (subject.halfBaths || 0) + ' half bathrooms; the actual number is ' + hb.trim() + '.');
+    var yb = (document.getElementById('prc-yearbuilt') || {}).value;
+    if (yb && yb.trim()) lines.push('The county records show the year built as ' + (subject.yearBuilt || 'N/A') + '; the actual year built is ' + yb.trim() + '.');
+    var ac = (document.getElementById('prc-acreage') || {}).value;
+    if (ac && ac.trim()) lines.push('The county records show ' + (subject.acreage ? subject.acreage.toFixed(2) : 'N/A') + ' acres; the actual acreage is ' + ac.trim() + '.');
+    var qualityEl = document.getElementById('prc-quality');
+    if (qualityEl && qualityEl.value && qualityEl.value !== (subject.quality || '').trim()) {
+      lines.push('The county records show a quality grade of "' + (subject.quality || 'N/A') + '"; I believe the correct grade is "' + qualityEl.value + '" based on the actual construction quality of this home.');
+    }
+    var condEl = document.getElementById('prc-condition');
+    if (condEl && condEl.value && condEl.value !== (subject.condition || 'NORMAL').trim()) {
+      lines.push('The county records show the condition as "' + (subject.condition || 'NORMAL') + '"; the actual condition is "' + condEl.value + '".');
+    }
+    return lines;
+  };
+
   window.__freeAppealCheckboxChanged = function() {
     var condition = document.getElementById('fa-condition');
     var helene = document.getElementById('fa-helene');
@@ -635,6 +806,16 @@
 
     if (hasRelief) {
       bodyParagraphs.push('I would also like information about tax relief programs I may be eligible for.');
+    }
+
+    // Add PRC corrections from the Step 1 review card
+    var prcCorrections = window.__getPrcCorrections ? window.__getPrcCorrections(sub) : [];
+    if (prcCorrections.length > 0 && !hasErrors) {
+      // Only add if the "errors" checkbox wasn't already checked (to avoid duplication)
+      bodyParagraphs.push('I have identified the following errors in the property record on file:\n\n' + prcCorrections.join('\n') + '\n\nI request that these corrections be made and the assessed value recalculated accordingly.');
+    } else if (prcCorrections.length > 0 && hasErrors) {
+      // Merge PRC corrections into the existing errors paragraph
+      bodyParagraphs.push('Additionally, based on my review of the property record card:\n\n' + prcCorrections.join('\n'));
     }
 
     var dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -852,6 +1033,19 @@
         letter += '  - ' + corrections[k].label + ': On file as ' + corrections[k].onFile + ', should be ' + corrections[k].corrected + '\n';
       }
       letter += '\nI request that these corrections be made and the assessed value recalculated accordingly.\n\n';
+    }
+
+    // Add PRC corrections from the Step 1 review card
+    var prcCorrections = window.__getPrcCorrections ? window.__getPrcCorrections(sub) : [];
+    if (prcCorrections.length > 0) {
+      if (!hasErrors || corrections.length === 0) {
+        letter += 'I have identified the following errors in the property record on file:\n\n';
+        letter += prcCorrections.join('\n') + '\n\n';
+        letter += 'I request that these corrections be made and the assessed value recalculated accordingly.\n\n';
+      } else {
+        letter += 'Additionally, based on my review of the property record card:\n\n';
+        letter += prcCorrections.join('\n') + '\n\n';
+      }
     }
 
     // Closing — based on user's value choice
