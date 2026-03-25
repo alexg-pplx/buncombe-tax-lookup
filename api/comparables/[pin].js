@@ -1,4 +1,4 @@
-const { queryArcGIS, parseValue } = require("../_shared");
+const { queryArcGIS, parseValue, sanitizePin } = require("../_shared");
 
 // Use property_bc_dis layer which has actual sale prices (not stamps values)
 const SALES_LAYER = "https://gis.buncombecounty.org/arcgis/rest/services/property_bc_dis/MapServer/1";
@@ -56,8 +56,8 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   try {
-    const { pin: rawPin } = req.query;
-    if (!rawPin) return res.status(400).json({ error: "Missing PIN" });
+    const rawPin = sanitizePin(req.query.pin);
+    if (!rawPin) return res.status(400).json({ error: "Invalid PIN" });
 
     // Accept both 10-digit pin and 15-digit pinnum formats
     // The site's hash router uses 15-digit pinnum (e.g., 964935705100000)
@@ -302,6 +302,6 @@ module.exports = async function handler(req, res) {
     console.error("Comparables error:", error);
     res
       .status(500)
-      .json({ error: error.message || "Failed to fetch comparables" });
+      .json({ error: "Failed to fetch comparables" });
   }
 };

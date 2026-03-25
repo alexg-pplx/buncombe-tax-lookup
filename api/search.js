@@ -27,6 +27,6 @@ module.exports = async function handler(req, res) {
     res.json({ results, count: results.length });
   } catch (error) {
     console.error("Search error:", error);
-    res.status(500).json({ error: error.message || "Search failed" });
+    res.status(500).json({ error: "Search failed" });
   }
 };

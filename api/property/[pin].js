@@ -1,11 +1,12 @@
-const { CURRENT_LAYER, PREVIOUS_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS, queryArcGIS, parseValue, derivePropertyLocation, detectTaxDistrict, getNeighborhoodData } = require("../_shared");
+const { CURRENT_LAYER, PREVIOUS_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS, queryArcGIS, parseValue, sanitizePin, derivePropertyLocation, detectTaxDistrict, getNeighborhoodData } = require("../_shared");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   if (req.method === "OPTIONS") return res.status(200).end();
 
   try {
-    const { pin } = req.query;
+    const pin = sanitizePin(req.query.pin);
+    if (!pin) return res.status(400).json({ error: "Invalid PIN" });
 
     const [currentResults, previousResults] = await Promise.all([
       queryArcGIS(CURRENT_LAYER, `PIN = '${pin}'`, CURRENT_FIELDS, 1),
@@ -84,6 +85,6 @@ module.exports = async function handler(req, res) {
     res.json(property);
   } catch (error) {
     console.error("Property detail error:", error);
-    res.status(500).json({ error: error.message || "Failed to fetch property details" });
+    res.status(500).json({ error: "Failed to fetch property details" });
   }
 };

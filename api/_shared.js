@@ -78,12 +78,18 @@ async function queryArcGIS(layerUrl, where, outFields, limit = 50) {
   return (data.features || []).map(f => f.attributes);
 }
 
+function escapeArcGIS(str) {
+  // Remove any characters that could break ArcGIS WHERE clause syntax
+  // Allow only alphanumeric, spaces, and hyphens
+  return str.replace(/[^a-zA-Z0-9\s\-]/g, "").trim();
+}
+
 function buildWhereClause(searchType, query) {
-  const sanitized = query.replace(/[,.'\"]/g, " ").replace(/\s+/g, " ").trim().toUpperCase();
-  const sqlSafe = sanitized.replace(/'/g, "''");
+  const sanitized = escapeArcGIS(query).toUpperCase();
   switch (searchType) {
     case "owner": {
-      const words = sqlSafe.split(/\s+/).filter(Boolean);
+      const words = sanitized.split(/\s+/).filter(Boolean);
+      if (words.length === 0) throw new Error("Empty search query");
       if (words.length === 1) return `UPPER(Owner) LIKE '%${words[0]}%'`;
       return words.map(w => `UPPER(Owner) LIKE '%${w}%'`).join(" AND ");
     }
@@ -91,7 +97,7 @@ function buildWhereClause(searchType, query) {
       const STREET_TYPES = new Set(["ST", "RD", "AVE", "DR", "LN", "CT", "CIR", "WAY", "PL", "BLVD",
         "TRL", "LOOP", "RUN", "PKWY", "HWY", "EXT", "XING", "TER", "TERR", "PATH", "PASS", "COVE"]);
       const PREFIXES = new Set(["N", "S", "E", "W", "NE", "NW", "SE", "SW"]);
-      const parts = sqlSafe.split(/\s+/);
+      const parts = sanitized.split(/\s+/);
       const isNumeric = /^\d+$/.test(parts[0]);
       let houseNum = "";
       let streetWords = [];
@@ -114,10 +120,14 @@ function buildWhereClause(searchType, query) {
       if (streetName) {
         return `UPPER(StreetName) LIKE '%${streetName}%'`;
       }
-      return `UPPER(StreetName) LIKE '%${sqlSafe}%'`;
+      return `UPPER(StreetName) LIKE '%${sanitized}%'`;
     }
-    case "pin":
-      return `PIN = '${sqlSafe}'`;
+    case "pin": {
+      // PINs are strictly numeric — reject anything else
+      const cleanPin = sanitized.replace(/[^0-9]/g, "");
+      if (!cleanPin) throw new Error("Invalid PIN");
+      return `PIN = '${cleanPin}'`;
+    }
     default:
       throw new Error("Invalid search type");
   }
@@ -178,9 +188,21 @@ function getNeighborhoodData(code) {
   };
 }
 
+function sanitizePin(pin) {
+  // PINs are numeric only (10 or 15 digits)
+  const clean = (pin || "").replace(/[^0-9]/g, "");
+  if (!clean || (clean.length !== 10 && clean.length !== 15)) return null;
+  return clean;
+}
+
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
 module.exports = {
   CURRENT_LAYER, PREVIOUS_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS,
-  queryArcGIS, buildWhereClause, parseValue,
+  queryArcGIS, buildWhereClause, parseValue, sanitizePin, escapeHtml,
   derivePropertyLocation, detectTaxDistrict,
   NEIGHBORHOOD_STATS, NEIGHBORHOOD_LABELS, getNeighborhoodData, getNeighborhoodPercentile,
 };

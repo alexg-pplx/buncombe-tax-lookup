@@ -1,4 +1,4 @@
-const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, derivePropertyLocation } = require("../_shared");
+const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, derivePropertyLocation } = require("../_shared");
 
 // Both residential comps and vacant land use opendata layer
 // Residential comps are verified as Qualified Sales through PRC transfer history
@@ -716,8 +716,8 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   try {
-    const { pin } = req.query;
-    if (!pin) return res.status(400).json({ error: "PIN required" });
+    const pin = sanitizePin(req.query.pin);
+    if (!pin) return res.status(400).json({ error: "Invalid PIN" });
 
     const subject = await getPropertyDetails(pin);
     if (!subject) return res.status(404).json({ error: "Property not found" });
@@ -775,6 +775,6 @@ module.exports = async function handler(req, res) {
     });
   } catch (error) {
     console.error("Appeal screening error:", error);
-    res.status(500).json({ error: error.message || "Screening failed" });
+    res.status(500).json({ error: "Screening failed" });
   }
 };

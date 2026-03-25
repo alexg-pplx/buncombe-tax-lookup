@@ -1,4 +1,4 @@
-const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue } = require("../_shared");
+const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin } = require("../_shared");
 
 const PRC_BASE = "https://prc-buncombe.spatialest.com/api/v1/recordcard";
 
@@ -11,8 +11,8 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
   
   try {
-    const { pin } = req.query;
-    if (!pin) return res.status(400).json({ error: "PIN required" });
+    const pin = sanitizePin(req.query.pin);
+    if (!pin) return res.status(400).json({ error: "Invalid PIN" });
     
     // Get questionnaire answers from POST body or query params
     const answers = req.method === "POST" ? req.body : {};
@@ -182,7 +182,7 @@ module.exports = async function handler(req, res) {
     res.json(packetData);
   } catch (error) {
     console.error("Appeal packet error:", error);
-    res.status(500).json({ error: error.message || "Packet generation failed" });
+    res.status(500).json({ error: "Packet generation failed" });
   }
 };
 
