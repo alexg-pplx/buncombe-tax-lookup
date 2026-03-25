@@ -1,10 +1,19 @@
 {
+  "crons": [
+    {
+      "path": "/api/cron/appeal-tracker",
+      "schedule": "0 10 * * *"
+    }
+  ],
   "functions": {
     "api/appeal-screening/[pin].js": {
       "maxDuration": 30
     },
     "api/appeal-packet/[pin].js": {
       "maxDuration": 30
+    },
+    "api/cron/appeal-tracker.js": {
+      "maxDuration": 60
     }
   },
   "rewrites": [
@@ -16,6 +25,7 @@
     { "source": "/api/comparables/:pin", "destination": "/api/comparables/[pin]" },
     { "source": "/api/appeal-screening/:pin", "destination": "/api/appeal-screening/[pin]" },
     { "source": "/api/appeal-packet/:pin", "destination": "/api/appeal-packet/[pin]" },
+    { "source": "/api/cron/appeal-tracker", "destination": "/api/cron/appeal-tracker" },
     { "source": "/(.*)", "destination": "/public/$1" }
   ],
   "headers": [
