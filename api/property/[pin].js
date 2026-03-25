@@ -47,7 +47,7 @@ module.exports = async function handler(req, res) {
 
     const property = {
       pin: current.PIN,
-      owner: current.Owner || "",
+      owner: (current.Owner || "").replace(/;/g, " & "),
       houseNumber: current.HouseNumber || "",
       streetPrefix: current.StreetPrefix || "",
       streetName: current.StreetName || "",

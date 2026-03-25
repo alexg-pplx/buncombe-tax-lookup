@@ -260,18 +260,13 @@
               <button onclick="navigator.clipboard.writeText(document.getElementById('fa-letter-text').value).then(function(){this.textContent='Copied!'}.bind(this))" style="flex: 1; padding: 10px; border: 1px solid #d4d4d4; border-radius: 6px; background: white; color: #555; font-size: 13px; font-weight: 600; cursor: pointer;">Copy to Clipboard</button>
             </div>
             <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Edit the letter above as needed, then print or copy.</p>
-            <div style="text-align: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e5e5;">
-              <p style="font-size: 12px; color: #666; margin: 0 0 8px 0;">This tool is free. If it helped you, consider supporting it.</p>
-              <a href="https://buymeacoffee.com/buncombetaxlookup" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 8px 20px; background: #FFDD00; color: #000; font-size: 13px; font-weight: 600; border-radius: 6px; text-decoration: none;">Buy Me a Coffee ☕</a>
-            </div>
-
             <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
               <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
               <div style="background: #fef2f2; border: 1px solid #fca5a5; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px;">
                 <p style="font-size: 12px; color: #991b1b; margin: 0; font-weight: 600;">Important: Appeals submitted without supporting documentation will be denied. Print ALL pages, not just the letter.</p>
               </div>
               <div style="font-size: 12px; color: #555; line-height: 1.7;">
-                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to <strong>taxappeal.buncombenc.gov</strong>, search your PIN, click "Tax Appeal Request", and upload all pages as a PDF.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to <a href="https://taxappeal.buncombenc.gov" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">taxappeal.buncombenc.gov</a>, search your PIN, click "Tax Appeal Request", and upload all pages as a PDF.</p>
                 <p style="margin: 0 0 8px 0;"><strong>Option 2: By Phone</strong> — Call <strong>(828) 250-4940</strong> to schedule a 20-minute call with a county appraiser to discuss your value.</p>
                 <p style="margin: 0 0 8px 0;"><strong>Option 3: Mail or Drop Off</strong> — Print and sign all pages, then mail or deliver to:<br>
                   <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
@@ -281,7 +276,7 @@
               </div>
               <div style="font-size: 11px; color: #666; line-height: 1.6; margin-top: 8px;">
                 <p style="margin: 0 0 4px 0;"><strong>Deadline:</strong> 30 days from the date you receive your notice of value, even after the deadline stated on the notice. The formal appeal deadline is May 5, 2026.</p>
-                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940 or email realestate.questions@buncombenc.gov.</p>
+                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940 or email <a href="mailto:realestate.questions@buncombenc.gov" style="color: #2563eb; text-decoration: underline;">realestate.questions@buncombenc.gov</a>.</p>
               </div>
               <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
                 <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with additional evidence:</p>
@@ -291,6 +286,10 @@
                   <li>A recent appraisal if you have one</li>
                   <li>Any other documentation that supports your case</li>
                 </ul>
+              </div>
+              <div style="text-align: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
+                <p style="font-size: 12px; color: #666; margin: 0 0 8px 0;">This tool is free. If it helped you, consider supporting it.</p>
+                <a href="https://buymeacoffee.com/buncombetaxlookup" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 8px 20px; background: #FFDD00; color: #000; font-size: 13px; font-weight: 600; border-radius: 6px; text-decoration: none;">Buy Me a Coffee ☕</a>
               </div>
             </div>
           </div>
@@ -306,13 +305,14 @@
           </p>
 
           <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
-            <p style="font-size: 12px; color: #555; margin: 0 0 6px 0; line-height: 1.6;">You can also call <strong>(828) 250-4940</strong>, email <strong>realestate.questions@buncombenc.gov</strong>, or request an appointment with an appraiser. Free appeal clinics:</p>
+            <p style="font-size: 12px; color: #555; margin: 0 0 6px 0; line-height: 1.6;">You can also call <strong>(828) 250-4940</strong>, email <a href="mailto:realestate.questions@buncombenc.gov" style="color: #2563eb; text-decoration: underline;">realestate.questions@buncombenc.gov</a>, or request an appointment with an appraiser. Free appeal clinics:</p>
             <div style="font-size: 12px; color: #555; margin: 6px 0 0 0; line-height: 1.8;">
               ${(function() {
                 const clinics = [
                   { d: new Date(2026,2,25), t: 'March 25, 3:30\u20136 PM', l: 'Enka-Candler Library, 1404 Sand Hill Rd' },
                   { d: new Date(2026,2,26), t: 'March 26, 6\u20138 PM', l: 'Southside Community Center, 285 Livingston St' },
                   { d: new Date(2026,3,1), t: 'April 1, 4\u20136:30 PM', l: 'Skyland/South Buncombe Library, 260 Overlook Rd' },
+                  { d: new Date(2026,3,2), t: 'April 2, 5\u20137 PM', l: 'Fairview Library, 1 Taylor Rd' },
                   { d: new Date(2026,3,9), t: 'April 9, 4:30\u20136:30 PM', l: 'Weaverville Community Center, 60 Lakeshore Dr' },
                   { d: new Date(2026,3,16), t: 'April 16, 6\u20138:30 PM', l: 'Leicester Community Center, 2979 New Leicester Hwy' },
                 ];
@@ -541,18 +541,13 @@
               <button onclick="navigator.clipboard.writeText(document.getElementById('strong-letter-text').value).then(function(){this.textContent='Copied!'}.bind(this))" style="flex: 1; padding: 10px; border: 1px solid #d4d4d4; border-radius: 6px; background: white; color: #555; font-size: 13px; font-weight: 600; cursor: pointer;">Copy to Clipboard</button>
             </div>
             <p style="font-size: 11px; color: #999; margin: 8px 0 0 0;">Edit the letter above as needed, then print or copy.</p>
-            <div style="text-align: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e5e5;">
-              <p style="font-size: 12px; color: #666; margin: 0 0 8px 0;">This tool is free. If it helped you, consider supporting it.</p>
-              <a href="https://buymeacoffee.com/buncombetaxlookup" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 8px 20px; background: #FFDD00; color: #000; font-size: 13px; font-weight: 600; border-radius: 6px; text-decoration: none;">Buy Me a Coffee ☕</a>
-            </div>
-
             <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
               <p style="font-size: 14px; font-weight: 700; color: #1B2A4A; margin: 0 0 8px 0;">How to Submit Your Appeal</p>
               <div style="background: #fef2f2; border: 1px solid #fca5a5; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px;">
                 <p style="font-size: 12px; color: #991b1b; margin: 0; font-weight: 600;">Important: Appeals submitted without supporting documentation will be denied. Print ALL pages, not just the letter.</p>
               </div>
               <div style="font-size: 12px; color: #555; line-height: 1.7;">
-                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to <strong>taxappeal.buncombenc.gov</strong>, search your PIN, click "Tax Appeal Request", and upload all pages as a PDF.</p>
+                <p style="margin: 0 0 8px 0;"><strong>Option 1: File Online</strong> — Go to <a href="https://taxappeal.buncombenc.gov" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">taxappeal.buncombenc.gov</a>, search your PIN, click "Tax Appeal Request", and upload all pages as a PDF.</p>
                 <p style="margin: 0 0 8px 0;"><strong>Option 2: By Phone</strong> — Call <strong>(828) 250-4940</strong> to schedule a 20-minute call with a county appraiser to discuss your value.</p>
                 <p style="margin: 0 0 8px 0;"><strong>Option 3: Mail or Drop Off</strong> — Print and sign all pages, then mail or deliver to:<br>
                   <span style="display: inline-block; margin-left: 16px;">Buncombe County Tax Assessment<br>
@@ -562,7 +557,7 @@
               </div>
               <div style="font-size: 11px; color: #666; line-height: 1.6; margin-top: 8px;">
                 <p style="margin: 0 0 4px 0;"><strong>Deadline:</strong> 30 days from the date you receive your notice of value, even after the deadline stated on the notice. The formal appeal deadline is May 5, 2026.</p>
-                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940 or email realestate.questions@buncombenc.gov.</p>
+                <p style="margin: 0 0 4px 0;"><strong>Questions:</strong> Call (828) 250-4940 or email <a href="mailto:realestate.questions@buncombenc.gov" style="color: #2563eb; text-decoration: underline;">realestate.questions@buncombenc.gov</a>.</p>
               </div>
               <div style="background: #FFF8E6; border: 1px solid #E8D5A0; border-radius: 6px; padding: 10px 14px; margin-top: 10px;">
                 <p style="font-size: 12px; color: #333; margin: 0 0 4px 0; font-weight: 600;">Strengthen your appeal with additional evidence:</p>
@@ -572,6 +567,10 @@
                   <li>A recent appraisal if you have one</li>
                   <li>Any other documentation that supports your case</li>
                 </ul>
+              </div>
+              <div style="text-align: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e5e5;">
+                <p style="font-size: 12px; color: #666; margin: 0 0 8px 0;">This tool is free. If it helped you, consider supporting it.</p>
+                <a href="https://buymeacoffee.com/buncombetaxlookup" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 8px 20px; background: #FFDD00; color: #000; font-size: 13px; font-weight: 600; border-radius: 6px; text-decoration: none;">Buy Me a Coffee ☕</a>
               </div>
             </div>
           </div>
@@ -1318,7 +1317,7 @@
 
 <h3>Option 1: Submit Online (Recommended)</h3>
 <ol>
-  <li>Go to <strong>taxappeal.buncombenc.gov</strong></li>
+  <li>Go to <a href="https://taxappeal.buncombenc.gov" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">taxappeal.buncombenc.gov</a></li>
   <li>Search for your property using PIN: <strong>${p.pin}</strong></li>
   <li>Click "Tax Appeal Request"</li>
   <li>Review your property record — check that all details are correct</li>
@@ -1334,7 +1333,7 @@
 <h3>Option 2: Mail or Drop Off</h3>
 <ol>
   <li>Print this entire packet</li>
-  <li>Download the paper appeal form from taxappeal.buncombenc.gov (or use the form mailed with your notice)</li>
+  <li>Download the paper appeal form from <a href="https://taxappeal.buncombenc.gov" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">taxappeal.buncombenc.gov</a> (or use the form mailed with your notice)</li>
   <li>Fill in the "Reason for Appeal" using the text on Page 2</li>
   <li>Write your opinion of value: <strong>${suggestedValueDisplay}</strong></li>
   <li>Sign and date the form</li>

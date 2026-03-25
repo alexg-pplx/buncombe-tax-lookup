@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
       const loc = derivePropertyLocation(r.City || "", r.FireDistrict || "");
       return {
         pin: r.PIN,
-        owner: r.Owner || "",
+        owner: (r.Owner || "").replace(/;/g, " & "),
         address: [r.HouseNumber, r.StreetPrefix, r.StreetName, r.StreetType, r.StreetPostDirection].filter(Boolean).join(" "),
         cityName: loc ? loc.name : "Buncombe County",
         totalMarketValue: parseValue(r.TotalMarketValue),
