@@ -1,12 +1,12 @@
-const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, derivePropertyLocation } = require("../_shared");
+const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, derivePropertyLocation, detectTaxDistrict, COMP_SALE_START_DATE, APPEAL_DEADLINE, REVALUATION_YEAR } = require("../_shared");
 
 // Both residential comps and vacant land use opendata layer
 // Residential comps are verified as Qualified Sales through PRC transfer history
 const COMP_LAYER = "https://gis.buncombecounty.org/arcgis/rest/services/opendata/MapServer/1";
 const PRC_BASE = "https://prc-buncombe.spatialest.com/api/v1/recordcard";
 
-// 24-month window: Jan 1 2024 through Jan 1 2026
-const SALE_CUTOFF_START = new Date(2024, 0, 1);
+// Sale window uses shared constant: COMP_SALE_START_DATE = '2024-01-01'
+const SALE_CUTOFF_START = new Date(COMP_SALE_START_DATE);
 const SALE_CUTOFF_END = new Date(2026, 0, 2);
 const MIN_SALE_PRICE = 50000;
 const MIN_LAND_SALE_PRICE = 10000;
@@ -69,12 +69,17 @@ async function getPropertyDetails(pin) {
   const buildingValue = parseValue(r.BuildingValue);
   const acreage = parseFloat(r.Acreage) || 0;
 
+  const taxDistrict = detectTaxDistrict(r.City || "", r.FireDistrict || "");
+
   return {
     pin: r.PIN,
     owner: r.Owner || "",
     address: [r.HouseNumber, r.StreetPrefix, r.StreetName, r.StreetType].filter(Boolean).join(" "),
     neighborhood: r.NeighborhoodCode || "",
     propertyClass: r.Class || "",
+    city: r.City || "",
+    fireDistrict: r.FireDistrict || "",
+    taxDistrict,
     acreage,
     totalValue,
     landValue,
@@ -286,13 +291,19 @@ async function findEquityComps(subject) {
     const sqft = parseInt(bldg.TotalFinishedArea) || 0;
     const yearBuilt = parseInt(bldg.YearBuilt) || 0;
 
-    // Filter: within 30% sqft and 15 years age (slightly looser than comps for broader equity check)
+    // Filter: within ±30% sqft and ±10 years yearBuilt of subject property
+    // Exclude the subject PIN itself
+    if (compPinnum === subject.pin) { await sleep(200); continue; }
+
     if (subject.sqft > 0 && sqft > 0) {
       const sqftDiff = Math.abs(subject.sqft - sqft) / subject.sqft;
+      if (sqftDiff > 0.30) { await sleep(200); continue; }
     }
     if (subject.yearBuilt > 0 && yearBuilt > 0) {
+      if (Math.abs(subject.yearBuilt - yearBuilt) > 10) { await sleep(200); continue; }
     }
     // Skip if we have no building data at all (can't confirm similarity)
+    if (sqft === 0 && yearBuilt === 0 && subject.sqft > 0) { await sleep(200); continue; }
 
     equityComps.push({
       pin: compPinnum,
@@ -716,7 +727,7 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   try {
-    const pin = sanitizePin(req.query.pin);
+    const pin = normalizePIN(req.query.pin) || sanitizePin(req.query.pin);
     if (!pin) return res.status(400).json({ error: "Invalid PIN" });
 
     const subject = await getPropertyDetails(pin);

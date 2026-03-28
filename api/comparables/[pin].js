@@ -1,4 +1,4 @@
-const { queryArcGIS, parseValue, sanitizePin } = require("../_shared");
+const { queryArcGIS, parseValue, sanitizePin, normalizePIN, COMP_SALE_START_DATE } = require("../_shared");
 
 // Use property_bc_dis layer which has actual sale prices (not stamps values)
 const SALES_LAYER = "https://gis.buncombecounty.org/arcgis/rest/services/property_bc_dis/MapServer/1";
@@ -56,7 +56,7 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   try {
-    const rawPin = sanitizePin(req.query.pin);
+    const rawPin = normalizePIN(req.query.pin) || sanitizePin(req.query.pin);
     if (!rawPin) return res.status(400).json({ error: "Invalid PIN" });
 
     // Accept both 10-digit pin and 15-digit pinnum formats
@@ -107,7 +107,7 @@ module.exports = async function handler(req, res) {
       `NeighborhoodCode = '${neighborhoodCode}'`,
       classFilter,
       `SalePrice > 50000`,
-      `DeedDate >= '20240101'`,
+      `DeedDate >= '${COMP_SALE_START_DATE.replace(/-/g, '')}'`,
       `pin <> '${subjectPin10}'`,
     ].join(" AND ");
 
@@ -126,7 +126,7 @@ module.exports = async function handler(req, res) {
           `NeighborhoodCode LIKE '${area}-%'`,
           classFilter,
           `SalePrice > 50000`,
-          `DeedDate >= '20240101'`,
+          `DeedDate >= '${COMP_SALE_START_DATE.replace(/-/g, '')}'`,
           `pin <> '${subjectPin10}'`,
         ].join(" AND ");
         const widerSales = await queryArcGIS(

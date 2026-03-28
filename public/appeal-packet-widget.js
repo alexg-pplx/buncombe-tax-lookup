@@ -6,7 +6,6 @@
 (function() {
   'use strict';
 
-  const ADMIN_KEY = 'kendra2026';
   const STRIPE_LINK_BASE = 'https://buy.stripe.com'; // Placeholder — will be replaced with real Stripe links
   
   // Check if we're on a property page
@@ -34,10 +33,6 @@
     card.style.cssText = 'margin-bottom: 1.5rem;';
 
     const daysLeft = daysUntilDeadline();
-    // Check for admin key in both URL search params and hash params
-    const searchAdmin = new URLSearchParams(window.location.search).get('admin');
-    const hashParams = window.location.hash.includes('?') ? new URLSearchParams(window.location.hash.split('?')[1]) : null;
-    const isAdmin = searchAdmin === ADMIN_KEY || (hashParams && hashParams.get('admin') === ADMIN_KEY);
 
     // Rating colors
     const ratingColors = {
@@ -1469,12 +1464,6 @@ ${a.medianSalePrice ? `
 
   // Main: inject the screening card into the property page
   async function init() {
-    // Admin-only gate: only show widget when ?admin=kendra2026 is in the URL
-    const searchAdmin = new URLSearchParams(window.location.search).get('admin');
-    const hashParams = window.location.hash.includes('?') ? new URLSearchParams(window.location.hash.split('?')[1]) : null;
-    const isAdminPreview = searchAdmin === ADMIN_KEY || (hashParams && hashParams.get('admin') === ADMIN_KEY);
-    if (!isAdminPreview) return;
-
     const pin = getPin();
     if (!pin) return;
 

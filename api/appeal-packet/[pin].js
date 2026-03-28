@@ -1,4 +1,4 @@
-const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin } = require("../_shared");
+const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, detectTaxDistrict, findComparableSales, COMP_SALE_START_DATE, APPEAL_DEADLINE } = require("../_shared");
 
 const PRC_BASE = "https://prc-buncombe.spatialest.com/api/v1/recordcard";
 
@@ -11,7 +11,7 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
   
   try {
-    const pin = sanitizePin(req.query.pin);
+    const pin = normalizePIN(req.query.pin) || sanitizePin(req.query.pin);
     if (!pin) return res.status(400).json({ error: "Invalid PIN" });
     
     // Get questionnaire answers from POST body or query params
@@ -63,54 +63,34 @@ module.exports = async function handler(req, res) {
     const fullBaths = parseInt(building.FullBath) || 0;
     const halfBaths = parseInt(building.HalfBath) || 0;
     
-    // Get comps (simplified version - top 5 from screening)
-    const residentialClasses = "('100','101','121')";
-    const compWhere = `Class IN ${residentialClasses} AND NeighborhoodCode = '${prop.NeighborhoodCode}' AND PIN <> '${pin}'`;
-    const compFields = "PIN,HouseNumber,StreetPrefix,StreetName,StreetType,Acreage,TotalMarketValue,LandValue,BuildingValue,SalePrice,DeedDate";
-    const compResults = await queryArcGIS(CURRENT_LAYER, compWhere, compFields, 50);
-    
-    // Fetch PRC for qualified sales
-    const comps = [];
-    for (const r of compResults.slice(0, 30)) {
-      try {
-        const prcRes = await fetch(`${PRC_BASE}/${r.PIN}`);
-        if (!prcRes.ok) continue;
-        const prc = await prcRes.json();
-        const sections = prc?.parcel?.sections || [];
-        let bldg = {};
-        if (sections[2] && typeof sections[2] === 'object' && sections[2]['1'] && sections[2]['1'][0]) {
-          bldg = sections[2]['1'][0];
-        }
-        const compYear = parseInt(bldg.YearBuilt) || 0;
-        const compSqft = parseInt(bldg.TotalFinishedArea) || 0;
-        
-        const transfers = (sections[3] && sections[3][0]) || [];
-        for (const t of transfers) {
-          if (t.salesvalidity !== 'Qualified Sale') continue;
-          const price = parseInt((t.saleprice || "0").replace(/[$,]/g, "")) || 0;
-          if (price < 50000) continue;
-          const dp = (t.saledate || "").split("/");
-          if (dp.length !== 3) continue;
-          const sd = new Date(parseInt(dp[2]), parseInt(dp[0]) - 1, parseInt(dp[1]));
-          if (sd < new Date(2023, 0, 1) || sd > new Date(2026, 0, 2)) continue;
-          
-          comps.push({
-            address: [r.HouseNumber, r.StreetPrefix, r.StreetName, r.StreetType].filter(Boolean).join(" "),
-            salePrice: price,
-            saleDate: t.saledate,
-            assessedValue: parseValue(r.TotalMarketValue),
-            landValue: parseValue(r.LandValue),
-            acreage: parseFloat(r.Acreage) || 0,
-            sqft: compSqft,
-            yearBuilt: compYear,
-            bedrooms: parseInt(bldg.Bedrooms) || 0,
-            baths: `${bldg.FullBath || 0}/${bldg.HalfBath || 0}`,
-          });
-          break;
-        }
-        await new Promise(r => setTimeout(r, 200));
-      } catch (e) {}
-    }
+    // Get comps using shared findComparableSales() from _shared.js
+    // This uses SALES_LAYER (property_bc_dis/MapServer/1) which has actual SalePrice data
+    // and COMP_SALE_START_DATE (2024-01-01) for consistency with appeal-screening
+    const isManufactured = (prop.Class || '') === '170';
+    const classFilter = isManufactured
+      ? `Class = '170'`
+      : `Class IN ('100','101','121')`;
+    const rawSales = await findComparableSales(pin, prop.NeighborhoodCode || '', {
+      sqft,
+      yearBuilt,
+      classFilter,
+      maxResults: 50,
+    });
+
+    // Map shared sales results to the comps format expected by this endpoint
+    const taxDistrict = detectTaxDistrict(prop.City || '', prop.FireDistrict || '');
+    const comps = rawSales.slice(0, 20).map(r => ({
+      address: [r.HouseNumber, r.streetname, r.StreetType].filter(Boolean).join(' '),
+      salePrice: parseInt(r.SalePrice) || 0,
+      saleDate: r.DeedDate || null,
+      assessedValue: parseValue(r.TotalMarketValue),
+      landValue: parseValue(r.LandValue),
+      acreage: parseFloat(r.Acreage) || 0,
+      sqft: parseInt(r.TotalSqFt) || 0,
+      yearBuilt: parseInt(r.YearBuilt) || 0,
+      bedrooms: 0,   // SALES_LAYER doesn't have bedrooms; use 0 as placeholder
+      baths: '',
+    })).filter(c => c.salePrice > 0);
     
     // Calculate suggested value
     const compPricesPerSqft = comps.filter(c => c.sqft > 0).map(c => c.salePrice / c.sqft);
@@ -155,6 +135,8 @@ module.exports = async function handler(req, res) {
         foundation: "CONVENTIONAL", // From form
         landPctOfTotal: Math.round(landPct),
         isLandHeavy,
+        taxDistrict,
+        appealDeadline: APPEAL_DEADLINE,
       },
       comps: comps.slice(0, 5),
       analysis: {

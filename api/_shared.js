@@ -1,6 +1,12 @@
 const ARCGIS_BASE = "https://gis.buncombecounty.org/arcgis/rest/services";
 const CURRENT_LAYER = `${ARCGIS_BASE}/opendata/MapServer/1`;
 const PREVIOUS_LAYER = `${ARCGIS_BASE}/opendata_2/FeatureServer/15`;
+const SALES_LAYER = `${ARCGIS_BASE}/property_bc_dis/MapServer/1`;
+
+// Shared date constants for the 2025 revaluation cycle
+const REVALUATION_YEAR = 2025;
+const COMP_SALE_START_DATE = '2024-01-01'; // ISO format: comparable sales from 2024 onward
+const APPEAL_DEADLINE = '2026-05-05';      // Buncombe County appeal deadline
 
 const CURRENT_FIELDS = "PIN,Owner,HouseNumber,StreetPrefix,StreetName,StreetType,StreetPostDirection,City,CityName,State,Zipcode,Township,Acreage,Class,FireDistrict,NeighborhoodCode,TotalMarketValue,AppraisedValue,TaxValue,LandValue,BuildingValue,PropCard";
 const PREVIOUS_FIELDS = "PIN,Owner,TotalMarketValue,AppraisedValue,TaxValue,LandValue,BuildingValue";
@@ -195,14 +201,125 @@ function sanitizePin(pin) {
   return clean;
 }
 
+/**
+ * normalizePIN — standardizes a PIN to its canonical digit-only form.
+ * Accepts either 10-digit (base PIN) or 15-digit (pinnum with suffix) formats.
+ * Strips any non-digit characters. Returns null if not a valid PIN.
+ */
+function normalizePIN(pin) {
+  const clean = (pin || "").replace(/[^0-9]/g, "");
+  if (!clean) return null;
+  // Accept 10-digit and 15-digit forms
+  if (clean.length === 10 || clean.length === 15) return clean;
+  // If longer than 15, trim to 15; if between 10 and 15, pad to 15 or return as-is
+  if (clean.length > 15) return clean.substring(0, 15);
+  // For shorter strings, check if padding to 10 or 15 makes sense
+  if (clean.length < 10) return null; // Too short to be valid
+  return clean; // Between 11-14 digits: return as-is for caller to handle
+}
+
+/**
+ * findComparableSales — shared function to query the SALES_LAYER for nearby
+ * comparable properties with actual SalePrice data since COMP_SALE_START_DATE.
+ *
+ * @param {string} pin           - Subject property PIN (excluded from results)
+ * @param {string} neighborhoodCode - Subject neighborhood code
+ * @param {object} params        - Optional filter params:
+ *   @param {number} [params.sqft]       - Subject sqft (for ±range filter)
+ *   @param {number} [params.sqftPct]    - Sqft tolerance as fraction (default 0.30)
+ *   @param {number} [params.yearBuilt]  - Subject year built (for range filter)
+ *   @param {number} [params.yearRange]  - Year built tolerance in years (default 10)
+ *   @param {string} [params.classFilter]- ArcGIS class filter string (e.g. "Class IN ('100','101','121')")
+ *   @param {number} [params.maxResults] - Max results to return (default 50)
+ * @returns {Promise<Array>} Array of sale records from SALES_LAYER
+ */
+async function findComparableSales(pin, neighborhoodCode, params = {}) {
+  const {
+    sqft = 0,
+    sqftPct = 0.30,
+    yearBuilt = 0,
+    yearRange = 10,
+    classFilter = `Class IN ('100','101','121')`,
+    maxResults = 50,
+  } = params;
+
+  // Convert COMP_SALE_START_DATE (YYYY-MM-DD) to YYYYMMDD for ArcGIS string comparison
+  const saleDateFilter = `DeedDate >= '${COMP_SALE_START_DATE.replace(/-/g, '')}'`;
+
+  // Use 10-digit PIN for exclusion (sales layer uses 'pin' field in lowercase)
+  const pin10 = (pin || "").replace(/[^0-9]/g, "").substring(0, 10);
+
+  const conditions = [
+    `NeighborhoodCode = '${neighborhoodCode}'`,
+    classFilter,
+    `SalePrice > 50000`,
+    saleDateFilter,
+    `pin <> '${pin10}'`,
+  ];
+
+  let sales = await queryArcGIS(
+    SALES_LAYER,
+    conditions.join(" AND "),
+    "pin,pinnum,HouseNumber,streetname,StreetType,SalePrice,DeedDate,TotalMarketValue,LandValue,BuildingValue,Acreage,NeighborhoodCode,YearBuilt,TotalSqFt",
+    maxResults
+  );
+
+  // If fewer than 3 results, try wider neighborhood prefix search
+  if (sales.length < 3 && neighborhoodCode) {
+    const area = neighborhoodCode.split("-")[0];
+    if (area) {
+      const widerConditions = [
+        `NeighborhoodCode LIKE '${area}-%'`,
+        classFilter,
+        `SalePrice > 50000`,
+        saleDateFilter,
+        `pin <> '${pin10}'`,
+      ];
+      const widerSales = await queryArcGIS(
+        SALES_LAYER,
+        widerConditions.join(" AND "),
+        "pin,pinnum,HouseNumber,streetname,StreetType,SalePrice,DeedDate,TotalMarketValue,LandValue,BuildingValue,Acreage,NeighborhoodCode,YearBuilt,TotalSqFt",
+        maxResults
+      );
+      const seen = new Set(sales.map(s => s.pin));
+      for (const s of widerSales) {
+        if (!seen.has(s.pin)) {
+          sales.push(s);
+          seen.add(s.pin);
+        }
+      }
+    }
+  }
+
+  // Apply optional sqft and yearBuilt filters (in JS, since SALES_LAYER field quality varies)
+  if (sqft > 0 || yearBuilt > 0) {
+    sales = sales.filter(s => {
+      const sSqft = parseInt(s.TotalSqFt) || 0;
+      const sYear = parseInt(s.YearBuilt) || 0;
+      if (sqft > 0 && sSqft > 0) {
+        const diff = Math.abs(sqft - sSqft) / sqft;
+        if (diff > sqftPct) return false;
+      }
+      if (yearBuilt > 0 && sYear > 0) {
+        if (Math.abs(yearBuilt - sYear) > yearRange) return false;
+      }
+      return true;
+    });
+  }
+
+  return sales;
+}
+
 function escapeHtml(str) {
   if (!str) return "";
   return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
 module.exports = {
-  CURRENT_LAYER, PREVIOUS_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS,
-  queryArcGIS, buildWhereClause, parseValue, sanitizePin, escapeHtml,
+  CURRENT_LAYER, PREVIOUS_LAYER, SALES_LAYER, CURRENT_FIELDS, PREVIOUS_FIELDS,
+  REVALUATION_YEAR, COMP_SALE_START_DATE, APPEAL_DEADLINE,
+  queryArcGIS, buildWhereClause, parseValue, sanitizePin, normalizePIN, escapeHtml,
   derivePropertyLocation, detectTaxDistrict,
+  findComparableSales,
   NEIGHBORHOOD_STATS, NEIGHBORHOOD_LABELS, getNeighborhoodData, getNeighborhoodPercentile,
 };
