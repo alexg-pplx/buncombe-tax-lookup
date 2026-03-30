@@ -1,4 +1,4 @@
-const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, detectTaxDistrict, findComparableSales, COMP_SALE_START_DATE, APPEAL_DEADLINE } = require("../_shared");
+const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, detectTaxDistrict, estimateAnnualTax, getTaxRate, findComparableSales, COMP_SALE_START_DATE, APPEAL_DEADLINE } = require("../_shared");
 
 const PRC_BASE = "https://prc-buncombe.spatialest.com/api/v1/recordcard";
 
@@ -20,7 +20,6 @@ module.exports = async function handler(req, res) {
     const hasStormDamage = answers.stormDamage === true;
     const hasRecordErrors = answers.recordErrors === true;
     const hasOtherFactors = answers.otherFactors === true;
-    const adminBypass = req.query.admin === process.env.ADMIN_KEY;
     
     // Fetch screening data by calling our own screening endpoint logic
     // (duplicating the core logic here to avoid circular calls)
@@ -171,6 +170,21 @@ module.exports = async function handler(req, res) {
         hasRecordErrors,
         hasOtherFactors,
       },
+      // Tax impact based on district-specific 2025 rates (illustrative)
+      taxImpact: (function() {
+        const rate = getTaxRate(taxDistrict);
+        const currentTax = Math.round((totalValue / 100) * rate);
+        const suggestedTax = suggestedValue ? Math.round((suggestedValue / 100) * rate) : null;
+        return {
+          districtCode: taxDistrict || 'BUN',
+          ratePerHundred: rate,
+          currentAnnualTax: currentTax,
+          suggestedAnnualTax: suggestedTax,
+          estimatedAnnualSavings: suggestedTax != null ? Math.max(0, currentTax - suggestedTax) : null,
+          rateNote: 'Based on 2025 tax rates. The 2026 rate will be set by the Board of Commissioners in June 2026.',
+        };
+      })(),
+
       // Pre-written appeal text
       appealText: generateAppealText({
         address, totalValue, suggestedValue, medianSalePrice,

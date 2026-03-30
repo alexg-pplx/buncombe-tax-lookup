@@ -6,8 +6,6 @@
 (function() {
   'use strict';
 
-  const STRIPE_LINK_BASE = 'https://buy.stripe.com'; // Placeholder — will be replaced with real Stripe links
-  
   // Check if we're on a property page
   function getPin() {
     const hash = window.location.hash;
@@ -27,7 +25,7 @@
   }
 
   function createScreeningCard(data) {
-    const { subject, screening, comps, pricing, appealDeadline } = data;
+    const { subject, screening, comps, pricing, appealDeadline, taxImpact } = data;
     const card = document.createElement('div');
     card.id = 'appeal-packet-card';
     card.style.cssText = 'margin-bottom: 1.5rem;';
@@ -357,8 +355,12 @@
               <div style="font-size: 10px; color: #999; text-transform: uppercase;">Comps Found</div>
               <div style="font-size: 16px; font-weight: 700; font-family: monospace;">${a.compCount}</div>
             </div>
+            ${suggestedVal && taxImpact && taxImpact.estimatedAnnualSavings > 0 ? `<div style="text-align: center;">
+              <div style="font-size: 10px; color: #999; text-transform: uppercase;">Est. Annual Savings</div>
+              <div style="font-size: 16px; font-weight: 700; font-family: monospace; color: #16a34a;">~${fmt(taxImpact.estimatedAnnualSavings)}/yr</div>
+            </div>` : ''}
           </div>
-          ${suggestedVal ? `<p style="font-size: 11px; color: #666; margin: 10px 0 0 0; line-height: 1.5;">The suggested value of <strong>${fmt(suggestedVal)}</strong> is based on comparable sales and land data in your area. You can use this as your requested value in Step 3, or choose a different amount.</p>` : ''}
+          ${suggestedVal ? `<p style="font-size: 11px; color: #666; margin: 10px 0 0 0; line-height: 1.5;">The suggested value of <strong>${fmt(suggestedVal)}</strong> is based on comparable sales and land data in your area. You can use this as your requested value in Step 3, or choose a different amount.${taxImpact && taxImpact.estimatedAnnualSavings > 0 ? ` At the current tax rate (${taxImpact.ratePerHundred}&#162;/$100 assessed value), this would save approximately <strong>${fmt(taxImpact.estimatedAnnualSavings)}/year</strong> in property taxes.` : ''} <span style="color: #9ca3af;">${taxImpact ? taxImpact.rateNote : 'Tax rate estimate based on 2025 district rates.'}</span></p>` : ''}
         </div>
       `;
     }
@@ -1264,7 +1266,7 @@
   };
 
   function generatePDF(data) {
-    const { property: p, comps, analysis: a, questionnaire: q, appealText } = data;
+    const { property: p, comps, analysis: a, questionnaire: q, appealText, taxImpact } = data;
 
     // Build printable HTML and open in new window for printing/saving as PDF
     const printWindow = window.open('', '_blank');
@@ -1400,6 +1402,8 @@ ${appealText}
   ${p.sqft ? p.sqft.toLocaleString() + ' sq ft · ' : ''}${p.acreage.toFixed(2)} acres · Built ${p.yearBuilt || 'N/A'} · ${p.bedrooms} bed · ${p.fullBaths}${p.halfBaths ? '.' + (p.halfBaths * 5) : ''} bath<br>
   <strong>Current Assessment:</strong> ${fmt(p.totalValue)} (Land: ${fmt(p.landValue)} · Building: ${fmt(p.buildingValue)})
   ${p.prevValue ? '<br><strong>Previous Assessment (2021):</strong> ' + fmt(p.prevValue) + ' (Change: +' + p.change + '%)' : ''}
+  ${taxImpact ? '<br><strong>Estimated Current Tax Bill:</strong> ' + fmt(taxImpact.currentAnnualTax) + '/yr (at ' + taxImpact.ratePerHundred + '&cent;/$100 — ' + taxImpact.districtCode + ', 2025 rates)' : ''}
+  ${taxImpact && taxImpact.suggestedAnnualTax && taxImpact.estimatedAnnualSavings > 0 ? '<br><strong>Estimated Tax at Suggested Value:</strong> ' + fmt(taxImpact.suggestedAnnualTax) + '/yr (savings: ~' + fmt(taxImpact.estimatedAnnualSavings) + '/yr)' : ''}
 </div>
 
 <p>The following comparable properties were selected based on Buncombe County's published criteria: similar property type, 

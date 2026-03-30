@@ -1,4 +1,4 @@
-const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, derivePropertyLocation, detectTaxDistrict, COMP_SALE_START_DATE, APPEAL_DEADLINE, REVALUATION_YEAR } = require("../_shared");
+const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, derivePropertyLocation, detectTaxDistrict, estimateAnnualTax, COMP_SALE_START_DATE, APPEAL_DEADLINE, REVALUATION_YEAR } = require("../_shared");
 
 // Both residential comps and vacant land use opendata layer
 // Residential comps are verified as Qualified Sales through PRC transfer history
@@ -794,6 +794,15 @@ module.exports = async function handler(req, res) {
     if (subject.totalValue < 200000) priceTier = 10;
     else if (subject.totalValue > 500000) priceTier = 25;
 
+    // Tax impact estimate — uses 2025 district-specific rates (illustrative; 2026 rate TBD in June)
+    const currentAnnualTax = estimateAnnualTax(subject.totalValue, subject.taxDistrict);
+    const suggestedAnnualTax = screening.suggestedValue
+      ? estimateAnnualTax(screening.suggestedValue, subject.taxDistrict)
+      : null;
+    const estimatedAnnualSavings = (suggestedAnnualTax != null)
+      ? Math.max(0, currentAnnualTax - suggestedAnnualTax)
+      : null;
+
     res.json({
       subject,
       screening,
@@ -801,6 +810,17 @@ module.exports = async function handler(req, res) {
       landSales: landSales.slice(0, 10),
       equityComps: equityComps.slice(0, 10),
       appealDeadline: APPEAL_DEADLINE,
+
+      taxImpact: {
+        districtCode: subject.taxDistrict || "BUN",
+        ratePerHundred: subject.taxDistrict
+          ? require("../_shared").getTaxRate(subject.taxDistrict)
+          : 0.5466,
+        currentAnnualTax,
+        suggestedAnnualTax,
+        estimatedAnnualSavings,
+        rateNote: "Based on 2025 tax rates. The 2026 rate will be set by the Board of Commissioners in June 2026.",
+      },
 
       pricing: {
         amount: priceTier,

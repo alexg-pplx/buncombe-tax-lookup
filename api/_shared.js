@@ -16,6 +16,66 @@ const CITY_TO_DISTRICT = {
   CBF: "BUN CBF", CWO: "BUN CWO FWO", CMT: "BUN CMT FEB",
 };
 
+// 2025 Buncombe County combined tax rates per $100 assessed value
+// Source: Buncombe County Tax Department (July 1, 2025) — rate per $100
+// The 2026 rate will be set by the Board of Commissioners in June 2026.
+// We use the 2025 rates for illustrative estimates only.
+// District code strings match the CITY_TO_DISTRICT / FIRE_TO_DISTRICT outputs above.
+const TAX_RATES_PER_100 = {
+  // County + City + City School
+  "BUN CAS SAS": 1.0985,
+  // County + City only
+  "BUN CAS":     0.9885,
+  "BUN CBM":     0.8676,
+  "BUN CWV":     0.9266,
+  "BUN CBF":     0.8916,
+  "BUN CWO FWO": 0.9825,
+  "BUN CMT FEB": 1.0835,
+  // County + Fire district
+  "BUN FAS":     0.6302,
+  "BUN FSB":     0.6363,
+  "BUN FBA":     0.7666,
+  "BUN FBR":     0.7066,
+  "BUN FEB":     0.6535,
+  "BUN FEC":     0.6816,
+  "BUN FFA":     0.7066,
+  "BUN FFB":     0.7736,
+  "BUN FGC":     0.6850,
+  "BUN FJU":     0.6741,
+  "BUN FLE":     0.6869,
+  "BUN FNB":     0.6693,
+  "BUN FRC":     0.6973,
+  "BUN FRE":     0.6777,
+  "BUN FRI":     0.7126,
+  "BUN FSK":     0.6446,
+  "BUN FSW":     0.6966,
+  "BUN FUH":     0.7526,
+  "BUN FWB":     0.6966,
+  "BUN FWO":     0.6525,
+  // County only (unincorporated, no fire district matched)
+  "BUN":         0.5466,
+};
+
+/**
+ * getTaxRate — returns the combined tax rate per $100 assessed value
+ * for a given district code string (from detectTaxDistrict).
+ * Falls back to the county-only rate if the district isn't found.
+ */
+function getTaxRate(districtCode) {
+  if (!districtCode) return TAX_RATES_PER_100["BUN"];
+  return TAX_RATES_PER_100[districtCode] || TAX_RATES_PER_100["BUN"];
+}
+
+/**
+ * estimateAnnualTax — returns estimated annual tax bill in dollars.
+ * @param {number} assessedValue - Total assessed value in dollars
+ * @param {string} districtCode  - Tax district code (from detectTaxDistrict)
+ */
+function estimateAnnualTax(assessedValue, districtCode) {
+  const rate = getTaxRate(districtCode);
+  return Math.round((assessedValue / 100) * rate);
+}
+
 const FIRE_TO_DISTRICT = {
   FAS: "BUN FAS", FSB: "BUN FSB", FBA: "BUN FBA", FBR: "BUN FBR",
   FEB: "BUN FEB", FEC: "BUN FEC", FFA: "BUN FFA", FFB: "BUN FFB",
@@ -320,6 +380,7 @@ module.exports = {
   REVALUATION_YEAR, COMP_SALE_START_DATE, APPEAL_DEADLINE,
   queryArcGIS, buildWhereClause, parseValue, sanitizePin, normalizePIN, escapeHtml,
   derivePropertyLocation, detectTaxDistrict,
+  TAX_RATES_PER_100, getTaxRate, estimateAnnualTax,
   findComparableSales,
   NEIGHBORHOOD_STATS, NEIGHBORHOOD_LABELS, getNeighborhoodData, getNeighborhoodPercentile,
 };
