@@ -209,13 +209,13 @@ function sanitizePin(pin) {
 function normalizePIN(pin) {
   const clean = (pin || "").replace(/[^0-9]/g, "");
   if (!clean) return null;
-  // Accept 10-digit and 15-digit forms
+  // Accept 10-digit (base PIN) and 15-digit (pinnum) forms only
   if (clean.length === 10 || clean.length === 15) return clean;
-  // If longer than 15, trim to 15; if between 10 and 15, pad to 15 or return as-is
+  // If longer than 15, trim to 15 (defensive, but callers should validate)
   if (clean.length > 15) return clean.substring(0, 15);
-  // For shorter strings, check if padding to 10 or 15 makes sense
-  if (clean.length < 10) return null; // Too short to be valid
-  return clean; // Between 11-14 digits: return as-is for caller to handle
+  // 11-14 digit strings are not valid Buncombe County PIN formats—reject cleanly
+  // so callers return 400 instead of a silent ArcGIS miss
+  return null;
 }
 
 /**

@@ -19,20 +19,20 @@
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
   }
 
-  // Deadline countdown
-  function daysUntilDeadline() {
-    const deadline = new Date(2026, 4, 5); // May 5, 2026
+  // Deadline countdown — uses appealDeadline from API response (ISO YYYY-MM-DD) or falls back to May 5 2026
+  function daysUntilDeadline(isoDeadline) {
+    const deadline = isoDeadline ? new Date(isoDeadline + 'T23:59:59') : new Date(2026, 4, 5);
     const now = new Date();
     return Math.max(0, Math.ceil((deadline - now) / (1000 * 60 * 60 * 24)));
   }
 
   function createScreeningCard(data) {
-    const { subject, screening, comps, pricing } = data;
+    const { subject, screening, comps, pricing, appealDeadline } = data;
     const card = document.createElement('div');
     card.id = 'appeal-packet-card';
     card.style.cssText = 'margin-bottom: 1.5rem;';
 
-    const daysLeft = daysUntilDeadline();
+    const daysLeft = daysUntilDeadline(appealDeadline);
 
     // Rating colors
     const ratingColors = {
@@ -43,6 +43,10 @@
       unsupported: { bg: '#f5f5f5', border: '#d4d4d4', text: '#525252', badge: '#737373', label: 'Not Available' },
     };
     const rc = ratingColors[screening.rating] || ratingColors.insufficient;
+
+    const deadlineDisplay = appealDeadline
+      ? new Date(appealDeadline + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+      : 'May 5, 2026';
 
     let html = `
       <div style="border: 1px solid ${rc.border}; border-radius: 12px; overflow: hidden; background: white;">
@@ -55,11 +59,16 @@
               </div>
               <p style="font-size: 13px; color: ${rc.text}; margin: 0; max-width: 500px;">
                 ${screening.rating === 'insufficient'
-                  ? 'Based on comparable sales and similar property assessments in your area, there is not enough data to evaluate your assessment. Other factors like property condition, storm damage, or record errors could still support an appeal — see below.'
+                  ? 'Based on comparable sales and similar property assessments in your area, there is not enough data to evaluate your assessment. Other factors like property condition, storm damage, or record errors could still support an appeal &mdash; see below.'
                   : (screening.rating === 'weak'
-                    ? 'Based on comparable sales and similar property assessments, your assessment appears to be at or near market value. Other factors like property condition, storm damage, or record errors could change this — see below.'
+                    ? 'Based on comparable sales and similar property assessments, your assessment appears to be at or near market value. Other factors like property condition, storm damage, or record errors could change this &mdash; see below.'
                     : screening.message)}
               </p>
+            </div>
+            <div style="text-align: right; flex-shrink: 0;">
+              <div style="font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;">Appeal Deadline</div>
+              <div style="font-size: 13px; font-weight: 700; color: #1a1a1a;">${deadlineDisplay}</div>
+              ${daysLeft > 0 ? `<div style="font-size: 11px; color: ${daysLeft <= 14 ? '#dc2626' : '#6b7280'}; margin-top: 1px;">${daysLeft} day${daysLeft !== 1 ? 's' : ''} remaining</div>` : '<div style="font-size: 11px; color: #dc2626; font-weight: 600;">Deadline passed</div>'}
             </div>
           </div>
     `;

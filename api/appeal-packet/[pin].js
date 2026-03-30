@@ -79,17 +79,34 @@ module.exports = async function handler(req, res) {
 
     // Map shared sales results to the comps format expected by this endpoint
     const taxDistrict = detectTaxDistrict(prop.City || '', prop.FireDistrict || '');
+    // Format DeedDate to human-readable MM/DD/YYYY.
+    // SALES_LAYER returns YYYYMMDD; PRC returns MM/DD/YYYY — handle both.
+    function formatDeedDate(raw) {
+      if (!raw) return null;
+      const str = String(raw).trim();
+      // Already MM/DD/YYYY or similar slash format
+      if (str.includes('/')) return str;
+      // YYYYMMDD (8 pure digits)
+      const digits = str.replace(/\D/g, '');
+      if (digits.length === 8) {
+        return `${digits.substring(4, 6)}/${digits.substring(6, 8)}/${digits.substring(0, 4)}`;
+      }
+      return str || null;
+    }
+
     const comps = rawSales.slice(0, 20).map(r => ({
-      address: [r.HouseNumber, r.streetname, r.StreetType].filter(Boolean).join(' '),
+      // SALES_LAYER uses lowercase 'streetname'; also accept 'StreetName' from opendata layer
+      address: [r.HouseNumber, r.streetname || r.StreetName, r.StreetType].filter(Boolean).join(' '),
       salePrice: parseInt(r.SalePrice) || 0,
-      saleDate: r.DeedDate || null,
+      // DeedDate from SALES_LAYER is YYYYMMDD — convert to MM/DD/YYYY for display
+      saleDate: formatDeedDate(r.DeedDate),
       assessedValue: parseValue(r.TotalMarketValue),
       landValue: parseValue(r.LandValue),
       acreage: parseFloat(r.Acreage) || 0,
       sqft: parseInt(r.TotalSqFt) || 0,
       yearBuilt: parseInt(r.YearBuilt) || 0,
-      bedrooms: 0,   // SALES_LAYER doesn't have bedrooms; use 0 as placeholder
-      baths: '',
+      bedrooms: 0,   // SALES_LAYER doesn't carry bedroom count; leave 0 so PDF shows N/A
+      baths: 'N/A',  // SALES_LAYER doesn't carry bath count; show N/A instead of empty string
     })).filter(c => c.salePrice > 0);
     
     // Calculate suggested value
@@ -117,6 +134,7 @@ module.exports = async function handler(req, res) {
         pin,
         owner: prop.Owner || "",
         address,
+        neighborhood: (prop.NeighborhoodCode || "").trim(),
         acreage,
         totalValue,
         landValue,
@@ -174,13 +192,15 @@ function generateAppealText(data) {
   
   let text = `I am writing to appeal the 2026 assessed value of $${totalValue.toLocaleString()} for my property at ${address}. `;
   
-  if (suggestedValue && suggestedValue < totalValue) {
-    text += `Based on my analysis of ${comps.length} comparable properties that sold within the last 24 months, I believe the fair market value is approximately $${suggestedValue.toLocaleString()}. `;
-  } else if (medianSalePrice && medianSalePrice < totalValue) {
-    text += `Based on ${comps.length} comparable sales in my neighborhood, the median sale price was $${medianSalePrice.toLocaleString()}, which is below my current assessed value. `;
+  if (comps.length > 0 && suggestedValue && suggestedValue < totalValue) {
+    text += `Based on my analysis of ${comps.length} comparable ${comps.length === 1 ? 'property' : 'properties'} that sold within the last 24 months, I believe the fair market value is approximately $${suggestedValue.toLocaleString()}. `;
+  } else if (comps.length > 0 && medianSalePrice && medianSalePrice < totalValue) {
+    text += `Based on ${comps.length} comparable ${comps.length === 1 ? 'sale' : 'sales'} in my neighborhood, the median sale price was $${medianSalePrice.toLocaleString()}, which is below my current assessed value. `;
   }
   
-  text += `\n\nThe comparable sales attached to this appeal were selected based on the following criteria: similar property type, similar age (within 10 years), similar size, located in the same neighborhood, and sold within 24 months prior to the January 1, 2026 valuation date. `;
+  if (comps.length > 0) {
+    text += `\n\nThe comparable sales attached to this appeal were selected based on the following criteria: similar property type, similar age (within 10 years), similar size, located in the same neighborhood, and sold within 24 months prior to the January 1, 2026 valuation date. `;
+  }
   
   if (isLandHeavy) {
     text += `\n\nAdditionally, the land portion of my assessment ($${landValue.toLocaleString()} for ${acreage.toFixed(2)} acres, or $${Math.round(landValue/acreage).toLocaleString()} per acre) appears to be inconsistent with comparable land values in the area. `;

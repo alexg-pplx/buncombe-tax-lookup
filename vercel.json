@@ -21,7 +21,6 @@
     { "source": "/api/property/:pin", "destination": "/api/property/[pin]" },
     { "source": "/api/contact", "destination": "/api/contact" },
     { "source": "/api/neighborhoods", "destination": "/api/neighborhoods" },
-    { "source": "/api/appeal-stats", "destination": "/api/appeal-stats" },
     { "source": "/api/comparables/:pin", "destination": "/api/comparables/[pin]" },
     { "source": "/api/appeal-screening/:pin", "destination": "/api/appeal-screening/[pin]" },
     { "source": "/api/appeal-packet/:pin", "destination": "/api/appeal-packet/[pin]" },

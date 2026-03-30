@@ -108,9 +108,30 @@ async function findComparableSales(subject) {
     ? "('170')"
     : "('100','101','121')";
 
-  const where = `Class IN ${residentialClasses} AND NeighborhoodCode = '${subject.neighborhood}' AND PIN <> '${subject.pin}'`;
   const fields = "PIN,Owner,HouseNumber,StreetPrefix,StreetName,StreetType,Acreage,TotalMarketValue,LandValue,BuildingValue,SalePrice,DeedDate,NeighborhoodCode,Class";
-  const results = await queryArcGIS(COMP_LAYER, where, fields, 50);
+  const nbhd = subject.neighborhood;
+
+  // First try exact neighborhood
+  const where = `Class IN ${residentialClasses} AND NeighborhoodCode = '${nbhd}' AND PIN <> '${subject.pin}'`;
+  let results = await queryArcGIS(COMP_LAYER, where, fields, 50);
+
+  // If fewer than 5 results, widen to area prefix (e.g. 'AS-R' -> 'AS-%')
+  // consistent with _shared.js findComparableSales fallback
+  if (results.length < 5 && nbhd) {
+    const dashIdx = nbhd.indexOf('-');
+    const prefix = dashIdx > 0 ? nbhd.substring(0, dashIdx) : nbhd.substring(0, 2);
+    if (prefix) {
+      const widerWhere = `Class IN ${residentialClasses} AND NeighborhoodCode LIKE '${prefix}-%' AND PIN <> '${subject.pin}'`;
+      const widerResults = await queryArcGIS(COMP_LAYER, widerWhere, fields, 50);
+      const seen = new Set(results.map(r => r.PIN));
+      for (const r of widerResults) {
+        if (!seen.has(r.PIN)) {
+          results.push(r);
+          seen.add(r.PIN);
+        }
+      }
+    }
+  }
 
   const comps = [];
   const checked = new Set();
@@ -752,6 +773,7 @@ module.exports = async function handler(req, res) {
         },
         comps: [],
         landSales: [],
+        appealDeadline: APPEAL_DEADLINE,
       });
     }
 
@@ -778,6 +800,7 @@ module.exports = async function handler(req, res) {
       comps: scoredComps.slice(0, 8),
       landSales: landSales.slice(0, 10),
       equityComps: equityComps.slice(0, 10),
+      appealDeadline: APPEAL_DEADLINE,
 
       pricing: {
         amount: priceTier,
