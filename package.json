@@ -1,5 +1,8 @@
 {
   "name": "buncombe-tax-lookup",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "scripts": {
+    "test": "node tests/unit.test.js"
+  }
 }

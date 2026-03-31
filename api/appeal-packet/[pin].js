@@ -1,4 +1,4 @@
-const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, detectTaxDistrict, estimateAnnualTax, getTaxRate, findComparableSales, COMP_SALE_START_DATE, APPEAL_DEADLINE } = require("../_shared");
+const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, detectTaxDistrict, derivePropertyLocation, estimateAnnualTax, getTaxRate, findComparableSales, COMP_SALE_START_DATE, APPEAL_DEADLINE } = require("../_shared");
 
 const PRC_BASE = "https://prc-buncombe.spatialest.com/api/v1/recordcard";
 
@@ -32,6 +32,9 @@ module.exports = async function handler(req, res) {
     const buildingValue = parseValue(prop.BuildingValue);
     const acreage = parseFloat(prop.Acreage) || 0;
     const address = [prop.HouseNumber, prop.StreetPrefix, prop.StreetName, prop.StreetType].filter(Boolean).join(" ");
+    const derivedLoc = derivePropertyLocation(prop.City || '', prop.FireDistrict || '');
+    const cityName = derivedLoc ? derivedLoc.name : 'Buncombe County';
+    const zipcode = derivedLoc ? derivedLoc.zip : '';
     
     // Get PRC building data
     let building = {};
@@ -133,6 +136,8 @@ module.exports = async function handler(req, res) {
         pin,
         owner: prop.Owner || "",
         address,
+        cityName,
+        zipcode,
         neighborhood: (prop.NeighborhoodCode || "").trim(),
         acreage,
         totalValue,
@@ -149,7 +154,7 @@ module.exports = async function handler(req, res) {
         quality: building.Quality || "",
         condition: building.PhysicalCondition || "",
         heatType: building.Heat || "",
-        foundation: "CONVENTIONAL", // From form
+        foundation: building.Foundation || "",
         landPctOfTotal: Math.round(landPct),
         isLandHeavy,
         taxDistrict,
@@ -172,11 +177,13 @@ module.exports = async function handler(req, res) {
       },
       // Tax impact based on district-specific 2025 rates (illustrative)
       taxImpact: (function() {
-        const rate = getTaxRate(taxDistrict);
+        // taxDistrict is always non-null (detectTaxDistrict falls back to "BUN")
+        const effectiveDistrict = taxDistrict || 'BUN';
+        const rate = getTaxRate(effectiveDistrict);
         const currentTax = Math.round((totalValue / 100) * rate);
         const suggestedTax = suggestedValue ? Math.round((suggestedValue / 100) * rate) : null;
         return {
-          districtCode: taxDistrict || 'BUN',
+          districtCode: effectiveDistrict,
           ratePerHundred: rate,
           currentAnnualTax: currentTax,
           suggestedAnnualTax: suggestedTax,

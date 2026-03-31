@@ -1,13 +1,20 @@
-const { CURRENT_LAYER, CURRENT_FIELDS, queryArcGIS, parseValue, sanitizePin, normalizePIN, derivePropertyLocation, detectTaxDistrict, estimateAnnualTax, COMP_SALE_START_DATE, APPEAL_DEADLINE, REVALUATION_YEAR } = require("../_shared");
+const {
+  CURRENT_LAYER, CURRENT_FIELDS, SALES_LAYER, queryArcGIS, parseValue, sanitizePin, normalizePIN,
+  derivePropertyLocation, detectTaxDistrict, estimateAnnualTax,
+  findComparableSales: sharedFindComparableSales,
+  getNeighborhoodData,
+  COMP_SALE_START_DATE, APPEAL_DEADLINE, REVALUATION_YEAR,
+} = require("../_shared");
 
-// Both residential comps and vacant land use opendata layer
-// Residential comps are verified as Qualified Sales through PRC transfer history
+// Residential comps use the shared SALES_LAYER (property_bc_dis) which has actual SalePrice data
+// Vacant land uses opendata layer (broader coverage of vacant parcels)
 const COMP_LAYER = "https://gis.buncombecounty.org/arcgis/rest/services/opendata/MapServer/1";
 const PRC_BASE = "https://prc-buncombe.spatialest.com/api/v1/recordcard";
 
-// Sale window uses shared constant: COMP_SALE_START_DATE = '2024-01-01'
+// Sale window uses shared constants
 const SALE_CUTOFF_START = new Date(COMP_SALE_START_DATE);
-const SALE_CUTOFF_END = new Date(2026, 0, 2);
+// End of sale window: Jan 1, 2026 (valuation date for 2026 reappraisal)
+const SALE_CUTOFF_END = new Date(2026, 0, 1);
 const MIN_SALE_PRICE = 50000;
 const MIN_LAND_SALE_PRICE = 10000;
 const MAX_REDUCTION_PCT = 0.25; // Never suggest more than 25% reduction
@@ -70,12 +77,15 @@ async function getPropertyDetails(pin) {
   const acreage = parseFloat(r.Acreage) || 0;
 
   const taxDistrict = detectTaxDistrict(r.City || "", r.FireDistrict || "");
+  const neighborhoodCode = (r.NeighborhoodCode || "").trim();
+  const neighborhoodData = getNeighborhoodData(neighborhoodCode);
 
   return {
     pin: r.PIN,
     owner: r.Owner || "",
     address: [r.HouseNumber, r.StreetPrefix, r.StreetName, r.StreetType].filter(Boolean).join(" "),
-    neighborhood: r.NeighborhoodCode || "",
+    neighborhood: neighborhoodCode,
+    neighborhoodData,
     propertyClass: r.Class || "",
     city: r.City || "",
     fireDistrict: r.FireDistrict || "",
@@ -98,100 +108,40 @@ async function getPropertyDetails(pin) {
 }
 
 // --- Comparable Sales (Residential) ---
-// Uses opendata layer + PRC transfer history to verify Qualified Sales
-// This is more selective than the comp widget (which shows all sales) and produces better analysis
+// Uses the shared SALES_LAYER (property_bc_dis/MapServer/1) which has actual SalePrice data.
+// Results are normalized to the internal comp shape used by the scoring and analysis functions.
 
 async function findComparableSales(subject) {
-  // For manufactured homes, search Class 170 specifically
   const isManufactured = subject.propertyClass === '170';
-  const residentialClasses = isManufactured
-    ? "('170')"
-    : "('100','101','121')";
+  const classFilter = isManufactured
+    ? `Class = '170'`
+    : `Class IN ('100','101','121')`;
 
-  const fields = "PIN,Owner,HouseNumber,StreetPrefix,StreetName,StreetType,Acreage,TotalMarketValue,LandValue,BuildingValue,SalePrice,DeedDate,NeighborhoodCode,Class";
-  const nbhd = subject.neighborhood;
+  const rawSales = await sharedFindComparableSales(subject.pin, subject.neighborhood, {
+    sqft: subject.sqft,
+    yearBuilt: subject.yearBuilt,
+    classFilter,
+    maxResults: 50,
+  });
 
-  // First try exact neighborhood
-  const where = `Class IN ${residentialClasses} AND NeighborhoodCode = '${nbhd}' AND PIN <> '${subject.pin}'`;
-  let results = await queryArcGIS(COMP_LAYER, where, fields, 50);
-
-  // If fewer than 5 results, widen to area prefix (e.g. 'AS-R' -> 'AS-%')
-  // consistent with _shared.js findComparableSales fallback
-  if (results.length < 5 && nbhd) {
-    const dashIdx = nbhd.indexOf('-');
-    const prefix = dashIdx > 0 ? nbhd.substring(0, dashIdx) : nbhd.substring(0, 2);
-    if (prefix) {
-      const widerWhere = `Class IN ${residentialClasses} AND NeighborhoodCode LIKE '${prefix}-%' AND PIN <> '${subject.pin}'`;
-      const widerResults = await queryArcGIS(COMP_LAYER, widerWhere, fields, 50);
-      const seen = new Set(results.map(r => r.PIN));
-      for (const r of widerResults) {
-        if (!seen.has(r.PIN)) {
-          results.push(r);
-          seen.add(r.PIN);
-        }
-      }
-    }
-  }
-
-  const comps = [];
-  const checked = new Set();
-
-  for (const r of results.slice(0, 15)) {
-    const compPin = r.PIN;
-    if (checked.has(compPin)) continue;
-    checked.add(compPin);
-
-    try {
-      const prcRes = await fetch(`${PRC_BASE}/${compPin}`);
-      if (!prcRes.ok) continue;
-      const prc = await prcRes.json();
-      const sections = prc?.parcel?.sections || [];
-
-      let bldg = {};
-      if (sections[2] && typeof sections[2] === 'object' && sections[2]['1'] && sections[2]['1'][0]) {
-        bldg = sections[2]['1'][0];
-      }
-
-      const yearBuilt = parseInt(bldg.YearBuilt) || 0;
-      const sqft = parseInt(bldg.TotalFinishedArea) || 0;
-      const quality = bldg.Quality || "";
-
-      // Get transfer history - find qualified sales within 24-month window
-      const transfers = (sections[3] && sections[3][0]) || [];
-      for (const t of transfers) {
-        if (t.salesvalidity !== 'Qualified Sale') continue;
-        const priceStr = (t.saleprice || "$0").replace(/[$,]/g, "");
-        const price = parseInt(priceStr) || 0;
-        if (price < MIN_SALE_PRICE) continue;
-
-        const saleDate = parseSaleDate(t.saledate);
-        if (!isWithinSaleWindow(saleDate)) continue;
-
-        comps.push({
-          pin: compPin,
-          address: [r.HouseNumber, r.StreetPrefix, r.StreetName, r.StreetType].filter(Boolean).join(" "),
-          salePrice: price,
-          saleDate: t.saledate,
-          assessedValue: parseValue(r.TotalMarketValue),
-          landValue: parseValue(r.LandValue),
-          buildingValue: parseValue(r.BuildingValue),
-          acreage: parseFloat(r.Acreage) || 0,
-          sqft,
-          yearBuilt,
-          quality,
-          bedrooms: parseInt(bldg.Bedrooms) || 0,
-          fullBaths: parseInt(bldg.FullBath) || 0,
-          halfBaths: parseInt(bldg.HalfBath) || 0,
-          propCard: `https://prc-buncombe.spatialest.com/#/property/${compPin}`,
-        });
-        break; // Only most recent qualified sale per property
-      }
-    } catch (e) {}
-
-    await sleep(200);
-  }
-
-  return comps;
+  // Normalize SALES_LAYER raw records into the comp shape used by scoring/analysis
+  return rawSales.map(r => ({
+    pin: r.pin || "",
+    address: [r.HouseNumber, r.streetname || r.StreetName, r.StreetType].filter(Boolean).join(" "),
+    salePrice: parseInt(r.SalePrice) || 0,
+    saleDate: r.DeedDate || null,
+    assessedValue: parseValue(r.TotalMarketValue),
+    landValue: parseValue(r.LandValue),
+    buildingValue: parseValue(r.BuildingValue),
+    acreage: parseFloat(r.Acreage) || 0,
+    sqft: parseInt(r.TotalSqFt) || 0,
+    yearBuilt: parseInt(r.YearBuilt) || 0,
+    quality: "",  // SALES_LAYER does not carry quality; scoring will tolerate missing values
+    bedrooms: 0,  // SALES_LAYER does not carry bedroom count
+    fullBaths: 0,
+    halfBaths: 0,
+    propCard: `https://prc-buncombe.spatialest.com/#/property/${r.pinnum || r.pin}`,
+  })).filter(c => c.salePrice >= MIN_SALE_PRICE);
 }
 
 // --- Vacant Land Sales ---
@@ -202,8 +152,10 @@ async function findVacantLandSales(subject) {
   // Vacant land uses opendata layer (broader coverage of vacant parcels)
   const fields = "PIN,Acreage,SalePrice,DeedDate,NeighborhoodCode,TotalMarketValue,LandValue,Class";
 
-  // DeedDate is YYYYMMDD string — we can filter by string comparison
-  const dateFilter = "DeedDate >= '20240101' AND DeedDate <= '20260102'";
+  // DeedDate is YYYYMMDD string — use shared COMP_SALE_START_DATE for lower bound
+  // Upper bound: Jan 1, 2026 (the valuation date for the 2026 reappraisal)
+  const startDate = COMP_SALE_START_DATE.replace(/-/g, ''); // '20240101'
+  const dateFilter = `DeedDate >= '${startDate}' AND DeedDate <= '20260101'`;
 
   // First try exact neighborhood
   let where = `Class IN ${vacantClasses} AND NeighborhoodCode = '${nbhd}' AND SalePrice <> '0' AND ${dateFilter}`;
@@ -812,10 +764,9 @@ module.exports = async function handler(req, res) {
       appealDeadline: APPEAL_DEADLINE,
 
       taxImpact: {
-        districtCode: subject.taxDistrict || "BUN",
-        ratePerHundred: subject.taxDistrict
-          ? require("../_shared").getTaxRate(subject.taxDistrict)
-          : 0.5466,
+        // taxDistrict is always a non-null string (guaranteed by detectTaxDistrict fallback to "BUN")
+        districtCode: subject.taxDistrict,
+        ratePerHundred: require("../_shared").getTaxRate(subject.taxDistrict),
         currentAnnualTax,
         suggestedAnnualTax,
         estimatedAnnualSavings,

@@ -129,8 +129,8 @@ function detectTaxDistrict(city, fireDistrict) {
   const fireCode = (fireDistrict || "").trim().toUpperCase();
   if (cityCode && CITY_TO_DISTRICT[cityCode]) return CITY_TO_DISTRICT[cityCode];
   if (fireCode && FIRE_TO_DISTRICT[fireCode]) return FIRE_TO_DISTRICT[fireCode];
-  if (!cityCode && !fireCode) return "BUN";
-  return null;
+  // Fall back to county-only rate for any unrecognized combination
+  return "BUN";
 }
 
 async function queryArcGIS(layerUrl, where, outFields, limit = 50) {
